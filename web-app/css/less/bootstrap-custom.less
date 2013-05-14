@@ -1,0 +1,182 @@
+/* ---------- Bootstrap Common Variables ----------- */
+@HSCHeaderColor: #38393E; //Dark Black - 
+@hero-unit-color:#e5e5e5;
+@business-info-header: #2b2b2c;
+@profile-img-top-color:@HSCButtonColor;
+@profile-img-bottom-color:@HSCButtonColor;
+@login-h3-color:@HSCHeaderColor;
+@HSCButtonColor: #5282DE; //turquoise blue
+
+.vertical-gradient(@startColor, @endColor) {
+	#gradient > .vertical(@startColor, @endColor);
+	*background-color: @endColor; /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+    .reset-filter();
+}
+
+body > #wrapper{
+    background-color: #E9E9E9;
+    background-image: url(../../images/retaina_wood.png);
+    background-repeat: repeat;
+}
+
+.maincontainer {
+    padding-top: 60px;
+	h2 {
+		small {
+			font-size: 25.5px;
+			color: inherit;
+		}
+	}    
+}
+
+footer {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444;
+    border-color: #000000;
+    border-image: none;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.navbar {
+	.navbar-inner {
+		background-color: @HSCHeaderColor;
+	    -moz-border-bottom-colors: none;
+	    -moz-border-left-colors: none;
+	    -moz-border-right-colors: none;
+	    -moz-border-top-colors: none;
+	    background: -moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444;
+	    border-image: none;
+	    border-radius: 0 0 0 0;
+	    border-style: solid;
+	    border-width: 1px 0;
+	    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+	    min-height: 50px;
+	    padding-right: 20px;
+	    position: relative;
+	    z-index: 100;
+	}
+	.brand {
+		padding: 0 20px;
+		img#f-logo {
+	    	height: 50px;
+	    }
+	}
+}
+
+#loginform { 
+	margin-top:2.5em;
+	#ajaxLoginForm, #loggedin-container {
+		border:solid 2px @login-h3-color;
+		.border-radius(10px);
+		.input-prepend  {
+			margin-bottom: 10px;
+			.add-on {
+				height:42px;
+				line-height: 43px;
+				width:21px;
+				i {
+					font-size:26px;
+					margin-right:5px;
+				}
+				i.icon-lock {
+					margin-left:1px;
+				}
+			}
+    		margin-top: 1em;
+    		input[type="text"], input[type="email"], input[type="password"] {
+			    font-size: 17px;
+			    width: 84%;
+			    height: 42px;
+			    background-color:@white;
+			    color:#595959;
+			   .box-shadow(none); 
+			}
+    	}	
+		.errorMessage {
+			color: #b94a48;
+			padding:10px;
+			display:block;
+		}
+		input.invalid-name {
+			color: #b94a48;
+		    border-color: darken(#ee5f5b, 10%);
+		    @shadow: 0 0 6px lighten(#ee5f5b, 20%);
+		    .box-shadow(@shadow);
+		}
+		h3 {
+			color:@white;
+			font-size:20px;
+		    -moz-border-bottom-colors: none;
+		    -moz-border-left-colors: none;
+		    -moz-border-right-colors: none;
+		    -moz-border-top-colors: none;
+		    background: -moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444;
+			text-align:center;
+			margin:0;
+			padding:0.3em 0;
+			font-weight: normal;
+			.border-radius(8px 8px 0 0);
+		}
+		h5 {
+			padding:0.2em 0 0 0.4em;
+		}
+		.hero-unit {
+			background-color:#f9fafb;
+			padding:1.5em 1.5em 1em 1.5em;
+			border-radius: 0px 0px 6px 6px;
+			margin-bottom:0;
+			p {
+				font-size: 14px;
+		    	line-height: 1;
+			}
+			small {
+				font-size: 12px;
+				line-height: 1;
+			}
+			.btn {
+				margin-top:10px;		
+			}	
+		}
+		#user-info {
+			border:solid 1px darken(@hero-unit-color,10%);
+			padding:1em;
+			div {
+				display:inline-block;
+			}
+			div.profile-image {
+				.border-radius(5px);
+				 margin-right:10px;
+				 a {
+					margin-top:0;
+					.vertical-gradient(@profile-img-top-color, @profile-img-bottom-color);
+					display:block;
+					.border-radius(10px);
+					 padding: 17px 12px 10px;
+					i {
+						font-size:60px;
+						color:rgba(10, 10, 10, 0.7);
+					}
+					&:hover {
+						text-decoration:none;
+					} 
+				}
+			}
+			p {
+				strong {
+					font-size:18px;
+					font-weight:normal;
+					color:#5b544e;
+				} 
+				small {
+					font-size:16px;
+					font-weight:normal;
+					color:@black;
+				}
+			}
+		}
+	}
+}

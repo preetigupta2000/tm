@@ -1,0 +1,139 @@
+
+/*Desktop resoltiom*/
+@media(max-width:1502px){
+
+
+}
+
+/*tablet styles*/
+@media (min-width: 768px) and (max-width: 979px) {
+	.maincontainer{
+	
+		min-height: 300px;
+		h2 {
+			font-size: 28px;
+		}
+		h3 {
+			font-size: 22px;
+		}
+		#log-in-div {
+			.btn-large {
+			    font-size: 16px;
+			}
+		}
+	}		
+}
+
+
+
+@media (max-width: 767px) {
+	
+	.maincontainer
+	{
+		min-height: 300px;
+	}
+}
+
+
+@media(max-width:480px){
+	body {
+		padding:0px;
+		.maincontainer {
+		    padding: 0px 5px;
+			h2 {
+				font-size: 25px;
+				small {
+					font-size: 20.5px;
+					color: inherit;
+				}
+			}
+		}
+		#loginform { 
+			#ajaxLoginForm, #loggedin-container {
+				.input-prepend  {
+					.add-on {
+						height:32px;
+						line-height: 32px;
+						width:18px;
+						i {
+							font-size:20px;
+						}
+					}
+				}
+			}		
+		}
+		.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+		    margin-left: 0px;
+		    margin-right: 0px;
+		}
+		a.brand
+		{
+			img#f-logo
+			{
+				height:32px !important;
+			}
+			span.address
+			{
+				font-size: 12px;	
+			}
+		}
+		ul.tabs
+		{ 
+			li{
+				display: table-row;	
+			}
+		}
+		
+	}
+	
+	
+}
+
+@media only screen and (max-width: 800px) {
+/* Force table to not be like tables anymore */
+#no-more-tables table,
+#no-more-tables thead,
+#no-more-tables tbody,
+#no-more-tables th,
+#no-more-tables td,
+#no-more-tables tr {
+display: block;
+}
+ 
+/* Hide table headers (but not display: none;, for accessibility) */
+#no-more-tables thead tr {
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+ 
+#no-more-tables tr { border: 1px solid #ccc; }
+ 
+#no-more-tables td {
+/* Behave like a "row" */
+border: none;
+border-bottom: 1px solid #eee;
+position: relative;
+padding-left: 50%;
+white-space: normal;
+text-align:left;
+}
+ 
+#no-more-tables td:before {
+/* Now like a table header */
+position: absolute;
+/* Top/left values mimic padding */
+top: 6px;
+left: 6px;
+width: 45%;
+padding-right: 10px;
+white-space: nowrap;
+text-align:left;
+font-weight: bold;
+}
+ 
+/*
+Label the data
+*/
+#no-more-tables td:before { content: attr(data-title); }
+}
