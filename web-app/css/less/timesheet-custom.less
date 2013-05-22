@@ -1,0 +1,273 @@
+//Global stylings for all screen sizes
+@font-comic:comic sans ms;
+@HSCHeaderColor: #38393E; //Dark Black  
+@hero-unit-color:#e5e5e5;
+@business-info-header: #2b2b2c;
+@profile-img-top-color:@HSCButtonColor;
+@profile-img-bottom-color:@HSCButtonColor;
+@login-h3-color:@HSCHeaderColor;
+@HSCButtonColor: #5282DE; //turquoise blue
+@zero-pixel: 0px;
+@one-pixel: 1px;
+@none: none;
+@font-size:font-size;
+.vertical-gradient(@startColor, @endColor) {
+    #gradient > .vertical(@startColor, @endColor);
+	*background-color: @endColor; /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+    .reset-filter();
+}
+
+html
+{
+.background-color(lightyellow);
+
+
+body
+{
+	.background-color(lightyellow);
+    .padding-left(@zero-pixel);
+    .padding-right(@zero-pixel);
+    img#f-logo
+    {
+        float:left;
+        width:90px;
+    }
+    div.navbar-inner{
+        span.address
+        {
+            .margin-left(@one-pixel * -10);
+        }    
+    }
+    
+    div.navbar-fixed-top 
+    {
+    	.margin-left(@zero-pixel);
+    	.margin-right(@zero-pixel);
+    }
+    footer.navbar-fixed-bottom
+    {
+        .margin-left(@zero-pixel);
+        .margin-right(@zero-pixel);
+    }
+    div.container
+    {
+        .margin-top(@one-pixel * 60);
+    }
+    div.container-fluid
+    {
+        .margin-bottom(@one-pixel * 60);
+    }
+    footer 
+    {
+        -moz-border-bottom-colors: @none;
+        -moz-border-left-colors: @none;
+        -moz-border-right-colors: @none;
+        -moz-border-top-colors: @none;
+        .background(-moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444);
+        .border-color(@black);
+        border-image: @none;
+        .color(@white);
+        .background-color(@black);
+        .padding-bottom(@zero-pixel);
+        .margin-top(@one-pixel * 42);
+    }
+    .navbar {
+        .navbar-inner {
+    		.background-color(@HSCHeaderColor);
+    	    -moz-border-bottom-colors: @none;
+    	    -moz-border-left-colors: @none;
+    	    -moz-border-right-colors: @none;
+    	    -moz-border-top-colors: @none;
+            .background(-webkit-linear-gradient(#364395, #364395) repeat-x scroll left bottom #444444);
+    	    .background(-moz-linear-gradient(center top ,  #364395,  #364395) repeat-x scroll left bottom #444444);
+            .filter(progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c539e', endColorstr='#2c539e', GradientType=0));
+    	    border-image: @none;
+    	    .border-radius(@zero-pixel);
+    	    border-style: solid;
+    	    border-width: 1px 0;
+    	    .box-shadow(0 1px 0 rgba(255, 255, 255, 0.15) inset);
+            position: relative;
+    	    z-index: auto;
+    	}
+    }
+    #loginform { 
+        .margin-top(2.5em);
+    	#loginhorizontalform {
+    		.background-color(white);
+    		.border(solid 2px @login-h3-color);
+    		.border-radius(@one-pixel * 10);
+    		.input-prepend  {
+    			.margin-bottom(@one-pixel * 10);
+    			.add-on {
+    				height:@one-pixel*32;
+    				line-height: @one-pixel*43;
+    				width:@one-pixel*21;
+    				i {
+    					@font-size:@one-pixel*26;
+    					.margin-right(@one-pixel * 5);
+    				}
+    				i.icon-lock {
+    					.margin-left(@one-pixel);
+    				}
+    			}
+        		.margin-top(1em);
+        		input[type="text"], input[type="email"], input[type="password"] {
+    			    @font-size: @one-pixel*17;
+    			    width: 89%;
+    			    height: @one-pixel*42;
+    			    .background-color(@white);
+    			    .color(#595959);
+    			   .box-shadow(@none); 
+    			}
+        	}	
+    		.errorMessage {
+    			.color(#b94a48);
+    			.padding(@one-pixel * 10);
+    			display:block;
+    		}
+    		input.invalid-name {
+    			.color(#b94a48);
+    		    .border-color(darken(#ee5f5b, 10%));
+    		    @shadow: 0 0 6px lighten(#ee5f5b, 20%);
+    		    .box-shadow(@shadow);
+    		}
+    		h3 {
+    			.color(@white);
+    			@font-size:@one-pixel*20;
+    		    -moz-border-bottom-colors: @none;
+    		    -moz-border-left-colors: @none;
+    		    -moz-border-right-colors: @none;
+    		    -moz-border-top-colors: @none;
+    		    background: -moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444;
+                text-align:center;
+    			.margin(@zero-pixel);
+    			.padding(0.3em @zero-pixel);
+    			font-weight: normal;
+                .background-color(black);
+    			.border-radius((@one-pixel*8) (@one-pixel*8) @zero-pixel @zero-pixel);
+    		}
+    		h5 {
+    			.padding(0.2em @zero-pixel @zero-pixel 0.4em);
+                .background-color(@grayLight);
+                .margin(@zero-pixel);
+    		}
+    		.hero-unit {
+    			.background-color(#f9fafb);
+    			.padding(1.5em 1.5em 1em 1.5em);
+    			.border-radius(@zero-pixel @zero-pixel (@one-pixel * 6) (@one-pixel * 6));
+    			.margin-bottom(@zero-pixel);
+    			p {
+    				@font-size: @one-pixel*14;
+    		    	line-height: 1;
+    			}
+    			small {
+    				@font-size: @one-pixel*12;
+    				line-height: 1;
+    			}
+    			.btn {
+    				.margin-top(@one-pixel * 10);		
+    			}
+    		}
+    		#user-info {
+    			.border(solid 1px darken(@hero-unit-color,10%));
+    			.padding(1em);
+    			div {
+    				display:inline-block;
+    			}
+    			div.profile-image {
+    				.border-radius(@one-pixel * 5);
+    				.margin-right(@one-pixel * 10);
+    				 a {
+    					.margin-top(@zero-pixel);
+    					.vertical-gradient(@profile-img-top-color, @profile-img-bottom-color);
+    					display:block;
+    					.border-radius(@one-pixel * 10);
+    					 .padding((@one-pixel*17) (@one-pixel*12) (@one-pixel*10));
+    					i {
+    						@font-size:@one-pixel*60;
+    						.color(rgba(10, 10, 10, 0.7));
+    					}
+    					&:hover {
+    						text-decoration:@none;
+    					} 
+    				}
+    			}
+    		}
+    	}
+    }
+    hr
+    {
+        .margin(@zero-pixel @zero-pixel (@one-pixel*10) @zero-pixel);    
+    }
+    p
+    {
+        text-align: center;
+        .margin(@zero-pixel);
+    }
+    footer
+    {
+        .padding-bottom(@one-pixel*10);    
+    }
+    div.quote
+    {
+        font-family:@font-comic;
+        font-size:22px;
+        .margin-bottom(@one-pixel * 20);
+        font-weight:bold;
+        font-style:italic;
+    }
+    div.border
+    {
+        .border(@one-pixel solid @black);
+        .border-radius(@one-pixel*10);
+        .padding(@one-pixel*10);
+        .background-color(white);
+        font-family:@font-comic;
+        p
+        {
+            text-align: left;
+        }   
+        div.media-body 
+        {
+            text-align: right;    
+        }
+    }
+    img
+    {
+        vertical-align: @one-pixel*2;
+    }
+    #AdminLogo
+	{
+	    border:2px solid silver;
+	    background-color:@white !important;
+	    height:auto;
+	    border-radius:0px 0px 0px 0px !important;
+	}
+	#innerdiv
+	{
+	    background-color:#EDEDED;
+	    border:1px solid silver;
+	   width:80px;
+	    
+	    
+	}
+}
+
+}
+//Stylings specific to a max size 979px
+@media (max-width: 979px) {
+    body
+    {
+        div.container
+        {
+            .margin-top(@zero-pixel);  
+            .margin-bottom(@zero-pixel);
+        }
+        #signup
+        {
+            input[type="text"], input[type="email"], input[type="password"] {
+                width:89%;    
+            }   
+        }
+    }    
+}

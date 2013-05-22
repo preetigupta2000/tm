@@ -1,0 +1,1 @@
+<footer class="footer navbar-fixed-bottom"><hr/><p>&copy; Fonantrix Solutions</p></footer>
