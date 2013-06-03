@@ -51,7 +51,7 @@
 											</button>
 										</div>
 										<div class="row-fluid">
-											<a type="button" class="btn btn-warning  btn-block span12" href="/tm/registration/register" data-toggle="modal">Register</a>
+											<a type="button" class="btn btn-warning  btn-block span12" href="${request.contextPath}/registration/register" data-toggle="modal">Register</a>
 										</div>
 									</div>
 								</div>
@@ -74,46 +74,46 @@
 			                              </div>
 			                              <sec:ifAllGranted roles="ROLE_HR">
 										  	<div class="row-fluid">
-			                                	<a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Users</a>
+			                                	<a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Manage Users</a>
 			                              	</div>
 			                              	<div class="row-fluid">
-			                                	<a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Review Status</a>
+			                                	<a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Review Status</a>
 			                              	</div>
 			                              	<div class="row-fluid">
-			                                	<a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Clients</a>
+			                                	<a type="button" class="btn btn-info btn-block span12" href="${request.contextPath}/client/viewclient" data-toggle="modal">Manage Clients</a>
 			                              	</div>
 										  </sec:ifAllGranted>
 										  <sec:ifAllGranted roles="ROLE_COORDINATOR">
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Review Project Status</a>
+				                                 <a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Review Project Status</a>
 				                              </div>
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Tasks</a>
+				                                 <a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Manage Tasks</a>
 				                              </div>
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Projects</a>
+				                                 <a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Manage Projects</a>
 				                              </div>
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Clients</a>
+				                                 <a type="button" class="btn btn-info btn-block span12" href="${request.contextPath}/client/viewclient" data-toggle="modal">Manage Clients</a>
 				                              </div>
 			                              </sec:ifAllGranted>
 			                              <sec:ifAllGranted roles="ROLE_ADMIN">
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Review Status</a>
+				                                 <a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Review Status</a>
 				                              </div>
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Tasks</a>
+				                                 <a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Manage Tasks</a>
 				                              </div>
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Projects</a>
+				                                 <a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Manage Projects</a>
 				                              </div>
 				                              <div class="row-fluid">
-				                                 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Manage Clients</a>
+				                                 <a type="button" class="btn btn-info btn-block span12" href="${request.contextPath}/client/viewclient" data-toggle="modal">Manage Clients</a>
 				                              </div>
 			                              </sec:ifAllGranted>
 			                              <sec:ifAllGranted roles="ROLE_USER">
 			                              	  <div class="row-fluid">
-			                              	  	 <a type="button" class="btn btn-info btn-block span12" href="#user_registration" data-toggle="modal">Go to user time entry</a>
+			                              	  	 <a type="button" class="btn btn-info btn-block disabled span12" href="#" data-toggle="modal">Go to user time entry</a>
 			                              	  </div>
 			                              </sec:ifAllGranted>
 			                           </div>

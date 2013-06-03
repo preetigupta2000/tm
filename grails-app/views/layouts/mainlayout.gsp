@@ -15,6 +15,7 @@
 		<g:javascript src="jquery-1.7.2.min.js"></g:javascript>
 		<g:javascript src="bootstrap-dropdown.js"></g:javascript>
 		<g:javascript src="bootstrap-collapse.js"></g:javascript>
+		<g:javascript src="bootstrap-modal.js"></g:javascript>
 		<g:layoutHead/>
 		<r:layoutResources />
 	</head>
