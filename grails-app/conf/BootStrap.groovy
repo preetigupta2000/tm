@@ -1,6 +1,8 @@
-import com.fonantrix.tm.authenticate.Role
-import com.fonantrix.tm.authenticate.User
-import com.fonantrix.tm.authenticate.UserRole
+import com.fonantrix.tm.authenticate.Role;
+import com.fonantrix.tm.authenticate.User;
+import com.fonantrix.tm.authenticate.UserRole;
+
+
 class BootStrap {
 
     def init = { servletContext ->

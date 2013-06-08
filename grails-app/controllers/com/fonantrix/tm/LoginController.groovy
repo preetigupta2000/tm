@@ -1,3 +1,5 @@
+package com.fonantrix.tm
+
 import grails.converters.JSON
 import com.fonantrix.tm.authenticate.Role
 import com.fonantrix.tm.authenticate.User
