@@ -7,7 +7,11 @@ class UrlMappings {
 			}
 		}
 
-		"/"(controller:"login")
+		"/"(controller:"home")
+		"/login/$action?/$id?"(controller:"login")
+		"/logout/$action?/$id?"(controller:"logout")
+		
+		"/viewclient"(controller:"client")
 		"500"(view:'/error')
 	}
 }

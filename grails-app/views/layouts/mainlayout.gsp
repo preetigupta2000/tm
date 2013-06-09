@@ -5,19 +5,23 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Fonantrix Solutions</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0;">
+		<title>Time Management</title>
+
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'less/index.css')}" type="text/css">
-		<g:javascript src="lesscompiler/less-1.3.1.min.js"></g:javascript>
-		<g:javascript src="jquery-1.7.2.min.js"></g:javascript>
-		<g:javascript src="bootstrap-dropdown.js"></g:javascript>
-		<g:javascript src="bootstrap-collapse.js"></g:javascript>
-		<g:javascript src="bootstrap-modal.js"></g:javascript>
+		
+		<meta name="description" content="Fonantrix, 2013">
+		<meta name="author" content="Fonantrix Solutions LLP.">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		
+		<fon:stylesheet src="index"/>
+		<r:require modules="corejs"/>
+		
 		<g:layoutHead/>
-		<r:layoutResources />
+		<r:layoutResources/>
 	</head>
 	<body>
 		<div id="wrapper" class="clearfix">
@@ -30,6 +34,6 @@
 	  <div id="spinner" class="spinner" style="display:none;">
 	    <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
 	  </div> 		
-		<r:layoutResources />
+		<r:layoutResources/>
 	</body>
 </html>

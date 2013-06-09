@@ -4,7 +4,7 @@ import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class FonTaglibTagLib {
 
-	static namespace = "Fon"
+	static namespace = "fon"
 	GrailsApplication grailsApplication
 
 	public static final String LESS_SCRIPT_FILE_LOCATION = "js/lesscompiler/less-1.3.1.min.js"
@@ -14,17 +14,17 @@ class FonTaglibTagLib {
 	public static final String CSS_PATH = "css"
 	
 	def stylesheet = { attrs, body ->
-			getLTRStyleSheet(attrs)
+			getStyleSheet(attrs)
 	}
 	
-	private void getLTRStyleSheet(def attrs){
+	private void getStyleSheet(def attrs){
 		String fileType
 		String src = attrs.remove('src')
 		
 		if (!src) {
 			throwTagError("Tag [less] is missing required attribute [src]")
 		}
-		
+			
 		if (isDebugMode()) {
 			// reference .less files directly (In browser, less.js will compile into CSS)
 			fileType = '.less'

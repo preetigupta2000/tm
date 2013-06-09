@@ -3,74 +3,6 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 		<meta name="layout" content="mainlayout"/>
-		<title>Insert title here</title>
-		<style type="text/css">
-		@media only screen and (max-width: 800px) {
-		/* Force table to not be like tables anymore */
-		#no-more-tables table,
-		#no-more-tables thead,
-		#no-more-tables tbody,
-		#no-more-tables th,
-		#no-more-tables td,
-		#no-more-tables tr {
-		display: block;
-		}
-		 
-		/* Hide table headers (but not display: none;, for accessibility) */
-		#no-more-tables thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-		}
-		 
-		#no-more-tables tr { border: 1px solid #ccc; }
-		 
-		#no-more-tables td {
-		/* Behave like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee;
-		position: relative;
-		padding-left: 50%;
-		white-space: normal;
-		text-align:left;
-		}
-		 
-		#no-more-tables td:before {
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%;
-		padding-right: 10px;
-		white-space: nowrap;
-		text-align:left;
-		font-weight: bold;
-		}
-		 
-		/*
-		Label the data
-		*/
-		#no-more-tables td:before { content: attr(data-title); }
-		}
-		i
-		{
-			cursor: pointer;
-		}
-		</style>
-		<script type="text/javascript">
-		
-		$(document).ready(function () {
-			$(".add-project").click(function() {
-				var currentClientId = $(this).attr("id");
-				$(".modal-add-button-hidden").attr("value",currentClientId);
-			});
-		});
-		function setClientId(object)
-		{
-			$('input[name=editClientId]').val($(object).attr('id'));
-		}
-		</script>
 	</head>
 	<body>
 		<div class="container">
@@ -83,10 +15,10 @@
 			  	<table id="no-more-tables" class="table table-striped table-hover table-bordered table-condensed">
 			  		<thead>
 			  			<tr>
-			  				<th class="span2">Client Id</th>
-			  				<th class="span3">Client</th>
-			  				<th class="span5">Description</th>
-			  				<th class="span2">Options</th>
+			  				<th>Client Id</th>
+			  				<th>Client</th>
+			  				<th>Description</th>
+			  				<th>Options</th>
 			  			</tr>
 			  		</thead>
 			  		<tbody>

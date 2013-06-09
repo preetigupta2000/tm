@@ -11,13 +11,11 @@ import tm.ProjectTask
 
 class ClientController {
 
-    def index() { }
-	
-	def viewclient() {
+    def index() {
 		def client = Client.list()
 		render view: '/clients', model: [client: client]
 	}
-	
+		
 	def addclient() {
 		def client = new Client(params)
 		client.save()

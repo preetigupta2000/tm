@@ -1,7 +1,9 @@
 <div class="navbar navbar-inverse navbar-fixed-top clearfix">
 	<div class="navbar-inner">
-		<img src="../images/fonantrix-logo.png" alt="Logo" id="f-logo">
-		<span class="address brand">x Acton MA</span>
+		<span class="address brand">
+				<img src="images/fonantrix-logo.png" alt="Logo" id="f-logo">
+				x Acton MA
+		</span>
 		<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
 		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 			<span class="icon-bar"></span>
@@ -11,7 +13,7 @@
 		<!-- Everything you want hidden at 940px or less, place within here -->
 		<div class="nav-collapse collapse">
 			<ul class="nav pull-right">
-				<li><a href="/tm/login/index">Home</a></li>
+				<li><a href="index">Home</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						Settings

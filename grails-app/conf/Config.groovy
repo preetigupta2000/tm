@@ -62,9 +62,13 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+		grails.resources.debug = true  // Add this line in development environment.
     }
     production {
         grails.logging.jul.usebridge = false
+		//Completely disable css and/or js processor
+		//grails.resources.mappers.yuicssminify.disable=true
+		//grails.resources.mappers.yuijsminify.disable=true
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
@@ -88,9 +92,13 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+	warn 'com.blockconsult.yuiminifyresources.YuiCompressorErrorReporter'
 }
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.fonantrix.tm.authenticate.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.fonantrix.tm.authenticate.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.fonantrix.tm.authenticate.Role'
+grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
+
+grails.plugins.springsecurity.logout.afterLogoutUrl = '/login'

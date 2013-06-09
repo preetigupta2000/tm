@@ -1,1 +1,3 @@
-<footer class="footer navbar-fixed-bottom"><hr/><p>&copy; Fonantrix Solutions</p></footer>
+<footer class="footer navbar-fixed-bottom">
+	<p>&copy; Fonantrix Solutions</p>
+</footer>
