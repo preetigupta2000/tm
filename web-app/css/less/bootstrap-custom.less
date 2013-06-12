@@ -77,17 +77,12 @@ footer {
 	border:solid 2px @login-h3-color;
 	.border-radius(10px);
 	.input-prepend  {
-		margin-bottom: 10px;
 		.add-on {
 			height:32px;
 			i {
 				margin-right:5px;
 			}
-			i.icon-lock {
-				margin-left:1px;
-			}
-		}
-		margin-top: 1em;
+		}	
 		input[type="text"], input[type="email"], input[type="password"] {
 		    font-size: 17px;
 		    height: 32px;
@@ -140,7 +135,11 @@ footer {
 		}
 		.btn {
 			margin-top:10px;		
-		}	
+		}
+		i {
+			font-size:24px;
+			color:rgba(10, 10, 10, 0.7);
+		}		
 	}
 	#user-info {
 		border:solid 1px darken(@hero-unit-color,10%);
@@ -158,10 +157,6 @@ footer {
 				display:block;
 				.border-radius(10px);
 				 padding: 17px 12px 10px;
-				i {
-					font-size:60px;
-					color:rgba(10, 10, 10, 0.7);
-				}
 				&:hover {
 					text-decoration:none;
 				} 

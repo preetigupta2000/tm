@@ -1,91 +1,68 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" %>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 		<meta name="layout" content="mainlayout"/>
-		<g:javascript src="jquery.validate.js"></g:javascript>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$("#signup").validate({
-					rules:{
-						firstname:"required",
-						lastname:"required",
-						email:{
-							required:true,
-							email: true
-						},
-						passwd:{
-							required:true,
-							minlength: 8
-						},
-						conpasswd:{
-							required:true,
-							equalTo: "#passwd"
-						},
-						gender:"required"
-					},
-					errorClass: "help-inline"
-				});
-			});
-		</script>
 	</head>
 	<body>
-		<div class="container">
-			<legend>Sign Up</legend>
-			<div class="well">
-		    	<g:form id="signup" class="form-horizontal" method="post" controller="Registration" action="save">
-					<div class="control-group">
-				        <label class="control-label">First Name</label>
-						<div class="controls">
-						    <div class="input-prepend">
-								<span class="add-on"><i class="icon-user"></i></span>
-								<g:textField id="fname" name="firstname" placeholder="First Name" class="input-xlarge" required="" value="${form?.firstname}"></g:textField>
-							</div>
-						</div>
+		<div id="registration">	
+			<div class="container maincontainer">
+				<div class="row" id="header">
+					<div class="span9">
+						<ul class="breadcrumb breadcrumb-admin">
+							<li><h2><a href="#/users/list">Registration</a> <span class="divider">/</span></h2></li>
+							<li class="active"><h2>New user</h2></li>
+						</ul>
+		        	</div>
+					<div class="span3">
+						<button id="create-account" class="btn accountAction" ><i class="icon-save"></i>  Create Account</button>
+					</div>        	
+				</div>
+				<div class="row">
+					<div class="span12">
+						<div class="well well-admin">
+							<form id="createUser" class="form-horizontal" action="#" method="post" name="addUser">
+								<div class="control-group">
+									<label class="control-label" for="username">Username</label>
+									<div class="controls">
+										<input id="username" type="email" placeholder="email" name="username" required/>					
+										<span class="alert alert-error hide" id="error-name">
+											<strong>Warning!</strong> Username can't be blank.
+										</span>
+										<span class="alert alert-error hide" id="error-username">
+											<strong>Warning!</strong> Username must be a valid email id.
+										</span>		
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="password">Password</label>
+									<div class="controls">
+										<input id="password"  type="password" placeholder="password" name="password" required/>
+										<span class="alert alert-error hide" id="error-password">
+											<strong>Warning!</strong> Password can't be blank.
+										</span>						
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="confirmPassword">Confirm Password</label>
+									<div class="controls">
+										<input id="confirmPassword" placeholder="confirm password" type="password" name="confirmPassword" required/>
+									</div>
+								</div>
+								<div class="control-group">													
+									<label class="control-label" for="firstName">First Name</label>
+									<div class="controls">
+										<input id="firstName" placeholder="first name" type="text" name="firstName" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="lastName">Last Name</label>
+									<div class="controls">
+										<input id="lastName" placeholder="last name" type="text" name="lastName" />
+									</div>
+								</div>									
+							</form>	
+						</div>	
 					</div>
-					<div class="control-group ">
-				        <label class="control-label">Last Name</label>
-						<div class="controls">
-						    <div class="input-prepend">
-								<span class="add-on"><i class="icon-user"></i></span>
-								<g:textField id="lname" name="lastname" placeholder="Last Name" class="input-xlarge" required="" value="${form?.lastname}"></g:textField>
-							</div>
-						</div>
-					</div>
-					<div class="control-group">
-				        <label class="control-label">Username/Email</label>
-						<div class="controls">
-						    <div class="input-prepend">
-								<span class="add-on"><i class="icon-envelope"></i></span>
-								<input class="input-xlarge" id=email type="email" name="email" placeholder="Email" required value="${form?.email}"/>
-							</div>
-						</div>
-					</div>
-					<div class="control-group">
-				        <label class="control-label">Password</label>
-						<div class="controls">
-						    <div class="input-prepend">
-								<span class="add-on"><i class="icon-lock"></i></span>
-								<g:textField id="passwd" type="Password" name="password" placeholder="Password" required="" class="input-xlarge" value="${form?.password}"></g:textField>
-							</div>
-						</div>
-					</div>
-					<div class="control-group">
-				        <label class="control-label">Confirm Password</label>
-						<div class="controls">
-						    <div class="input-prepend">
-								<span class="add-on"><i class="icon-lock"></i></span>
-								<g:textField id="conpasswd" type="Password" name="confirmPassword" placeholder="Confirm Password" required="" class="input-xlarge" value="${form?.confirmPassword}"></g:textField>
-							</div>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label"></label>
-				      	<div class="controls">
-				       		<button type="submit" class="btn btn-success" >Create My Account</button>
-				      	</div>
-					</div>
-			  	</g:form>
+				</div>		
 			</div>
 		</div>
 	</body>

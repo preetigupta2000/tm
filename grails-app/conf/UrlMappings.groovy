@@ -12,6 +12,7 @@ class UrlMappings {
 		"/logout/$action?/$id?"(controller:"logout")
 		
 		"/viewclient"(controller:"client")
+		"/register"(controller:"registration", action:"register")
 		"500"(view:'/error')
 	}
 }
