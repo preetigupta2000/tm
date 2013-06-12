@@ -1,44 +1,53 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" %>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 		<meta name="layout" content="mainlayout"/>
 	</head>
 	<body>
-		<div class="container">
-			<div class="row-fluid">
-		  		<div class="span12">
-		  			<button class="btn btn-small btn-primary" type="button" data-toggle="modal" href="#addClientModal">Add Client</button>
-		  		</div>
-		  	</div>
-			<div class="row-fluid">
-			  	<table id="no-more-tables" class="table table-striped table-hover table-bordered table-condensed">
-			  		<thead>
-			  			<tr>
-			  				<th>Client Id</th>
-			  				<th>Client</th>
-			  				<th>Description</th>
-			  				<th>Options</th>
-			  			</tr>
-			  		</thead>
-			  		<tbody>
-						<g:each in="${client}" status="i" var="Client">
-				  			<tr>
-				  				<td data-title="Client Id">${fieldValue(bean:Client, field:'id')}</td>
-				  				<td data-title="Name">${fieldValue(bean:Client, field:'name')}</td>
-				  				<td data-title="Description">${fieldValue(bean:Client, field:'description')}</td>
-				  				<td data-title="Option"><g:link id="${fieldValue(bean:Client, field:'id')}" controller="client" action="editClient" params='[clientId:"${fieldValue(bean:Client, field:'id')}"]'><i class="icon-pencil" title="Edit"></i></g:link> | <g:link id="${fieldValue(bean:Client, field:'id')}" class="confirm-delete" controller="Client" action="deleteClient" data-confirm="Are you sure you want to delete?"><i class="icon-remove" title="Delete"></i></g:link>
-				  				<button id="${fieldValue(bean:Client, field:'id')}" class="btn btn-mini btn-primary add-project" type="button" data-toggle="modal" href="#addProjectModal">Add Project</button>
-				  				<g:link params='[clientId:"${fieldValue(bean:Client, field:'id')}"]' class="badge badge-info" controller="project" action="viewprojects">View Projects</g:link>
-				  				<g:hiddenField name="clientId" value="${fieldValue(bean:Client, field:'id')}"></g:hiddenField>
-				  				</td>
-				  			</tr>
-				  		</g:each>
-			  		</tbody>
-			  	</table>
-		  	</div>
+		<div id="manageclients">
+			<div class="container maincontainer">
+				<div class="row" id="header">
+					<div class="span9">
+						<ul class="breadcrumb breadcrumb-admin">
+		  					<li class="active"><h2>Manage Clients</h2></li>
+						</ul>
+		        	</div>
+					<div class="span3">
+						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addClientModal"><i class="icon-plus"></i>  Add New Client</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span12">
+						<div class="well well-admin">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody id="client-list">
+									<g:each in="${client}" status="i" var="Client">
+							  			<tr>
+							  				<td>${i+1}</td>
+							  				<td data-title="Name">${fieldValue(bean:Client, field:'name')}</td>
+							  				<td data-title="Description">${fieldValue(bean:Client, field:'description')}</td>
+							  				<td data-title="Option"><g:link id="${fieldValue(bean:Client, field:'id')}" controller="client" action="editClient" params='[clientId:"${fieldValue(bean:Client, field:'id')}"]'><i class="icon-pencil" title="Edit"></i></g:link> | <g:link id="${fieldValue(bean:Client, field:'id')}" class="confirm-delete" controller="Client" action="deleteClient" data-confirm="Are you sure you want to delete?"><i class="icon-remove" title="Delete"></i></g:link>
+							  				<button id="${fieldValue(bean:Client, field:'id')}" class="btn btn-mini btn-primary add-project" type="button" data-toggle="modal" href="#addProjectModal">Add Project</button>
+							  				<g:link params='[clientId:"${fieldValue(bean:Client, field:'id')}"]' class="badge badge-info" controller="project" action="viewprojects">View Projects</g:link>
+							  				<g:hiddenField name="clientId" value="${fieldValue(bean:Client, field:'id')}"></g:hiddenField>
+							  				</td>
+							  			</tr>
+				  					</g:each>
+								</tbody>
+							</table>
+						</div>			
+					</div>
+				</div>		
+			</div>
 		</div>
-		<!-- Modal -->
+		<!-- Modal Client -->
 		<div id="addClientModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<g:form controller="Client" action="addclient">
 				<div class="modal-header">
@@ -67,6 +76,7 @@
 				</div>
 			</g:form>
 		</div>
+		<!-- Modal Project -->
 		<div id="addProjectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<g:form controller="Client" action="addproject">
 				<div class="modal-header">
@@ -95,6 +105,6 @@
 					<g:hiddenField class="modal-add-button-hidden" name="modalHidden" value=""/>
 				</div>
 			</g:form>
-		</div>
+		</div>		
 	</body>
 </html>

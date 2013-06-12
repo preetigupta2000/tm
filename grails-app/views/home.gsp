@@ -19,11 +19,11 @@
 					</div>
 				</div>			
 				<div class="span5">
-					<g:render template = "/login"/> 
+					<g:render template="/login"/>
 				</div>		
 			</div>
 			<div class="row-fluid">
-				<div class="span12">
+				<div class="span12 info-heading">
 					<h2>What Level of Time Management are You At?</h2>
 				</div>
 			</div>

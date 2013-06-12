@@ -19,7 +19,7 @@ class ClientController {
 	def addclient() {
 		def client = new Client(params)
 		client.save()
-		redirect(action: "viewclient")
+		redirect(action: "index")
 	}
 	
 	def addproject() {
@@ -30,13 +30,13 @@ class ClientController {
 		ClientProject.create client, project, true
 		def list = client.getAuthorities()
 		println list.getAt("name")
-		redirect action: 'viewclient'
+		redirect action: 'index'
 	}
 	
 	def deleteClient(){
 		def client = Client.get(params.id)
 		client.deleteClient()
-		redirect action: 'viewclient'
+		redirect action: 'index'
 	}
 	
 	def editClient(){
@@ -52,6 +52,6 @@ class ClientController {
 			System.out.println(params)
 			client.save()
 		}
-		redirect action: 'viewclient'
+		redirect action: 'index'
 	}
 }
