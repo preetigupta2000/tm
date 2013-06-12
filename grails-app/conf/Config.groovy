@@ -101,4 +101,4 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.fonantrix
 grails.plugins.springsecurity.authority.className = 'com.fonantrix.tm.authenticate.Role'
 grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
 
-grails.plugins.springsecurity.logout.afterLogoutUrl = '/login'
+grails.plugins.springsecurity.logout.afterLogoutUrl = '/home'
