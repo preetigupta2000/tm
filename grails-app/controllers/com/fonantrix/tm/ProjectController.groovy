@@ -7,7 +7,11 @@ import tm.ProjectTask
 import tm.ClientProject
 class ProjectController {
 
-    def index() { }
+    def index() {
+		def projects = Project.list()
+		def clientList = Client.list()
+		render view: '/projects', model: [project: projects, clientList:clientList]
+	}
 	
 	def addproject() {
 		def project = new Project(params)
@@ -44,12 +48,6 @@ class ProjectController {
 		
 	}
 	
-	def viewallprojects() {
-		def projects = Project.list()
-		def clientList = Client.list()
-		render view: '/projects', model: [project: projects, clientList:clientList]
-	}
-	
 	def deleteProject() {
 		def project = Project.get(params.id)
 		def clientId = params.clientId
@@ -58,12 +56,13 @@ class ProjectController {
 	}
 	
 	def viewprojects() {
-		def clientId = (params.clientId).toInteger()
+		def clientId = (params.clientId)
 		def client = Client.get(params.clientId)
 		def list = client.getAuthorities()
 		println list
 		render view: '/projects', model: [project: list,clientId:clientId]
 	}
+	
 	def editProject(){
 		def project = Project.get(params.projectId)
 		def clientId = params.clientId

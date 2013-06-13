@@ -1,61 +1,7 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" %>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 		<meta name="layout" content="mainlayout"/>
-		<title>Insert title here</title>
-		<style type="text/css">
-		@media only screen and (max-width: 800px) {
-		/* Force table to not be like tables anymore */
-		#no-more-tables table,
-		#no-more-tables thead,
-		#no-more-tables tbody,
-		#no-more-tables th,
-		#no-more-tables td,
-		#no-more-tables tr {
-		display: block;
-		}
-		 
-		/* Hide table headers (but not display: none;, for accessibility) */
-		#no-more-tables thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-		}
-		 
-		#no-more-tables tr { border: 1px solid #ccc; }
-		 
-		#no-more-tables td {
-		/* Behave like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee;
-		position: relative;
-		padding-left: 50%;
-		white-space: normal;
-		text-align:left;
-		}
-		 
-		#no-more-tables td:before {
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%;
-		padding-right: 10px;
-		white-space: nowrap;
-		text-align:left;
-		font-weight: bold;
-		}
-		 
-		/*
-		Label the data
-		*/
-		#no-more-tables td:before { content: attr(data-title); }
-		}
-		</style>
-		<script type="text/javascript">
-		
+		<script type="text/javascript">	
 		$(document).ready(function () {
 			$(".add-task").click(function() {
 				var currentProjectId = $(this).attr("id");
@@ -75,39 +21,51 @@
 		</script>
 	</head>
 	<body>
-		<div class="container">
-			<div class="row-fluid">
-		  		<div class="span12">
-		  			<button class="btn btn-small btn-primary add-project" type="button" data-toggle="modal" href="#addProjectModal">Add Project</button>
-		  		</div>
-		  	</div>
-			<div class="row-fluid">
-			  	<table id="no-more-tables" class="table table-striped table-hover table-bordered table-condensed">
-			  		<thead>
-			  			<tr>
-			  				<th class="span2">Project Id</th>
-			  				<th class="span3">Project</th>
-			  				<th class="span5">Description</th>
-			  				<th class="span2">Options</th>
-			  			</tr>
-			  		</thead>
-			  		<tbody>
-						<g:each in="${project}" status="i" var="Project">
-				  			<tr>
-				  				<td data-title="Project Id">${fieldValue(bean:Project, field:'id')}</td>
-				  				<td data-title="Name">${fieldValue(bean:Project, field:'name')}</td>
-				  				<td data-title="Description">${fieldValue(bean:Project, field:'description')}</td>
-				  				<td data-title="Option"><g:link id="${fieldValue(bean:Project, field:'id')}" class="confirm-delete" params='[projectId:"${fieldValue(bean:Project, field:'id')}",clientId:"${clientId}"]' controller="project" action="editProject"><i class="icon-pencil" title="Edit"></i></g:link> | <g:link id="${fieldValue(bean:Project, field:'id')}" params='[clientId:"${clientId}"]' class="confirm-delete" controller="Project" action="deleteProject" data-confirm="Are you sure you want to delete?"><i class="icon-remove" title="Delete"></i></g:link>
-				  				<button id="${fieldValue(bean:Project, field:'id')}" class="btn btn-mini btn-primary add-task" type="button" data-toggle="modal" href="#addTaskModal">Add Task</button>
-				  				<g:link params='[projectId:"${fieldValue(bean:Project, field:'id')}"]' class="badge badge-info" controller="task" action="viewtask">View Tasks</g:link>
-				  				<g:hiddenField name="projectId" value="${fieldValue(bean:Project, field:'id')}"></g:hiddenField>
-				  				</td>
-				  			</tr>
-				  		</g:each>
-			  		</tbody>
-			  	</table>
+		<div id="manageprojects">
+			<div class="container maincontainer">
+				<div class="row" id="header">
+					<div class="span9">
+						<ul class="breadcrumb breadcrumb-admin">
+							<li><h2><a href="../home">Home</a> <span class="divider">/</span></h2></li>						
+		  					<li class="active"><h2>Manage Projects</h2></li>
+						</ul>
+		        	</div>
+					<div class="span3">
+						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addProjectModal"><i class="icon-plus"></i>  Add New Project</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span12">
+						<div class="well well-admin">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Project Name</th>
+										<th>Description</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody id="client-list">
+									<g:each in="${project}" status="i" var="Project">
+							  			<tr>
+							  				<td>${i+1}</td>
+							  				<td data-title="Name">${fieldValue(bean:Project, field:'name')}</td>
+							  				<td data-title="Description">${fieldValue(bean:Project, field:'description')}</td>
+											<td data-title="Option"><g:link id="${fieldValue(bean:Project, field:'id')}" class="confirm-delete" params='[projectId:"${fieldValue(bean:Project, field:'id')}",clientId:"${clientId}"]' controller="project" action="editProject"><i class="icon-pencil" title="Edit"></i></g:link> | <g:link id="${fieldValue(bean:Project, field:'id')}" params='[clientId:"${clientId}"]' class="confirm-delete" controller="Project" action="deleteProject" data-confirm="Are you sure you want to delete?"><i class="icon-remove" title="Delete"></i></g:link>
+								  				<button id="${fieldValue(bean:Project, field:'id')}" class="btn btn-mini btn-primary add-task" type="button" data-toggle="modal" href="#addTaskModal">Add Task</button>
+								  				<g:link params='[projectId:"${fieldValue(bean:Project, field:'id')}"]' class="badge badge-info" controller="task" action="viewtask">View Tasks</g:link>
+								  				<g:hiddenField name="projectId" value="${fieldValue(bean:Project, field:'id')}"></g:hiddenField>
+								  			</td>
+							  			</tr>
+				  					</g:each>
+								</tbody>
+							</table>
+						</div>			
+					</div>
+				</div>		
 			</div>
-		</div>
+		</div>	
 		<!-- Modal -->
 		<div id="addProjectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<g:form controller="Project" action="addproject">

@@ -8,6 +8,7 @@
 				<div class="row" id="header">
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">
+							<li><h2><a href="home">Home</a> <span class="divider">/</span></h2></li>
 		  					<li class="active"><h2>Manage Clients</h2></li>
 						</ul>
 		        	</div>
@@ -35,7 +36,7 @@
 							  				<td data-title="Description">${fieldValue(bean:Client, field:'description')}</td>
 							  				<td data-title="Option"><g:link id="${fieldValue(bean:Client, field:'id')}" controller="client" action="editClient" params='[clientId:"${fieldValue(bean:Client, field:'id')}"]'><i class="icon-pencil" title="Edit"></i></g:link> | <g:link id="${fieldValue(bean:Client, field:'id')}" class="confirm-delete" controller="Client" action="deleteClient" data-confirm="Are you sure you want to delete?"><i class="icon-remove" title="Delete"></i></g:link>
 							  				<button id="${fieldValue(bean:Client, field:'id')}" class="btn btn-mini btn-primary add-project" type="button" data-toggle="modal" href="#addProjectModal">Add Project</button>
-							  				<g:link params='[clientId:"${fieldValue(bean:Client, field:'id')}"]' class="badge badge-info" controller="project" action="viewprojects">View Projects</g:link>
+							  				<a href="viewclientprojects?clientId=${fieldValue(bean:Client, field:'id')}" class="badge badge-info">View Projects</a>
 							  				<g:hiddenField name="clientId" value="${fieldValue(bean:Client, field:'id')}"></g:hiddenField>
 							  				</td>
 							  			</tr>

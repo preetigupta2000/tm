@@ -1,4 +1,5 @@
-#registration, #manageclients {
+@shadow: 0 2px 2px 0 #C2AD9B;
+#registration, #manageclients, #manageprojects, #managetasks {
 	#header {
 		border-bottom: solid 1px #FA9445; 
 		margin-bottom: 15px;
@@ -12,4 +13,18 @@
 
 i {
 	font-size: 20px;
+}
+
+.well-admin {
+    background-color: #FFFFFF;
+    border: 1px solid #ABABAB;
+    .border-radius(6px);
+    .box-shadow(@shadow);    
+    font-size: 16px;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+    label, input, button, select, textarea {
+    	font-size: 16px;
+    }
 }

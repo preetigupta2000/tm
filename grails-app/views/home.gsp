@@ -19,7 +19,7 @@
 					</div>
 				</div>			
 				<div class="span5">
-					<g:render template="/login"/>
+					<g:render template="/templates/login"/>
 				</div>		
 			</div>
 			<div class="row-fluid">
