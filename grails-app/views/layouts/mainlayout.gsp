@@ -18,6 +18,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		
 		<fon:stylesheet src="index"/>
+		
 		<r:require modules="corejs"/>
 		
 		<g:layoutHead/>

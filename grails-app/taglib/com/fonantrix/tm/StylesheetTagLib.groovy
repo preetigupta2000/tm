@@ -2,7 +2,7 @@ package com.fonantrix.tm
 
 import org.codehaus.groovy.grails.commons.GrailsApplication
 
-class FonTaglibTagLib {
+class StylesheetTaglibTagLib {
 
 	static namespace = "fon"
 	GrailsApplication grailsApplication
