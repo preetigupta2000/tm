@@ -9,7 +9,7 @@ eventPackagingEnd = {kind->
 		def config = new ConfigSlurper(GrailsUtil.environment).parse(classLoader.loadClass('FonConfig'))
 		def grailsconfig = new ConfigSlurper(GrailsUtil.environment).parse(classLoader.loadClass('Config'))
 	
-		if(!config.fon.cloudMode && !grailsconfig.grails.resources.debug) {
+		if(!config.fon.cloudMode) {
 			deployCSS()
 		}
 }

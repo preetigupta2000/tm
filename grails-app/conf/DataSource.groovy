@@ -24,7 +24,7 @@ environments {
         }
     }
     production {
-		/*
+		/*		
         dataSource {
             dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/timesheet_production"
@@ -39,8 +39,7 @@ environments {
                testOnReturn=true
                validationQuery="SELECT 1"
             }
-        }
-		*/
+        }*/
 		dataSource {
 			dbCreate = "create-drop"
 			driverClassName = "org.postgresql.Driver"
