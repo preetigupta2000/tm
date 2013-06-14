@@ -16,11 +16,11 @@
 		<meta name="description" content="Fonantrix, 2013">
 		<meta name="author" content="Fonantrix Solutions LLP.">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		
-		<fon:stylesheet src="index"/>
-		
+			
 		<r:require modules="corejs"/>
 		
+		<fon:stylesheet src="index"/>
+				
 		<g:layoutHead/>
 		<r:layoutResources/>
 	</head>
