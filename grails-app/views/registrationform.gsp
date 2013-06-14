@@ -5,21 +5,21 @@
 	<body>
 		<div id="registration">	
 			<div class="container maincontainer">
+				<form id="register" class="form-horizontal" action="register/save" method="post" name="register">
 				<div class="row" id="header">
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">
-							<li><h2><a href="#/users/list">Registration</a> <span class="divider">/</span></h2></li>
-							<li class="active"><h2>New user</h2></li>
+							<li><h2><a href="home">Home</a> <span class="divider">/</span></h2></li>
+							<li class="active"><h2>New user Registration</h2></li>
 						</ul>
 		        	</div>
 					<div class="span3">
-						<button id="create-account" class="btn accountAction" ><i class="icon-save"></i>  Create Account</button>
+						<button type="submit" id="create-account" class="btn accountAction" ><i class="icon-save"></i>  Create Account</button>
 					</div>        	
 				</div>
 				<div class="row">
 					<div class="span12">
 						<div class="well well-admin">
-							<form id="createUser" class="form-horizontal" action="#" method="post" name="addUser">
 								<div class="control-group">
 									<label class="control-label" for="username">Username</label>
 									<div class="controls">
@@ -59,10 +59,10 @@
 										<input id="lastName" placeholder="last name" type="text" name="lastName" />
 									</div>
 								</div>									
-							</form>	
 						</div>	
 					</div>
-				</div>		
+				</div>
+				</form>							
 			</div>
 		</div>
 	</body>

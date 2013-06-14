@@ -15,7 +15,8 @@ class UrlMappings {
 		"/viewclient"(controller:"client")
 		"/projects"(controller:"project")
 		"/viewclientprojects"(controller:"project", action:"viewprojects")
-		"/register"(controller:"registration", action:"register")
+		"/register/$action?/$id?"(controller:"registration")
+		//"/registeruser"(controller:"registration", action:"save")
 		"500"(view:'/error')
 	}
 }
