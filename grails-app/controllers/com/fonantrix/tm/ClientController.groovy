@@ -2,11 +2,11 @@ package com.fonantrix.tm
 
 import java.util.Set;
 
-import tm.Client
-import tm.Project
-import tm.Task
-import tm.ClientProject
-import tm.ProjectTask
+import com.fonantrix.tm.Client
+import com.fonantrix.tm.Project
+import com.fonantrix.tm.Task
+import com.fonantrix.tm.ClientProject
+import com.fonantrix.tm.ProjectTask
 
 
 class ClientController {

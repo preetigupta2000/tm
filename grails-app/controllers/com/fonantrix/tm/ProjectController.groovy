@@ -1,10 +1,11 @@
 package com.fonantrix.tm
 
-import tm.Project
-import tm.Client
-import tm.Task
-import tm.ProjectTask
-import tm.ClientProject
+import com.fonantrix.tm.Project
+import com.fonantrix.tm.Client
+import com.fonantrix.tm.Task
+import com.fonantrix.tm.ProjectTask
+import com.fonantrix.tm.ClientProject
+
 class ProjectController {
 
     def index() {

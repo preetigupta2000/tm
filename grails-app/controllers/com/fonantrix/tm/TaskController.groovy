@@ -1,8 +1,8 @@
 package com.fonantrix.tm
 
-import tm.Project
-import tm.ProjectTask
-import tm.Task
+import com.fonantrix.tm.Project
+import com.fonantrix.tm.ProjectTask
+import com.fonantrix.tm.Task
 
 class TaskController {
 

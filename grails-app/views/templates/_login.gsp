@@ -22,7 +22,7 @@
 		  	<div>
 			  	<a href="javascript:{}" onclick="#" id="projectstatus-button" class="btn btn-large btn-info">Review Project Status</a>
 				<a href="javascript:{}" onclick="#" id="task-button" class="btn btn-large btn-info">Manage Tasks</a>
-				<a href="javascript:{}" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a>
+				<a href="projects" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a>
 				<a href="viewclient" id="Users-button" class="btn btn-large btn-info">Manage Clients</a>
 			</div>
                 </sec:ifAllGranted>
@@ -30,7 +30,7 @@
                 	<div>
 				<a href="javascript:{}" onclick="#" id="status-button" class="btn btn-large btn-info">Review Status</a>					
 				<a href="javascript:{}" onclick="#" id="task-button" class="btn btn-large btn-info">Manage Tasks</a>
-				<a href="javascript:{}" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a>
+				<a href="projects" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a>
 				<a href="viewclient" id="Users-button" class="btn btn-large btn-info">Manage Clients</a>				  	
 			</div>
                 </sec:ifAllGranted>

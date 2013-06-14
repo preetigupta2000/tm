@@ -1,24 +1,6 @@
 <html>
 	<head>
 		<meta name="layout" content="mainlayout"/>
-		<script type="text/javascript">	
-		$(document).ready(function () {
-			$(".add-task").click(function() {
-				var currentProjectId = $(this).attr("id");
-				$(".modal-add-button-hidden").attr("value",currentProjectId);
-			});
-			var clientId = "${clientId}";	
-			if(clientId != "" && clientId != null)
-			{
-				jQuery("#clientIdHidden").val(clientId);
-			}
-			$('input[name=modalHidden]').val(jQuery('#client').val());
-		});
-		function setClientId(object)
-		{
-			$('input[name=modalHidden]').val($(object).val());
-		}
-		</script>
 	</head>
 	<body>
 		<div id="manageprojects">
@@ -26,7 +8,10 @@
 				<div class="row" id="header">
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">
-							<li><h2><a href="../home">Home</a> <span class="divider">/</span></h2></li>						
+							<li><h2><a href="home">Home</a> <span class="divider">/</span></h2></li>
+							<g:if test="${clientId != null}">
+								<li><h2><a href="viewclient">Manage Client</a> <span class="divider">/</span></h2></li>
+							</g:if>						
 		  					<li class="active"><h2>Manage Projects</h2></li>
 						</ul>
 		        	</div>
@@ -34,6 +19,15 @@
 						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addProjectModal"><i class="icon-plus"></i>  Add New Project</button>
 					</div>
 				</div>
+				<g:if test="${clientId != null}">
+					<div class="row">
+						<div class="span12">
+							<div class="well">
+								Client Id : ${clientId}
+							</div>
+						</div>
+					</div>
+				</g:if>
 				<div class="row">
 					<div class="span12">
 						<div class="well well-admin">
@@ -134,5 +128,23 @@
 				<g:hiddenField name="clientId" value="${clientId}"/>
 			</g:form>
 		</div>
+		<script type="text/javascript">	
+		$(document).ready(function () {
+			$(".add-task").click(function() {
+				var currentProjectId = $(this).attr("id");
+				$(".modal-add-button-hidden").attr("value",currentProjectId);
+			});
+			var clientId = "${clientId}";	
+			if(clientId != "" && clientId != null)
+			{
+				jQuery("#clientIdHidden").val(clientId);
+			}
+			$('input[name=modalHidden]').val(jQuery('#client').val());
+		});
+		function setClientId(object)
+		{
+			$('input[name=modalHidden]').val($(object).val());
+		}
+		</script>		
 	</body>
 </html>
