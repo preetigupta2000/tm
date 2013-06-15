@@ -43,6 +43,7 @@ class StylesheetTaglibTagLib {
 				out << "<script type='text/javascript'>less.env = 'development';less.watch();</script>"
 			}
 		} else {
+System.out0.println("######################" + uri + "######################" + filePath + "######################")		
 			out << r.external(uri : "/" + filePath)
 		}
 		return

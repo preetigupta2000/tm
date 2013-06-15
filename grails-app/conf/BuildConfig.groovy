@@ -46,8 +46,7 @@ grails.project.dependency.resolution = {
 		runtime ":cache-headers:1.1.5"  //Provides support for caching expiry headers for static resources.
 		runtime ":zipped-resources:1.0" //Provides support for GZIPPED static resources.
 		runtime ":cached-resources:1.0" //Provides support for caching expiry headers for static resources.
-		runtime ":yui-minify-resources:0.1.5" //Provides support for minifying static resources.
-		
+		runtime ":yui-minify-resources:0.1.5" //Provides support for minifying static resources.	
 		
         build ":tomcat:$grailsVersion"
 		compile ":spring-security-core:1.2.7.3"
