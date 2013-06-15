@@ -1,8 +1,8 @@
 package com.fonantrix.tm
 
-import org.codehaus.groovy.grails.commons.GrailsApplication
+import org.codehaus.groovy.grails.commons.GrailsApplication;
 
-class StylesheetTaglibTagLib {
+class StylesheetTagLib {
 
 	static namespace = "fon"
 	GrailsApplication grailsApplication
@@ -43,7 +43,7 @@ class StylesheetTaglibTagLib {
 				out << "<script type='text/javascript'>less.env = 'development';less.watch();</script>"
 			}
 		} else {
-System.out0.println("######################" + uri + "######################" + filePath + "######################")		
+System.out.println("######################" + uri + "######################" + filePath + "######################")
 			out << r.external(uri : "/" + filePath)
 		}
 		return
@@ -61,4 +61,5 @@ System.out0.println("######################" + uri + "######################" + 
 		def watch = attrs.watch
 		return !(watch == null || watch == "false")
 	}
+
 }

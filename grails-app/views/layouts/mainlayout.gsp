@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -15,12 +16,11 @@
 		
 		<meta name="description" content="Fonantrix, 2013">
 		<meta name="author" content="Fonantrix Solutions LLP.">
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-			
-		<r:require modules="corejs"/>
-		
+	
 		<fon:stylesheet src="index"/>
-				
+		
+		<r:require modules="corejs"/>
+						
 		<g:layoutHead/>
 		<r:layoutResources/>
 	</head>
