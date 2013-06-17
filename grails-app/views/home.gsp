@@ -6,7 +6,7 @@
 		<div class="container maincontainer">
 			<div class="row-fluid">
 				<div class="span4 hidden-phone">
-					<img src="images/cal.png" class="cal-size" />
+					<r:img dir="images" file="cal.png" class="cal-size"/>
 				</div>
 				<div class="span3 hidden-phone">
 					<div class="tm-info ">
@@ -29,7 +29,7 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span3 media">
-						<img alt="Level 1" class="pull-left" src="images/human.png">
+						<r:img dir="images" file="human.png" class="pull-left" alt="Level 1"/>
 						<div class="media-body">
 							<h4>Level 1</h4>
 							<h4>The Oblivious</h4>
@@ -37,7 +37,7 @@
 						<p>People on this end of the spectrum have no concern or any idea where there time is being spent. They are easily tossed to and fro by the most fickle of circumstances. Oftentimes, because they are constantly letting any interruption affect them, they have a hard time keeping appointments or remembering things that they needed to get done.</p>									
 				</div>
 				<div class="span3 media">
-						<img alt="Level 2" class="pull-left" src="images/bulb.png">
+						<r:img dir="images" file="bulb.png" class="pull-left" alt="Level 2"/>
 						<div class="media-body">
 							<h4>Level 2</h4>
 							<h4>Becoming Aware</h4>
@@ -45,7 +45,7 @@
 						<p>As one assumes more responsibilities in life, an awareness of time (or an awareness of the lack of time) begins to develop. All of the pressures of life: the job, the bills, the kids begin to weigh upon us. Before long we notice that it's the end of the day and we haven't finished half the things we needed to get done. Sometimes we forget them alltogether.</p>
 				</div>
 				<div class="span3 media">
-						<img alt="Level 3" class="pull-left" src="images/man.png">
+						<r:img dir="images" file="man.png" class="pull-left" alt="Level 3"/>						
 						<div class="media-body">
 							<h4>Level 3</h4>
 							<h4>Discarding The Useless</h4>
@@ -53,7 +53,7 @@
 						<p>Natural progression toward wanting more time begins our journey into the development of time-management skills. No longer are we satisfied in just finishing certain tasks, instead, we begin to assign tasks to certain times of the day. We start using calendars and iTime.</p>
 				</div>
 				<div class="span3 media">
-						<img alt="kaizen" class="pull-left" src="images/symbol.png">
+						<r:img dir="images" file="symbol.png" class="pull-left" alt="kaizen"/>						
 						<div class="media-body">
 							<h4>Level 4</h4>
 							<h4>Kaizen</h4>

@@ -1,7 +1,6 @@
 package com.fonantrix.tm
 
 import com.fonantrix.tm.Project
-import com.fonantrix.tm.ProjectTask
 import com.fonantrix.tm.Task
 
 class TaskController {

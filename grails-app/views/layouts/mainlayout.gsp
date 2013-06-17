@@ -26,11 +26,9 @@
 	</head>
 	<body>
 		<div id="wrapper" class="clearfix">
-			<g:render template="/templates/header"/>
-			
-			<g:layoutBody/>
-			
-			<g:render template="/templates/footer"/>
+			<g:render template="/templates/header"/>		
+			<g:layoutBody/>	
+			<g:render template="/templates/footer"/>		
 		</div> <!-- /wrapper -->
 	  <div id="spinner" class="spinner" style="display:none;">
 	    <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />

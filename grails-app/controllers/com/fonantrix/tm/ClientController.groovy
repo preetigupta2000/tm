@@ -1,57 +1,88 @@
 package com.fonantrix.tm
 
-import java.util.Set;
-
-import com.fonantrix.tm.Client
-import com.fonantrix.tm.Project
-import com.fonantrix.tm.Task
-import com.fonantrix.tm.ClientProject
-import com.fonantrix.tm.ProjectTask
+import org.hibernate.HibernateException
 
 
 class ClientController {
 
-    def index() {
-		def client = Client.list()
-		render view: '/clients', model: [client: client]
-	}
-		
-	def addclient() {
-		def client = new Client(params)
-		client.save()
-		redirect(action: "index")
-	}
-	
-	def addproject() {
-		def project = new Project(params)
-		project.save()
-		def clientId = (params.modalHidden).toInteger()
-		def client = Client.get(params.modalHidden)
-		ClientProject.create client, project, true
-		def list = client.getAuthorities()
-		println list.getAt("name")
-		redirect action: 'index'
-	}
-	
-	def deleteClient(){
-		def client = Client.get(params.id)
-		client.deleteClient()
-		redirect action: 'index'
-	}
-	
-	def editClient(){
-		def client = Client.get(params.clientId)
-		render(view: "/editClient",model: [client: client]);
-	}
-	
-	def updateClient(){
-		def client = Client.get(params.clientId)
-		System.out.println(params)
-		if(client) {
-			client.properties = params
-			System.out.println(params)
-			client.save()
+	/*
+	 GET	show
+	 PUT	update
+	 POST	save
+	 DELETE	delete
+	 */
+	def show = {
+		if(params.id) {
+			
+			Client client = Client.get(params.id)
+			
+			if(client) {
+				render view: '/editClient', model: [client: client]
+				return
+				
+			} else {
+				def errorMsg = "<p>No client found with the id :<b>${params.id}</b></p>"
+				render(status: 404, text: errorMsg)
+				return
+			}
 		}
-		redirect action: 'index'
+		else {
+			
+			def allClient = Client.list()
+			render view: '/clients', model: [clients: allClient]
+		}
+	}
+	
+		
+	def save = {	
+		def client = new Client(params)
+		client.save(failOnError: true)
+		redirect(action: "show")
+	}
+	
+	def update = {
+		if(params.id) {
+			def client = Client.get(params.id)
+			if(client) {
+				try {
+					client.properties = params['name']
+					client.properties = params['description']
+					client.save(failOnError: true)
+					redirect(action: "show")
+					return
+				} catch(HibernateException e){
+					render client.errors
+					return
+				}
+			} else {
+				render "Client not found."
+				return
+			}
+		}
+		else {
+			render "Please specify client id to be updated."
+		}
+	}
+	
+	def delete = {
+System.out.println "####id:" + params.id
+		if(params.id) {
+			def client = Client.get(params.id)
+			if(client) {
+				try {
+					client.delete()
+					redirect(action: "show")
+				} catch(HibernateException e){
+					render (text:"could not delete client",status:500)
+					return
+				}
+			} else {
+				render "client not found."
+				return
+			}
+		}
+		else {
+			render "Please specify client id to be deletd."
+		}
 	}
 }

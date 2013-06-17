@@ -33,7 +33,7 @@ class StylesheetTagLib {
 		}
 		String filePath = "${CSS_PATH}/${LESS_FOLDER_NAME}/${src}${fileType}"
 		String ctxPath = request.contextPath
-		
+	
 		if (isDebugMode()) {
 			// reference .less files directly (In browser, less.js will compile into CSS)
 			Long timestamp = System.currentTimeMillis()
@@ -42,8 +42,7 @@ class StylesheetTagLib {
 			if (isAutoReloadLessChanges(attrs)) {
 				out << "<script type='text/javascript'>less.env = 'development';less.watch();</script>"
 			}
-		} else {
-System.out.println ("########" + filePath + "########")		
+		} else {	
 			out << r.external(uri :  "/" + filePath)
 		}
 		return

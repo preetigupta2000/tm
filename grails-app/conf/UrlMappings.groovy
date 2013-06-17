@@ -1,22 +1,20 @@
 class UrlMappings {
 
 	static mappings = {
-		"/$controller/$action?/$id?"{
-			constraints {
-				// apply constraints here
-			}
-		}
 
-		"/"(controller:"home")
 		"/home"(controller:"home")
 		"/login/$action?/$id?"(controller:"login")
 		"/logout/$action?/$id?"(controller:"logout")
+	
+		"/viewclient/$action?/$id?"(resource:"client")
+
+		"/client/$id/projects/$action?/$id?"(resource:"project")
 		
-		"/viewclient"(controller:"client")
-		"/projects"(controller:"project")
-		"/viewclientprojects"(controller:"project", action:"viewprojects")
+		"/projects/$action?/$id?"(resource:"project")
 		"/register/$action?/$id?"(controller:"registration")
-		//"/registeruser"(controller:"registration", action:"save")
+		
+		
+		"/"(controller:"home")
 		"500"(view:'/error')
 	}
 }

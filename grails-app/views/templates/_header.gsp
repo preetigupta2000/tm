@@ -1,7 +1,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top clearfix">
 	<div class="navbar-inner">
 		<span class="address brand">
-				<img src="images/fonantrix-logo.png" alt="Logo" id="f-logo">
+				<r:img dir="images" file="fonantrix-logo.png" alt="Logo" id="f-logo"/>
 				x Acton MA
 		</span>
 		<!-- .btn-navbar is used as the toggle for collapsed navbar content -->

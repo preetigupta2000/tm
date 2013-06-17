@@ -1,85 +1,70 @@
 package com.fonantrix.tm
 
-import com.fonantrix.tm.Project
-import com.fonantrix.tm.Client
-import com.fonantrix.tm.Task
-import com.fonantrix.tm.ProjectTask
-import com.fonantrix.tm.ClientProject
 
 class ProjectController {
 
-    def index() {
-		def projects = Project.list()
-		def clientList = Client.list()
-		render view: '/projects', model: [project: projects, clientList:clientList]
+	def show = {
+		def clientid = params.id
+		def projectid = params.pid
+		if(clientid && projectid) {
+			
+			if (params.pid != null ) {
+				Client client = Client.get(clientid)
+				Project project = Project.findByClientAndId(client , projectid) 
+				
+				if(project) {
+					render view: '/projects', model: [project: project, clientId:clientid]
+					return
+				} else {
+					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
+					render(status: 404, text: errorMsg)
+					return
+				}
+			} else {
+				Project project = Project.get(projectid)
+				
+				Client[] clients = Client.list()
+				
+				if (project) {
+					render view: '/projects', model: [project: project, clientList:clients]
+					return
+				} else {
+					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
+					render(status: 404, text: errorMsg)
+					return
+				}
+			}
+		} else {
+			Client client = Client.get(clientid)
+			def allProject = null
+			if (client) {
+				allProject = Project.findAllByClient(client)
+			}	
+			render view: '/projects', model: [projects: allProject, clientId:clientid ]
+		}
 	}
 	
-	def addproject() {
-		def project = new Project(params)
-		project.save()
-		println params
-		if(!params.modalHidden.equals(""))
-		{
-			def clientId = (params.modalHidden).toInteger()
-			def client = Client.get(params.modalHidden)
-			ClientProject.create client, project, true
-			def list = client.getAuthorities()
-			redirect action: 'viewprojects', params:[clientId:clientId]
-		}
-		else if (!params.clientId.equals("")) 
-		{
-			def clientId = (params.clientId).toInteger()
-			def client = Client.get(params.clientId)
-			ClientProject.create client, project, true
-			def list = client.getAuthorities()
-			redirect action: 'viewprojects', params:[clientId:clientId]
-		}
-		//redirect action: 'viewallprojects'
-	}
 	
-	def addtask() {
-		def task = new Task(params)
-		task.save()
-		def projectId = (params.projectID).toInteger()
-		def project = Project.get(params.projectID)
-		ProjectTask.create project, task, true
-		def list = project.getAuthorities()
-		println list.getAt("name")
-		redirect action: 'viewprojects',params:params
+	def save = {
 		
-	}
-	
-	def deleteProject() {
-		def project = Project.get(params.id)
-		def clientId = params.clientId
-		project.deleteProject(clientId)
-		redirect action: 'viewprojects', params:[clientId:clientId]
-	}
-	
-	def viewprojects() {
-		def clientId = (params.clientId)
-		def client = Client.get(params.clientId)
-		def list = client.getAuthorities()
-		println list
-		render view: '/projects', model: [project: list,clientId:clientId]
-	}
-	
-	def editProject(){
-		def project = Project.get(params.projectId)
-		def clientId = params.clientId
-		render(view: "/editProject",model: [project: project,clientId:clientId]);
-	}
-	
-	def updateProject(){
-		def project = Project.get(params.projectId)
-		System.out.println(params)
-		if(project) {
-			project.properties = params
-			System.out.println(params)
-			project.save()
+		def client = Client.get(params.id)
+		if (client) {
+					
+			def project = new Project(name: params.name, description: params.description)
+			client.addToProjects(project)
+			client.save(flush:true, failOnError: true)
+			
+			redirect action: 'show', id: params.id
 		}
-		def clientId = params.clientId
-		redirect action: 'viewprojects', params:[clientId:clientId]
 	}
-}
+	
 
+	def delete = {
+		def project = Project.get(params.id)
+		def clientId = params.client
+		project.deleteProject(clientId)
+		redirect action: 'show', params:[clientId:clientId]
+	}
+	
+
+}
