@@ -44,7 +44,9 @@
 	<sec:ifNotLoggedIn>		
 		<form action="${request.contextPath}/j_spring_security_check" method='POST' id='ajaxLoginForm' name='ajaxLoginForm'>
 			<h3>Sign In</h3>
-			<div id="loginErrorMessage"></div>	
+			<g:if test='${flash.message}'>
+				<div class='loginErrorMessage'>${flash.message}</div>
+			</g:if>
 			<div class="hero-unit">
 				<p>Enter your username (or email-id) followed by your password</p>
 				 <div class="input-prepend">

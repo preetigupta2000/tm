@@ -2,7 +2,9 @@ class UrlMappings {
 
 	static mappings = {
 
+		"/"(controller:"home")
 		"/home"(controller:"home")
+		
 		"/login/$action?/$id?"(controller:"login")
 		"/logout/$action?/$id?"(controller:"logout")
 	
@@ -14,7 +16,6 @@ class UrlMappings {
 		"/register/$action?/$id?"(controller:"registration")
 		
 		
-		"/"(controller:"home")
 		"500"(view:'/error')
 	}
 }

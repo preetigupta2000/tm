@@ -50,11 +50,11 @@ class LoginController {
 		if (springSecurityService.isLoggedIn()) {
 			def user = springSecurityService.getCurrentUser().getProperty("id")
 			def firstuser = User.list().get(user.toInteger() - 1).firstName
-			render view: '../login', model: [firstName: firstuser]
+			render view: '../home', model: [firstName: firstuser]
 			//redirect uri: config.successHandler.defaultTargetUrl
 			return
 		}
-		String view = '../login'
+		String view = '../home'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
 		render view: view, model: [postUrl: postUrl,rememberMeParameter: config.rememberMe.parameter]
 	}
