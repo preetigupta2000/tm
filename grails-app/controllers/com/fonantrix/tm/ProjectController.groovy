@@ -13,7 +13,7 @@ class ProjectController {
 				Project project = Project.findByClientAndId(client , projectid) 
 				
 				if(project) {
-					render view: '/projects', model: [project: project, clientId:clientid]
+					render view: '/editProjects', model: [project: project, clientId:clientid]
 					return
 				} else {
 					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"

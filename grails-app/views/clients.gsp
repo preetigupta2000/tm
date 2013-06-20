@@ -37,7 +37,7 @@
 								  				<td data-title="Name">${client.name}</td>
 								  				<td data-title="Description">${client.description}</td>
 								  				<td data-title="Option"><a href="viewclient/${client.id}"><i class="icon-pencil" title="Edit"></i></a> | 
-								  				<g:link id="${client.id}" method="delete"><i class="icon-remove" title="Delete"></i></g:link>
+								  				<g:link id="${client.id}" action="deleteClient"><i class="icon-remove" title="Delete"></i></g:link>
 								  				<a href="client/${client.id}/projects" class="badge badge-info">View Projects</a>
 								  				</td>
 								  			</tr>

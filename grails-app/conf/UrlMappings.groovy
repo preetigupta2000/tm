@@ -7,10 +7,11 @@ class UrlMappings {
 		
 		"/login/$action?/$id?"(controller:"login")
 		"/logout/$action?/$id?"(controller:"logout")
-	
-		"/viewclient/$action?/$id?"(resource:"client")
 
-		"/client/$id/projects/$action?/$id?"(resource:"project")
+		"/viewclient/deleteClient/$id?"(controller:"client", action="deleteClient")
+		"/viewclient/$action?/$id?"(resource:"client")
+		
+		"/client/$id/projects/$pid?"(resource:"project")
 		
 		"/projects/$action?/$id?"(resource:"project")
 		"/register/$action?/$id?"(controller:"registration")

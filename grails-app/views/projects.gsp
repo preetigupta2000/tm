@@ -46,9 +46,9 @@
 							  				<td>${i+1}</td>
 							  				<td data-title="Name">${project.name}</td>
 							  				<td data-title="Description">${project.description}</td>
-											<td data-title="Option">
-												<g:link id="${project.id}" class="confirm-delete" params='[projectId:"${project.id}",clientId:"${clientId}"]' controller="project" action="editProject"><i class="icon-pencil" title="Edit"></i></g:link> | 
-												<g:link id="${project.id}" params='[clientId:"${clientId}"]' class="confirm-delete" controller="Project" action="delete" data-confirm="Are you sure you want to delete?"><i class="icon-remove" title="Delete"></i></g:link>
+											<td data-title="Action">
+												<a href="${request.contextPath}/client/${clientId}/projects/${project.id}"><i class="icon-pencil" title="Edit"></i></a> |
+												<g:link id="${project.id}" params='[clientId:"${clientId}"]' controller="Project" action="delete" data-confirm="Are you sure you want to delete?"><i class="icon-remove" title="Delete"></i></g:link>
 								  				<button id="${project.id}" class="btn btn-mini btn-primary add-task" type="button" data-toggle="modal" href="#addTaskModal">Add Task</button>
 								  			</td>
 							  			</tr>

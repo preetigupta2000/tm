@@ -64,8 +64,7 @@ class ClientController {
 		}
 	}
 	
-	def delete = {
-System.out.println "####id:" + params.id
+	def deleteClient() {
 		if(params.id) {
 			def client = Client.get(params.id)
 			if(client) {
