@@ -1,3 +1,5 @@
+
+<g:set var="contextPath" value="${request.contextPath}"/>
 <html>
 	<head>
 		<meta name="layout" content="mainlayout"/>
@@ -8,9 +10,9 @@
 				<div class="row" id="header">
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">
-							<li><h2><a href="home">Home</a> <span class="divider">/</span></h2></li>
+							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
 							<g:if test="${clientId != null}">
-								<li><h2><a href="viewclient">Manage Client</a> <span class="divider">/</span></h2></li>
+								<li><h2><a href="${contextPath}/viewclient">Manage Client</a> <span class="divider">/</span></h2></li>
 							</g:if>						
 		  					<li class="active"><h2>Manage Projects</h2></li>
 						</ul>
@@ -62,7 +64,7 @@
 		</div>	
 		<!-- Modal -->
 		<div id="addProjectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<form action="projects/save" method="post">
+			<form action="projects" method="post">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">Add New Project Information</h3>

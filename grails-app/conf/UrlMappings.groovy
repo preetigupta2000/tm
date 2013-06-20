@@ -16,6 +16,10 @@ class UrlMappings {
 		"/projects/$action?/$id?"(resource:"project")
 		"/register/$action?/$id?"(controller:"registration")
 		
+		//whene user come after edit from manage clients link
+		
+		
+		"/viewclient/client/$id/projects/$pid?"(resource:"project")
 		
 		"500"(view:'/error')
 	}

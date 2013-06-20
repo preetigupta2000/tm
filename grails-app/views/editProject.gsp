@@ -3,8 +3,8 @@
 		<meta name="layout" content="mainlayout"/>
 	</head>
 	<body>
-		<div class="container">
-			<g:form id="${client.id}" method="put" action="projects">
+		<div class="container maincontainer">>
+			<g:form id="${project.id}" method="put" action="projects">
 			<g:hiddenField name="clientId" value="${clientId}"/>
 			<div class="row" id="header">
 				<div class="span9">

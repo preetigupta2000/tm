@@ -13,7 +13,7 @@
 		<!-- Everything you want hidden at 940px or less, place within here -->
 		<div class="nav-collapse collapse">
 			<ul class="nav pull-right">
-				<li><a href="#">Home</a></li>
+				<li><a href="${request.contextPath}/home">Home</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						Settings
@@ -28,7 +28,7 @@
 					</ul>
 				</li>
 				<li><a href="#">Help</a></li>
-				<sec:ifLoggedIn><li><a href="/tm/logout/index">Logout</a></li></sec:ifLoggedIn>
+				<sec:ifLoggedIn><li><a href="${request.contextPath}/logout/index">Logout</a></li></sec:ifLoggedIn>
 			</ul>
 		<!-- .nav, .navbar-search, .navbar-form, etc -->
 		</div>
