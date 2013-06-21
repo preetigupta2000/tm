@@ -1,5 +1,6 @@
 package com.fonantrix.tm
 
+import org.hibernate.HibernateException
 
 class ProjectController {
 
@@ -36,18 +37,19 @@ class ProjectController {
 			}
 		} else {
 			Client client = Client.get(clientid)
+			Client[] clients = Client.list()
 			def allProject = null
 			if (client) {
 				allProject = Project.findAllByClient(client)
 			}	
-			render view: '/projects', model: [projects: allProject, clientId:clientid ]
+			render view: '/projects', model: [projects: allProject, clientId:clientid, clientList:clients]
 		}
 	}
 	
 	
 	def save = {
 		
-		def client = Client.get(params.client)
+		def client = Client.get(params.id)
 		if (client) {
 					
 			def project = new Project(name: params.name, description: params.description)
@@ -59,12 +61,74 @@ class ProjectController {
 	}
 	
 
-	def delete = {
+	def deleteProject = {
+		//System.out.println(clientId +"@@@@@@@"+project.id)
 		def project = Project.get(params.id)
-		def clientId = params.client
-		project.deleteProject(clientId)
+		def clientId = params.clientId
+		System.out.println(clientId)
+		if(project){
+		project.delete()
+		}
 		redirect action: 'show', params:[clientId:clientId]
 	}
 	
-
-}
+	
+//	def update = {
+//		def clientid = params.id
+//		def projectid = params.pid
+//		System.out.println(clientid +"@@@@@@@"+projectid)
+//		
+//		if(clientid && projectid) {
+//			
+//			if (params.pid != null ) {
+//				Client client = Client.get(clientid)
+//			if(client) {
+//				try {
+//			def project = new Project(name: params.name, description: params.description)
+//			client.addToProjects(project)
+//								redirect(action: "show")
+//					return
+//				} catch(HibernateException e){
+//					render client.errors
+//					return
+//				}
+//			} else {
+//				render "Client not found."
+//				return
+//			}
+//		}
+//		else {
+//			render "Please specify client id to be updated."
+//		}
+//	}
+//	
+//
+//}
+	
+	def update = {
+		if(params.id) {
+			def project = Project.get(params.id)
+			def clientId = params.clientId
+			if(project) {
+				try {
+					project.properties = params['name']
+					project.properties = params['description']
+					project.save(failOnError: true)
+					redirect action: 'show', params:[clientId:clientId]
+					return
+				} catch(HibernateException e){
+					render project.errors
+					return
+				}
+			} else {
+				render "project not found."
+				return
+			}
+		}
+		else {
+			render "Please specify project id to be updated."
+		}
+	}
+	
+	
+	 }
