@@ -47,7 +47,7 @@ class ProjectController {
 	
 	def save = {
 		
-		def client = Client.get(params.id)
+		def client = Client.get(params.client)
 		if (client) {
 					
 			def project = new Project(name: params.name, description: params.description)
