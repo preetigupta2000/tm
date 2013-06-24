@@ -21,6 +21,8 @@ class UrlMappings {
 		
 		"/viewclient/client/$id/projects/$pid?"(resource:"project")
 		
+		"/projects/deleteProject/$id?"(controller:"project", action="deleteProject")
+		
 		"500"(view:'/error')
 	}
 }

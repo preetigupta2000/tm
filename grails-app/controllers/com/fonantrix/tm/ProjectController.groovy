@@ -49,14 +49,14 @@ class ProjectController {
 	
 	def save = {
 		
-		def client = Client.get(params.id)
+		def client = Client.get(params.client)
 		if (client) {
 					
 			def project = new Project(name: params.name, description: params.description)
 			client.addToProjects(project)
 			client.save(flush:true, failOnError: true)
 			
-			redirect action: 'show', id: params.id
+			redirect action: 'show', id: params.client
 		}
 	}
 	
@@ -69,41 +69,10 @@ class ProjectController {
 		if(project){
 		project.delete()
 		}
-		redirect action: 'show', params:[clientId:clientId]
+		redirect action: 'show', id: params.clientId
 	}
 	
 	
-//	def update = {
-//		def clientid = params.id
-//		def projectid = params.pid
-//		System.out.println(clientid +"@@@@@@@"+projectid)
-//		
-//		if(clientid && projectid) {
-//			
-//			if (params.pid != null ) {
-//				Client client = Client.get(clientid)
-//			if(client) {
-//				try {
-//			def project = new Project(name: params.name, description: params.description)
-//			client.addToProjects(project)
-//								redirect(action: "show")
-//					return
-//				} catch(HibernateException e){
-//					render client.errors
-//					return
-//				}
-//			} else {
-//				render "Client not found."
-//				return
-//			}
-//		}
-//		else {
-//			render "Please specify client id to be updated."
-//		}
-//	}
-//	
-//
-//}
 	
 	def update = {
 		if(params.id) {
@@ -114,7 +83,7 @@ class ProjectController {
 					project.properties = params['name']
 					project.properties = params['description']
 					project.save(failOnError: true)
-					redirect action: 'show', params:[clientId:clientId]
+					redirect action: 'show', id: params.clientId
 					return
 				} catch(HibernateException e){
 					render project.errors
