@@ -29,7 +29,7 @@
                 <sec:ifAllGranted roles="ROLE_ADMIN">
                 	<div>
 				<a href="javascript:{}" onclick="#" id="status-button" class="btn btn-large btn-info">Review Status</a>					
-				<a href="javascript:{}" onclick="#" id="task-button" class="btn btn-large btn-info">Manage Tasks</a>
+				<a href="tasks" onclick="#" id="task-button" class="btn btn-large btn-info">Manage Tasks</a>
 				<a href="projects" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a>
 				<a href="viewclient" id="Users-button" class="btn btn-large btn-info">Manage Clients</a>				  	
 			</div>
