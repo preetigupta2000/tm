@@ -21,11 +21,11 @@
 						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addProjectModal"><i class="icon-plus"></i>  Add New Task</button>
 					</div>
 				</div>
-				<g:if test="${projectId != null}">
+				<g:if test="${projectid != null}">
 					<div class="row">
 						<div class="span12">
 							<div class="well">
-								Project Id : ${projectId}
+								Project Id : ${projectid}
 							</div>
 						</div>
 					</div>
@@ -49,8 +49,8 @@
 							  				<td data-title="Name">${task.name}</td>
 							  				<td data-title="Description">${task.description}</td>
 											
-								  	<td data-title="Option"><a href="/project/${projectId}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
-								  				<g:link id="${task.id}" params='[projectId:"${projectId}"]' action="deleteTask"><i class="icon-remove" title="Delete"></i></g:link>
+								  	<td data-title="Option"><a href="/project/${projectid}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
+								  				<g:link id="${task.id}" params='[projectId:"${projectid}"]' action="deleteTask"><i class="icon-remove" title="Delete"></i></g:link>
 								  				<!-- <a href="project/${project.id}/tasks" class="badge badge-info">View Tasks</a>  -->
 								  				</td>		
 								  			
@@ -88,11 +88,11 @@
 					<div class="control-group">
 			          <label class="control-label">Select Project</label>
 			          <div class="controls">
-			          	<g:if test="${projectId == null}">
+			          	<g:if test="${projectid == null}">
 			          		<g:select id="project" optionKey="id" optionValue="name" name="project" from="${projectList}" onchange="setProjectId(this);" />
 			          	</g:if>
 			          	<g:else>
-			          		<g:textField disabled id="id-display" name="id-display" class="input-large" value="${projectId}"></g:textField>
+			          		<g:textField disabled id="id-display" name="id-display" class="input-large" value="${projectid}"></g:textField>
 			          	</g:else>
 			          </div>
 			        </div>	
