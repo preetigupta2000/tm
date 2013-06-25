@@ -3,9 +3,9 @@
 		<meta name="layout" content="mainlayout"/>
 	</head>
 	<body>
-		<div class="container maincontainer">>
+		<div class="container maincontainer">
 			<g:form id="${project.id}" method="put" action="projects">
-			<g:hiddenField name="clientId" value="${clientId}"/>
+			<g:hiddenField name="clientid" value="${clientid}"/>
 			<div class="row" id="header">
 				<div class="span9">
 					<ul class="breadcrumb breadcrumb-admin">
@@ -17,9 +17,18 @@
 					<button id="clientEdit" class="accountAction btn" ><i class="icon-save"></i>  Save</button>
 				</div>
 			</div>
+			<g:if test="${clientid != null}">
+				<div class="row">
+					<div class="span12">
+						<div class="well">
+							Client Id : ${clientid}
+						</div>
+					</div>
+				</div>
+			</g:if>				
 			<div class="row">
 				<div class="span12">
-					<div class="well welladmin">
+					<div class="well welladmin">				
 							<div class="control-group">
 						        <label class="control-label">Project Id</label>
 								<div class="controls">
@@ -50,35 +59,4 @@
 			</g:form>		
 		</div>
 	</body>
-</html>		
-			<legend>Edit Project</legend>
-			<div class="well">
-		    	<g:form id="signup" controller="Project" action="updateProject">
-					<div class="control-group">
-				        <label class="control-label">Project Name</label>
-						<div class="controls">
-						    <div class="input-prepend">
-								<span class="add-on"><i class="icon-user"></i></span>
-								<g:textField id="pname" name="name" placeholder="Project Name" class="input-xlarge" value="${project.name}"></g:textField>
-							</div>
-						</div>
-					</div>
-					<div class="control-group ">
-				        <label class="control-label">Project Description</label>
-						<div class="controls">
-						    <div class="input-prepend">
-								<span class="add-on"><i class="icon-user"></i></span>
-								<g:textField id="description" name="description" placeholder="Description" class="input-xlarge" value="${project.description}"></g:textField>
-							</div>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label"></label>
-				      	<div class="controls">
-				       		<button type="submit" class="btn btn-success">Submit</button>
-				      	</div>
-					</div>
-					<g:hiddenField name="projectId" value="${project.id}"/>
-					<g:hiddenField name="clientId" value="${clientId}"/>
-			  	</g:form>
-			</div>
+</html>

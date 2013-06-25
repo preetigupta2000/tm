@@ -14,7 +14,7 @@ class ProjectController {
 				Project project = Project.findByClientAndId(client , projectid) 
 				
 				if(project) {
-					render view: '/editProject', model: [project: project, clientId:clientid]
+					render view: '/editProject', model: [project: project, clientid:clientid]
 					return
 				} else {
 					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
@@ -36,27 +36,47 @@ class ProjectController {
 				}
 			}
 		} else {
-			Client client = Client.get(clientid)
-			Client[] clients = Client.list()
-			def allProject = null
-			if (client) {
-				allProject = Project.findAllByClient(client)
-			}	
-			render view: '/projects', model: [projects: allProject, clientId:clientid, clientList:clients]
+			if(clientid) {
+				Client client = Client.get(clientid)
+				def allProject
+				if (client) {
+					allProject = Project.findAllByClient(client)
+				}
+				render view: '/projects', model: [projects: allProject, clientid:clientid]
+			
+			} else {
+				Client[] clients = Client.list()
+				def allProject = null
+				if (clients) {
+					allProject = Project.findAllByClient(clients)
+				}
+				render view: '/projects', model: [projects: allProject, clientList:clients]
+			}
 		}
 	}
 	
 	
 	def save = {
-		
-		def client = Client.get(params.client)
-		if (client) {
-					
-			def project = new Project(name: params.name, description: params.description)
-			client.addToProjects(project)
-			client.save(flush:true, failOnError: true)
-			
-			redirect action: 'show', id: params.client
+		if (params.clientid) {
+			def client = Client.get(params.clientid)
+			if (client) {
+						
+				def project = new Project(name: params.name, description: params.description)
+				client.addToProjects(project)
+				client.save(flush:true, failOnError: true)
+				
+				redirect action: 'show', id: params.clientid
+			}
+		} else {
+			def client = Client.get(params.client)
+			if (client) {
+						
+				def project = new Project(name: params.name, description: params.description)
+				client.addToProjects(project)
+				client.save(flush:true, failOnError: true)
+				
+				redirect action: 'show'
+			}
 		}
 	}
 	
@@ -64,12 +84,11 @@ class ProjectController {
 	def deleteProject = {
 		//System.out.println(clientId +"@@@@@@@"+project.id)
 		def project = Project.get(params.id)
-		def clientId = params.clientId
-		System.out.println(clientId)
+		def clientId = params.clientid
 		if(project){
-		project.delete()
+			project.delete()
 		}
-		redirect action: 'show', id: params.clientId
+		redirect action: 'show', id: clientId
 	}
 	
 	
@@ -77,13 +96,13 @@ class ProjectController {
 	def update = {
 		if(params.id) {
 			def project = Project.get(params.id)
-			def clientId = params.clientId
+			def clientId = params.clientid
 			if(project) {
 				try {
 					project.properties = params['name']
 					project.properties = params['description']
 					project.save(failOnError: true)
-					redirect action: 'show', id: params.clientId
+					redirect action: 'show', id: clientId
 					return
 				} catch(HibernateException e){
 					render project.errors
