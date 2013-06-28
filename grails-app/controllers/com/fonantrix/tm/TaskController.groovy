@@ -57,9 +57,9 @@ class TaskController {
 	
 	
 	def save = {
-		if(params.project)
+		if(params.projectid)
 		{
-		def project = Project.get(params.project)
+		def project = Project.get(params.projectid)
 		System.out.println(project)
 		if (project) {
 					
@@ -67,7 +67,7 @@ class TaskController {
 			project.addToTasks(task)
 			project.save(flush:true, failOnError: true)
 			
-			redirect action: 'show', id: params.project
+			redirect action: 'show', id: params.projectid
 		}
 	} else {
 			def project = Project.get(params.project)
