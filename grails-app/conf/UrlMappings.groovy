@@ -23,6 +23,9 @@ class UrlMappings {
 		
 		"/projects/deleteProject/$id?"(controller:"project", action="deleteProject")
 		
+		"/client/$id/project/$pid/tasks/$tid?"(resource:"task")
+		"task/$action?/$tid?"(resource:"task")
+		
 		"500"(view:'/error')
 	}
 }

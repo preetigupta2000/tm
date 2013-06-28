@@ -11,7 +11,7 @@
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">
 							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
-							<g:if test="${projectId != null}">
+							<g:if test="${projectid != null}">
 								<li><h2><a href="${contextPath}/projects">Manage Project</a> <span class="divider">/</span></h2></li>
 							</g:if>						
 		  					<li class="active"><h2>Manage Tasks</h2></li>
