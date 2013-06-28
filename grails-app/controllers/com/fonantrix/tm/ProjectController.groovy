@@ -97,12 +97,17 @@ class ProjectController {
 		if(params.id) {
 			def project = Project.get(params.id)
 			def clientId = params.clientid
+			def mode = params.mode
 			if(project) {
 				try {
 					project.properties = params['name']
 					project.properties = params['description']
 					project.save(failOnError: true)
-					redirect action: 'show', id: clientId
+					if (mode==null) {
+						redirect action: 'show', id: clientId
+					} else {
+						redirect action: 'show'
+					}
 					return
 				} catch(HibernateException e){
 					render project.errors

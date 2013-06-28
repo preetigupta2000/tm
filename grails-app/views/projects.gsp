@@ -39,6 +39,9 @@
 										<th>#</th>
 										<th>Project Name</th>
 										<th>Description</th>
+										<g:if test="${clientid == null}">
+											<th>Client Name</th>
+										</g:if>							
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -48,10 +51,18 @@
 							  				<td>${i+1}</td>
 							  				<td data-title="Name">${project.name}</td>
 							  				<td data-title="Description">${project.description}</td>
-								  	<td data-title="Option"><a href="${request.contextPath}/client/${clientid}/projects/${project.id}"><i class="icon-pencil" title="Edit"></i></a> | 
-								  				<g:link id="${project.id}" params='[clientid:"${clientid}"]' action="deleteProject"><i class="icon-remove" title="Delete"></i></g:link>
+											<g:if test="${clientid == null}">
+												<td>${project.client.name}</td>
+											</g:if>								  				
+								  			<td data-title="Option"><a href="${request.contextPath}/client/${project.client.id}/projects/${project.id}"><i class="icon-pencil" title="Edit"></i></a> |
+								  				<g:if test="${clientid != null}">
+								  					<g:link id="${project.id}" params='[clientid:"${project.client.id}"]' action="deleteProject"><i class="icon-remove" title="Delete"></i></g:link>
+												</g:if>
+												<g:else>
+													<g:link id="${project.id}" params='[clientid:"${project.client.id}", mode:"project"]' action="deleteProject"><i class="icon-remove" title="Delete"></i></g:link>
+												</g:else>
 								  				<a href="project/${project.id}/tasks" class="badge badge-info">View Tasks</a>
-								  				</td>		
+								  			</td>		
 								  			
 							  			</tr>
 				  					</g:each>

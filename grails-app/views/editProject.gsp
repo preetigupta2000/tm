@@ -6,6 +6,7 @@
 		<div class="container maincontainer">
 			<g:form id="${project.id}" method="put" action="projects">
 			<g:hiddenField name="clientid" value="${clientid}"/>
+			<g:hiddenField name="mode" value="${mode}"/>
 			<div class="row" id="header">
 				<div class="span9">
 					<ul class="breadcrumb breadcrumb-admin">
