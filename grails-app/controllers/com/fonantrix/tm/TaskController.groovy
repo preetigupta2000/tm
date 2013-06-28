@@ -5,8 +5,9 @@ import org.hibernate.HibernateException
 class TaskController {
 	def show = {
 
-		def projectid = params.id
-		def taskid = params.pid
+		def projectid = params.pid
+		def taskid = params.tid
+		System.out.println(projectid +" && "+ taskid)
 		if(projectid && taskid) {
 			if (params.pid != null ) {
 				Project project = Project.get(projectid)
@@ -34,21 +35,31 @@ class TaskController {
 				}
 			}
 		} else {
-			Project project = Project.get(projectid)
-			Project[] projects = Project.list()
-			def allTask = null
-			if (project) {
-				allTask = Task.findAllByProject(project)
-			System.out.println("indide this"+allTask)
+		if(projectid) {
+				Project project = Project.get(projectid)
+				def allTask
+				if (project) {
+					allTask = Task.findAllByProject(project)
 				}
-			render view: '/tasks', model: [tasks: allTask, projectId:projectid, projectList:projects ]
+				render view: '/tasks', model: [tasks: allTask, projectid:projectid]
+			
+			} else {
+				Project[] projects = Project.list()
+				def allTask = null
+				if (projects) {
+					allTask = Task.findAllByProject(projects)
+				}
+				render view: '/tasks', model: [tasks: allTask, projectList:projects]
+			}
 		}
+
 	}
 	
 	
 	def save = {
-		
-		def project = Project.get(params.project)
+		if(params.projectid)
+		{
+		def project = Project.get(params.projectid)
 		System.out.println(project)
 		if (project) {
 					
@@ -56,15 +67,55 @@ class TaskController {
 			project.addToTasks(task)
 			project.save(flush:true, failOnError: true)
 			
-			redirect action: 'show', id: params.project
+			redirect action: 'show', id: params.projectid
+		}
+	} else {
+			def project = Project.get(params.project)
+			if (project) {
+						
+				def task = new Task(name: params.name, description: params.description)
+			project.addToTasks(task)
+			project.save(flush:true, failOnError: true)
+
+				redirect action: 'show'
+			}
 		}
 	}
 	
 
 	def deleteTask = {
 		def task = Task.get(params.id)
-		def projectId = params.project
-		task.deleteTask(projectId)
-		redirect action: 'show', params:[projectId:projectId]
+		def projectId = params.projectid
+		if(task){
+		task.delete()
+		}
+		redirect action: 'show', id:projectId
 	}
-}
+
+	def update = {
+		if(params.id) {
+			def task = Task.get(params.id)
+			def projectId = params.projectid
+			if(task) {
+				try {
+					task.properties = params['name']
+					task.properties = params['description']
+					task.save(failOnError: true)
+					redirect action: 'show', id: projectId
+					return
+				} catch(HibernateException e){
+					render task.errors
+					return
+				}
+			} else {
+				render "task not found."
+				return
+			}
+		}
+		else {
+			render "Please specify project id to be updated."
+		}
+	}
+	
+	
+	}

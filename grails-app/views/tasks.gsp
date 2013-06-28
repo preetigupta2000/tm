@@ -11,7 +11,7 @@
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">
 							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
-							<g:if test="${projectId != null}">
+							<g:if test="${projectid != null}">
 								<li><h2><a href="${contextPath}/projects">Manage Project</a> <span class="divider">/</span></h2></li>
 							</g:if>						
 		  					<li class="active"><h2>Manage Tasks</h2></li>
@@ -49,9 +49,9 @@
 							  				<td data-title="Name">${task.name}</td>
 							  				<td data-title="Description">${task.description}</td>
 											
-								  	<td data-title="Option"><a href="/project/${projectid}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
+								  	<td data-title="Option"><a href="${request.contextPath}/project/${projectid}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
 								  				<g:link id="${task.id}" params='[projectId:"${projectid}"]' action="deleteTask"><i class="icon-remove" title="Delete"></i></g:link>
-								  				<!-- <a href="project/${project.id}/tasks" class="badge badge-info">View Tasks</a>  -->
+								  				
 								  				</td>		
 								  			
 							  			</tr>
@@ -66,6 +66,7 @@
 		<!-- Modal -->
 		<div id="addProjectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<form action="tasks" method="post">
+			<g:hiddenField id="projectid" name="projectid" value="${projectid}"/>
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">Add New Task Information</h3>
