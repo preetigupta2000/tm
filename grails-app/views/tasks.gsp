@@ -11,6 +11,9 @@
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">
 							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
+							<g:if test="${clientid != null}">
+								<li><h2><a href="${contextPath}/viewclient">Manage Client</a> <span class="divider">/</span></h2></li>
+							</g:if>						
 							<g:if test="${projectid != null}">
 								<li><h2><a href="${contextPath}/projects">Manage Project</a> <span class="divider">/</span></h2></li>
 							</g:if>						
@@ -49,7 +52,7 @@
 							  				<td data-title="Name">${task.name}</td>
 							  				<td data-title="Description">${task.description}</td>
 											
-								  	<td data-title="Option"><a href="${request.contextPath}/project/${projectid}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
+								  	<td data-title="Option"><a href="${request.contextPath}/project/${task.project.id}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
 								  				<g:link id="${task.id}" params='[projectId:"${projectid}"]' action="deleteTask"><i class="icon-remove" title="Delete"></i></g:link>
 								  				
 								  				</td>		

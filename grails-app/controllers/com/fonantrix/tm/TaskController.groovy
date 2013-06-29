@@ -7,13 +7,13 @@ class TaskController {
 
 		def projectid = params.pid
 		def taskid = params.tid
-		System.out.println(projectid +" && "+ taskid)
+		
 		if(projectid && taskid) {
 			if (params.pid != null ) {
 				Project project = Project.get(projectid)
 				Task task = Task.findByProjectAndId(project , taskid)
 				if(task) {
-					render view: '/editProject', model: [task: task, projectid:projectid]
+					render view: '/editTask', model: [task: task, projectid:projectid]
 					return
 				} else {
 					def errorMsg = "<h2>No task found with the project id :<b>${params.id}</b> and project id :<b>${params.projectid}</b></h2>"
@@ -59,15 +59,16 @@ class TaskController {
 	def save = {
 		if(params.projectid)
 		{
-		def project = Project.get(params.projectid)
-		System.out.println(project)
+		
+			def project = Project.get(params.projectid)
+		
 		if (project) {
 					
 			def task = new Task(name: params.name, description: params.description)
 			project.addToTasks(task)
 			project.save(flush:true, failOnError: true)
 			
-			redirect action: 'show', id: params.projectid
+			redirect action: 'show', pid: params.projectid
 		}
 	} else {
 			def project = Project.get(params.project)
