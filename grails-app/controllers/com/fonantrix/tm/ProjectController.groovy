@@ -46,6 +46,7 @@ class ProjectController {
 			
 			} else {
 				Client[] clients = Client.list()
+				
 				def allProject = null
 				if (clients) {
 					allProject = Project.findAllByClient(clients)
@@ -93,6 +94,8 @@ class ProjectController {
 	
 	
 	
+
+	
 	def update = {
 		if(params.id) {
 			def project = Project.get(params.id)
@@ -106,7 +109,7 @@ class ProjectController {
 					if (mode==null) {
 						redirect action: 'show', id: clientId
 					} else {
-						redirect action: 'show'
+						redirect action: 'show',id: clientId  
 					}
 					return
 				} catch(HibernateException e){

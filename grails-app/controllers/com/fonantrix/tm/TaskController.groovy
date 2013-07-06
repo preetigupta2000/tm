@@ -4,9 +4,11 @@ package com.fonantrix.tm
 import org.hibernate.HibernateException
 class TaskController {
 	def show = {
-
+		
 		def projectid = params.pid
+		
 		def taskid = params.tid
+		
 		
 		if(projectid && taskid) {
 			if (params.pid != null ) {
@@ -93,6 +95,9 @@ class TaskController {
 		redirect action: 'show', id:projectId
 	}
 
+	
+	
+	
 	def update = {
 		if(params.id) {
 			def task = Task.get(params.id)
@@ -102,7 +107,7 @@ class TaskController {
 					task.properties = params['name']
 					task.properties = params['description']
 					task.save(failOnError: true)
-					redirect action: 'show', id: projectId
+					redirect(action: "show", params: [pid: projectId]) 
 					return
 				} catch(HibernateException e){
 					render task.errors
@@ -117,6 +122,7 @@ class TaskController {
 			render "Please specify project id to be updated."
 		}
 	}
+	
 	
 	
 	}
