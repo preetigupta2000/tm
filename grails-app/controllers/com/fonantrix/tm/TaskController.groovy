@@ -5,9 +5,11 @@ import org.hibernate.HibernateException
 class TaskController {
 	def show = {
 		
+	
 		def projectid = params.pid
 		
 		def taskid = params.tid
+		
 		
 		
 		if(projectid && taskid) {
@@ -46,31 +48,47 @@ class TaskController {
 				render view: '/tasks', model: [tasks: allTask, projectid:projectid]
 			
 			} else {
-				Project[] projects = Project.list()
-				def allTask = null
-				if (projects) {
-					allTask = Task.findAllByProject(projects)
+			
+			
+			
+			//changes made to displaying all tasks
+			
+		Project[] projects = Project.list()
+		List tasklist=new ArrayList();
+			
+			def allTask = null
+			if (projects) 
+			{
+				projects.eachWithIndex { item, index ->
+						
+						
+						List task = Task.findAllByProject(item)
+					task.eachWithIndex {eachtask,indexes ->
+					 tasklist.add(eachtask);
 				}
-				render view: '/tasks', model: [tasks: allTask, projectList:projects]
 			}
+			}
+			render view: '/tasks', model: [tasks: tasklist, projectList:projects]
 		}
 
 	}
-	
+	}
 	
 	def save = {
 		if(params.projectid)
 		{
 		
 			def project = Project.get(params.projectid)
+			def projectId = params.projectid
 		
 		if (project) {
 					
 			def task = new Task(name: params.name, description: params.description)
+		
 			project.addToTasks(task)
 			project.save(flush:true, failOnError: true)
 			
-			redirect action: 'show', pid: params.projectid
+			redirect(action: "show", params: [pid: projectId]) 
 		}
 	} else {
 			def project = Project.get(params.project)
@@ -107,7 +125,8 @@ class TaskController {
 					task.properties = params['name']
 					task.properties = params['description']
 					task.save(failOnError: true)
-					redirect(action: "show", params: [pid: projectId]) 
+					//below send pid in params
+					redirect(action: "show", params: [pid: projectId])  
 					return
 				} catch(HibernateException e){
 					render task.errors
@@ -122,7 +141,5 @@ class TaskController {
 			render "Please specify project id to be updated."
 		}
 	}
-	
-	
 	
 	}
