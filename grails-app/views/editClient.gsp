@@ -13,7 +13,8 @@
 					</ul>
 	        	</div>
 				<div class="span3">
-					<button id="clientEdit" class="accountAction btn" ><i class="icon-save"></i>  Save</button>
+					<button id="clientCancel" href="javascript:history.back();" class="accountAction btn" ><i class="icon-remove"></i>  Cancel</button>
+					<button id="clientEdit" class="accountAction btn" ><i class="icon-save"></i>  Save</button>					
 				</div>
 			</div>
 			<div class="row">

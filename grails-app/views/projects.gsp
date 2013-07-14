@@ -12,13 +12,14 @@
 						<ul class="breadcrumb breadcrumb-admin">
 							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
 							<g:if test="${clientid != null}">
-								<li><h2><a href="${contextPath}/viewclient">Manage Client</a> <span class="divider">/</span></h2></li>
-							</g:if>						
-		  					<li class="active"><h2>Manage Projects</h2></li>
+								<li><h2><a href="${contextPath}/viewclient">Client</a> <span class="divider">/</span></h2></li>
+							</g:if>			
+		  					<li class="active"><h2>Projects</h2></li>
 						</ul>
 		        	</div>
 					<div class="span3">
 						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addProjectModal"><i class="icon-plus"></i>  Add New Project</button>
+						<button id="projectCancel" href="javascript:history.back();" class="accountAction btn" ><i class="icon-remove"></i>  Cancel</button>
 					</div>
 				</div>
 				<g:if test="${clientid != null}">

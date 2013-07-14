@@ -10,12 +10,16 @@
 			<div class="row" id="header">
 				<div class="span9">
 					<ul class="breadcrumb breadcrumb-admin">
+						<g:if test="${clientid != null}">
+							<li><h2><a href="${contextPath}/viewclient">Client</a> <span class="divider">/</span></h2></li>
+						</g:if>
 						<li><h2><a href=viewclient>Projects</a> <span class="divider">/</span></h2></li>
 	  					<li class="active"><h2>Edit Project</h2></li>
 					</ul>
 	        	</div>
 				<div class="span3">
-					<button id="clientEdit" class="accountAction btn" ><i class="icon-save"></i>  Save</button>
+					<button id="projectCancel" href="javascript:history.back();" class="accountAction btn" ><i class="icon-remove"></i>  Cancel</button>				
+					<button id="projectEdit" class="accountAction btn" ><i class="icon-save"></i>  Save</button>
 				</div>
 			</div>
 			<g:if test="${clientid != null}">

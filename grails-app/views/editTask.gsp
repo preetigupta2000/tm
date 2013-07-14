@@ -6,22 +6,27 @@
 		<div class="container maincontainer">
 			<g:form id="${task.id}" method="put" action="tasks">
 			<g:hiddenField name="projectid" value="${projectid}"/>
+			<g:hiddenField name="clientid" value="${clientid}"/>
 			<div class="row" id="header">
 				<div class="span9">
 					<ul class="breadcrumb breadcrumb-admin">
-						<li><h2><a href=projects>Projects</a> <span class="divider">/</span></h2></li>
+						<g:if test="${clientid != null}">
+							<li><h2><a href="${contextPath}/viewclient">Client</a> <span class="divider">/</span></h2></li>
+						</g:if>					
+						<li><h2><a href=projects>Project</a> <span class="divider">/</span></h2></li>
 	  					<li class="active"><h2>Edit Task</h2></li>
 					</ul>
 	        	</div>
 				<div class="span3">
-					<button id="clientEdit" class="accountAction btn" ><i class="icon-save"></i>  Save</button>
+					<button id="taskCancel" href="javascript:history.back();" class="accountAction btn" ><i class="icon-remove"></i>  Cancel</button>				
+					<button id="taskEdit" class="accountAction btn" ><i class="icon-save"></i>  Save</button>
 				</div>
 			</div>
 			<g:if test="${projectid != null}">
 				<div class="row">
 					<div class="span12">
 						<div class="well">
-							Project Id : ${projectid}
+							Client Id : ${clientid} | Project Id : ${projectid}
 						</div>
 					</div>
 				</div>

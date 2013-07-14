@@ -15,6 +15,7 @@
 		        	</div>
 					<div class="span3">
 						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addClientModal"><i class="icon-plus"></i>  Add New Client</button>
+						<button id="projectCancel" href="javascript:history.back();" class="accountAction btn" ><i class="icon-remove"></i>  Cancel</button>
 					</div>
 				</div>
 				<div class="row">
