@@ -34,9 +34,10 @@
 				<a href="viewclient" id="Users-button" class="btn btn-large btn-info">Manage Clients</a>				  	
 			</div>
                 </sec:ifAllGranted>
-                <sec:ifAllGranted roles="ROLE_USER">
-			<a href="javascript:{}" onclick="viewclient" id="timenetry-button" class="btn btn-large btn-block">Go to user time entry</a>
-                </sec:ifAllGranted>
+           <sec:ifAllGranted roles="ROLE_USER">
+                           <a href="timeentry/${id}" onclick="viewusertime" id="timenetry-button" class="btn btn-large btn-block">Go to user time entry</a>
+                     </sec:ifAllGranted>
+
 		  <a href="javascript:{}" onclick="document.getElementById('ajaxLoginForm').submit();" type="submit" class="btn btn-large btn-block">Logout</a>					
 		</div>
 	  </form>

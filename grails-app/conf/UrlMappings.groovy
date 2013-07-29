@@ -29,6 +29,12 @@ class UrlMappings {
 		
 		//"/viewclient/client/$id/project/$pid/tasks?"(resource:"task")  
 		
+		// for time
+		
+		"/timeentry/$id?"(resource:"time")
+		"/timeentry/$action?/$id?"(resource:"time")
+
+		
 				
 		"500"(view:'/error')
 	}
