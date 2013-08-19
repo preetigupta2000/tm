@@ -5,6 +5,9 @@ modules = {
 		resource url:'js/libs/bootstrap-dropdown.js'
 		resource url:'js/libs/bootstrap-modal.js'
 		resource url:'js/libs/jquery.validate.js'
+		resource url:'js/libs/highcharts.js'
+		resource url:'js/libs/exporting.js'
+		resource url:'js/libs/charts.js'
 	}
 	
 	corejs {

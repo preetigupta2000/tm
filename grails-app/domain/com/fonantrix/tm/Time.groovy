@@ -5,11 +5,13 @@ import com.fonantrix.tm.authenticate.User
 class Time {
 
 		String project
-		String task
-		String time
+		int time    
 		String tabid
 		String coltd
-		User user
+		User user   
+		String task   
+		int estimatedHrs;  
+		static belongsTo = [task: Task]   
 		
 		static mapping = {
 			

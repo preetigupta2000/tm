@@ -20,11 +20,9 @@
 		<fon:stylesheet src="index"/>
 		
 		<r:require modules="corejs"/>
-		<g:javascript src="lesscompiler/less-1.3.1.min.js"></g:javascript>
-		<g:javascript src="/libs/jquery-1.7.2.min.js"></g:javascript>
-		<g:javascript src="/libs/bootstrap-dropdown.js"></g:javascript>
-		<g:javascript src="/libs/bootstrap-collapse.js"></g:javascript>
-		<g:javascript src="/libs/bootstrap-modal.js"></g:javascript>				
+			<!-- changes made by sunil -->
+		<g:javascript src ="/libs/jquery-1.7.2.min.js"></g:javascript>
+						
 		<g:layoutHead/>
 		<r:layoutResources/>
 	</head>

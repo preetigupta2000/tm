@@ -14,14 +14,17 @@
 						</ul>
 		        	</div>
 					<div class="span3">
+						
 						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addClientModal"><i class="icon-plus"></i>  Add New Client</button>
-						<button id="projectCancel" href="javascript:history.back();" class="accountAction btn" ><i class="icon-remove"></i>  Cancel</button>
+						<!-- changes made by sunil -->	
+							<button id="CancelClient" onclick=" window.history.back();"   class="btn accountAction" ><i class="icon-remove"></i>  Cancel</button>
 					</div>
 				</div>
 				<div class="row">
 					<div class="span12">
 						<div class="well well-admin">
-							<table class="table table-striped table-bordered table-hover">
+						<!-- changes made by sunil -->	
+							<table class="table table-striped table-bordered table-hover" id="no-more-tables">
 								<thead>
 									<tr>
 										<th>#</th>

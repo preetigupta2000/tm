@@ -1,11 +1,12 @@
 package com.fonantrix.tm.authenticate
-
+import com.fonantrix.tm.UserInfo
 import com.fonantrix.tm.Time
 
 class User {
 
 	transient springSecurityService
-
+	
+	UserInfo userInfo
 	String username
 	String password
 	String firstName
@@ -20,7 +21,7 @@ class User {
 		username blank: false, unique: true
 		password blank: false
 		time nullable: true 
-		
+		userInfo nullable:true
 		
 	}
 	

@@ -1,7 +1,12 @@
 <g:set var="contextPath" value="${request.contextPath}"/>
    <head>
 		<meta name="layout" content="mainlayout"/>
-		<g:javascript src="JSFile.js"></g:javascript>
+		<!-- changes made by sunil -->	
+		<g:javascript>
+		jQuery(".taskhrsList").hide();
+	
+		</g:javascript>
+		<g:javascript src="/time.js"></g:javascript>
 		<style type="text/css">
 			@media only screen and (max-width: 485px) {
 		
@@ -24,13 +29,14 @@
       </head>
    <body>
 	 	 <div id="myModal" class="modal hide fade"  tabindex="-1" data-width="700" style="position: fixed;">
-	 	 <g:form  method="post" id="${userid}" onsubmit="saveValue()" action="timeEntry">
+	 	 <g:form   id="${userid}" onsubmit="saveValue()" action="timeEntry">
 	 	 
          <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
                   <h4 id="myModalLabel">Task Time</h4>
 					 <g:hiddenField name="temp" id="temp"/>
 					<g:hiddenField name="colorvalue" id="colorvalue"/>
+					<g:hiddenField name="estimatedHrs" class="estimatedHrs"/>
          </div>	  
          <div class="modal-body">
          	<div class="control-group">
@@ -44,14 +50,28 @@
               <div class="control-group">
 					<label class="control-label" for="project">Project</label>
 						<div class="controls">
-								<g:select name="project" from="${['IVM', 'ISM', 'DGW']}"  value="${form?.project}"/> 
+								 <g:select id="project" optionKey="id" optionValue="name" name="project" from="${projectList}" onchange="projectTask();" noSelection="${['':'...Select One Project...']}" />
 						</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="task"> Task</label>
 						<div class="controls">
-							  <g:select name="task" from="${['Task1', 'Task2', 'Task3']}" value="${form?.task}" /> 
+							 <g:select id="task" optionKey="id" onChange="taskHrs();"  name="task" from="${}"  />
 						</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="task"> Estimated Hrs</label>
+						<div class="controls">
+						
+						<g:textField   disabled id="id-display" name="id-display"  name ="estimatedHrs" class="input-large estimatedHrs" ></g:textField><%--
+					    <g:each in="${taskList}" status="i" var="task">
+					 <g:if test="${estimatedHrs == null}"> 
+								<g:textField disabled id="id-display" name="id-display" class="input-large" value="${task.estimatedHrs}"></g:textField>
+								
+							</g:if> 	
+								 </g:each> 
+						--%></div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="expectedtime">Time</label>
@@ -155,6 +175,8 @@
                
          </table>
       </div> 
+      
+      <div id="taskhrs" class="taskhrsList">${ProjectTaskEstimatedHrs}</div>    <!-- changes made by sunil -->	
    </body>
 </html>
 
