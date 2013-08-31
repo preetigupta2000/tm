@@ -64,19 +64,12 @@
 					<label class="control-label" for="task"> Estimated Hrs</label>
 						<div class="controls">
 						
-						<g:textField   disabled id="id-display" name="id-display"  name ="estimatedHrs" class="input-large estimatedHrs" ></g:textField><%--
-					    <g:each in="${taskList}" status="i" var="task">
-					 <g:if test="${estimatedHrs == null}"> 
-								<g:textField disabled id="id-display" name="id-display" class="input-large" value="${task.estimatedHrs}"></g:textField>
-								
-							</g:if> 	
-								 </g:each> 
-						--%></div>
+						<g:textField   disabled id="id-display" name="id-display"  name ="estimatedHrs" class="input-large estimatedHrs" ></g:textField></div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="expectedtime">Time</label>
 						<div class="controls">
-							<g:textField  name="time" id="expectedtime" placeholder="Please Enter no of hours" class="input-xmedium" value="${form?.time}"></g:textField>
+							<g:textField  name="time" id="expectedtime" placeholder="Please Enter no of hours" class="input-xmedium" value=""></g:textField>
 						</div>
 				</div>
                 <div class="modal-footer" style="text-align:justify">
