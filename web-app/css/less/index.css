@@ -6225,6 +6225,11 @@ footer {
   font-weight: normal;
   color: #000000;
 }
+/* changes made by sunil */
+/* For the table border in adminRs.gsp */
+table.table.table-condensed {
+  border: 1px solid black;
+}
 #registration #header,
 #manageclients #header,
 #manageprojects #header,
