@@ -7,11 +7,20 @@ modules = {
 		resource url:'js/libs/jquery.validate.js'
 		resource url:'js/libs/highcharts.js'
 		resource url:'js/libs/exporting.js'
-		resource url:'js/libs/charts.js'
 	}
 	
 	corejs {
 		dependsOn "libs"
 		resource url:'js/application.js'
+	}
+
+	chartjs {
+		dependsOn "corejs"
+		resource url:'js/charts.js'
+	}
+	
+	timejs {
+		dependsOn "corejs"
+		resource url:'js/time.js'
 	}
 }

@@ -1,31 +1,6 @@
 <g:set var="contextPath" value="${request.contextPath}"/>
    <head>
-		<meta name="layout" content="mainlayout"/>
-		<!-- changes made by sunil -->	
-		<g:javascript>
-		jQuery(".taskhrsList").hide();
-	
-		</g:javascript>
-		<g:javascript src="/time.js"></g:javascript>
-		<style type="text/css">
-			@media only screen and (max-width: 485px) {
-		
-			#no-more-tables table,
-			#no-more-tables thead,
-			#no-more-tables tbody,
-			#no-more-tables th,
-			#no-more-tables td,
-			#no-more-tables tr { display: block; }
-			#no-more-tables thead tr { position: absolute; top: -9999px; left: -9999px; }
-			#no-more-tables tr { border: 1px solid #ccc; }
-			#no-more-tables td { border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 50%; white-space: normal; text-align:left; height:10px; }
-			#no-more-tables td:before { position: absolute;  top: -2px; left: 6px; width: 20%; padding-right: 10px; white-space: nowrap;text-align:left;font-weight:bold;}
-         /*
-         Label the data
-         */
-			#no-more-tables td:before { content: attr(title); }
-		}
-      </style>
+		<meta name="layout" content="timelayout"/>
       </head>
    <body>
 	 	 <div id="myModal" class="modal hide fade"  tabindex="-1" data-width="700" style="position: fixed;">

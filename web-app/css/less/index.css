@@ -6056,6 +6056,7 @@ body > #wrapper {
 }
 .maincontainer {
   padding-top: 60px;
+  padding-bottom: 30px;
 }
 .maincontainer h2 small {
   font-size: 25.5px;
@@ -6229,6 +6230,9 @@ footer {
 /* For the table border in adminRs.gsp */
 table.table.table-condensed {
   border: 1px solid black;
+}
+.control-label {
+  display: inline;
 }
 #registration #header,
 #manageclients #header,
@@ -8098,10 +8102,49 @@ i {
     text-align: left;
     font-weight: bold;
   }
-  /*
-  Label the data
-  */
+  /*Label the data*/
   #no-more-tables td:before {
     content: attr(data-title);
+  }
+}
+@media only screen and (max-width: 485px) {
+  #no-more-tables table,
+  #no-more-tables thead,
+  #no-more-tables tbody,
+  #no-more-tables th,
+  #no-more-tables td,
+  #no-more-tables tr {
+    display: block;
+  }
+  #no-more-tables thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  #no-more-tables tr {
+    border: 1px solid #ccc;
+  }
+  #no-more-tables td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+    height: 10px;
+  }
+  #no-more-tables td:before {
+    position: absolute;
+    top: -2px;
+    left: 6px;
+    width: 20%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+  /* Label the data*/
+  #no-more-tables td:before {
+    content: attr(title);
   }
 }
