@@ -17,41 +17,27 @@ class TimeController {
 		def userid = springSecurityService.principal.id 
 		def taskList=Task.list()
 		def projectList=Project.list()
-		println("taskList.."+taskList)
-		
-	
-	
-	
+		//println("taskList.."+taskList)
 		   
 		JSONObject jObject = new JSONObject();
-		
-		  JSONArray jArray = new JSONArray();
+		JSONArray jArray = new JSONArray();
 		 
 		 if(userid)
 		 {
-		
-		
-			 taskList.eachWithIndex() { item, index ->
-				 JSONObject json = new JSONObject();
-				 println("item.."+item.project.getName())
-				
-				
-				 		
-						 json .put("estimatedHrs",item.estimatedHrs);
-						 json .put("taskName",item.name)
-						 json .put("projectName",item.project.getName())
-						
-						jArray.add( json );
-					  println(jArray)
-					  def length=jArray.size()
-					   println("length "+length)
-						jObject.put("ProjectTaskEstimatedHrs", jArray);
-						
-		   }
-			
-				 
-		  
-			 render view: '/timeentry' ,model:[userid:userid,taskList:taskList,projectList:projectList,ProjectTaskEstimatedHrs:jObject]
+			taskList.eachWithIndex() { item, index ->
+				JSONObject json = new JSONObject();
+				println("item.."+item.project.getName())
+				json .put("estimatedHrs",item.estimatedHrs);
+				json .put("taskName",item.name)
+				json .put("projectName",item.project.getName())
+							
+				jArray.add( json );
+				println(jArray)
+				def length=jArray.size()
+				println("length "+length)
+				jObject.put("ProjectTaskEstimatedHrs", jArray);
+			}
+			render view: '/timeentry' ,model:[userid:userid,taskList:taskList,projectList:projectList,ProjectTaskEstimatedHrs:jObject]
 		 }
 		 else
 		 {

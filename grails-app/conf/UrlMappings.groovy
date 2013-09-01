@@ -23,8 +23,6 @@ class UrlMappings {
 		"/register/$action?/$id?"(controller:"registration")
 
 		
-		
-		
 		"/viewclient/client/$id/projects/$pid?"(resource:"project")
 		
 		
@@ -52,13 +50,12 @@ class UrlMappings {
 		"/client/$id/tasks/$pid?"(resource:"task")
 		"/tprojects/$action?/$id?"(controller:"project",action="totalProjectCount")
 	
-			"/adminReviewStatus"(controller:"project",action:"reviewStatus") //when click on review status
+		"/adminReviewStatus"(controller:"project",action:"reviewStatus") //when click on review status
 		
-				
-			// for time
-			
-			"/timeentry/$id?"(resource:"time")
-			"/timeentry/$action?/$id?"(resource:"time")
+		// for time
+		"/timeentry/$id?"(resource:"time")
+		"/timeentry/$action?/$id?"(resource:"time")
+		
 		"500"(view:'/error')
 		
 		

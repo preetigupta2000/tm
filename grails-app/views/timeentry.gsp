@@ -25,13 +25,17 @@
               <div class="control-group">
 					<label class="control-label" for="project">Project</label>
 						<div class="controls">
-								 <g:select id="project" optionKey="id" optionValue="name" name="project" from="${projectList}" onchange="projectTask();" noSelection="${['':'...Select One Project...']}" />
+							<g:if test="${projectList}">
+								<g:select id="project" optionKey="id" optionValue="name" name="project" from="${projectList}" onchange="projectTask();" noSelection="${['':'...Select One Project...']}" />
+							</g:if>
 						</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="task"> Task</label>
 						<div class="controls">
-							 <g:select id="task" optionKey="id" onChange="taskHrs();"  name="task" from="${}"  />
+							<g:if test="${taskList}">
+							 	<g:select id="task" optionKey="id" onChange="taskHrs();"  name="task" from="${taskList}"  />
+							</g:if>
 						</div>
 				</div>
 				
@@ -147,5 +151,3 @@
       <div id="taskhrs" class="taskhrsList">${ProjectTaskEstimatedHrs}</div>    <!-- changes made by sunil -->	
    </body>
 </html>
-
->>>>>>> branch 'master' of https://github.com/preetigupta2000/tm.git
