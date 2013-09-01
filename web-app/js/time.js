@@ -16,10 +16,10 @@
 			$dialogContent.css('width',259);
 			$dialogContent.modal('show');
 			jQuery("#myModal").modal({
-		             autoOpen: false,
-		             modal: true,
+		            autoOpen: false,
+		            modal: true,
 					keyboard:false,
-			         backdrop:'static',
+					backdrop:'static'
 		     
 		     });
 	  	});

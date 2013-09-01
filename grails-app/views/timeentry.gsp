@@ -147,5 +147,3 @@
       <div id="taskhrs" class="taskhrsList">${ProjectTaskEstimatedHrs}</div>    <!-- changes made by sunil -->	
    </body>
 </html>
-
->>>>>>> branch 'master' of https://github.com/preetigupta2000/tm.git
