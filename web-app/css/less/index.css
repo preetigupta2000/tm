@@ -6159,7 +6159,7 @@ footer {
 }
 #ajaxLoginForm .hero-unit {
   background-color: #f9fafb;
-  padding: 1.5em;
+  padding: 1.2em;
   border-radius: 0px 0px 6px 6px;
   margin-bottom: 0px;
   text-align: center;
@@ -6181,7 +6181,7 @@ footer {
 }
 #ajaxLoginForm #user-info {
   border: solid 1px #cccccc;
-  padding: 1em;
+  padding: 0.5em;
   text-align: left;
 }
 #ajaxLoginForm #user-info div {

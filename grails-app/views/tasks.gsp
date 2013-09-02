@@ -50,19 +50,18 @@
 									</tr>
 								</thead>
 								<tbody id="Project-list">
+								  <g:if test="${tasks}">
 									<g:each in="${tasks}" status="i" var="task">
 							  			<tr>
 							  				<td>${i+1}</td>
 							  				<td data-title="Name">${fieldValue(bean: task, field: "name")}</td>
 							  				<td data-title="Description">${fieldValue(bean: task, field: "description")}</td>
-											
-								  	<td data-title="Option"><a href="${request.contextPath}/project/${task.project.id}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
+								  			<td data-title="Option"><a href="${request.contextPath}/project/${task.project.id}/tasks/${task.id}"><i class="icon-pencil" title="Edit"></i></a> | 
 								  				<g:link id="${task.id}" params='[projectId:"${projectid}"]' action="deleteTask"><i class="icon-remove" title="Delete"></i></g:link>
-								  				
-								  				</td>		
-								  			
+								  			</td>
 							  			</tr>
 				  					</g:each>
+				  				 </g:if>
 								</tbody>
 							</table>
 						</div>			
