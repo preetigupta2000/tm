@@ -65,6 +65,7 @@
 												<g:else>
 													<g:link id="${project.id}" params='[clientid:"${project.client.id}", mode:"project"]' action="deleteProject"><i class="icon-remove" title="Delete"></i></g:link>
 												</g:else>
+												<a href="project/${project.id}/tasks" class="badge badge-info">View Tasks</a>
 											</td>
 							  			</tr>
 				  					</g:each>

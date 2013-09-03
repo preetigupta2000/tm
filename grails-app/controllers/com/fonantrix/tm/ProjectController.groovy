@@ -248,8 +248,13 @@ class ProjectController {
 					}
 				}
 			}
+			render view: '/projects', model: [projects:projectlist,clientList:clients]
+			}else
+		{
+			render view: '/projects', model: [projects:projectlist,clientList:clients]
+			
 		}
-		render view: '/projects', model: [projects:projectlist,clientList:clients]
+		
 	}
 	
 	def TotalTask()
