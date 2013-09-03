@@ -2,6 +2,7 @@ class UrlMappings {
 
 	static mappings = {
 
+		"500"(controller:"error")
 		"/"(controller:"home")
 		"/home"(controller:"home")
 		
@@ -55,10 +56,5 @@ class UrlMappings {
 		// for time
 		"/timeentry/$id?"(resource:"time")
 		"/timeentry/$action?/$id?"(resource:"time")
-		
-		"500"(controller: "error")
-		
-		
-		
 	}
 }
