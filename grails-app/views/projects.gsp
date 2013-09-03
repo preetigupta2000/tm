@@ -49,7 +49,7 @@
 									</tr>
 								</thead>
 								<tbody id="client-list">
-								   <g:if test="${tasks}">
+								   <g:if test="${projects}">
 									<g:each in="${projects}" status="i" var="project">
 							  			<tr>
 							  				<td>${i+1}</td>
