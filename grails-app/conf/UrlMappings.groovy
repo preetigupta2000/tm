@@ -56,7 +56,7 @@ class UrlMappings {
 		"/timeentry/$id?"(resource:"time")
 		"/timeentry/$action?/$id?"(resource:"time")
 		
-		"500"(view:'/error')
+		"500"(controller: "error")
 		
 		
 		

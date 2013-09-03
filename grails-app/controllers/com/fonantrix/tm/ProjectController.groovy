@@ -191,49 +191,37 @@ class ProjectController {
 		if (users && clients)
 		{
 		   clients.eachWithIndex { item, index ->
-			   
-					 
-					 List project= Project.findAllByClient(item)
-				  project.eachWithIndex {eachcproject,indexes ->
-			  projectlist.add(eachcproject);
-			  println("Clients "+item)
+			 List project= Project.findAllByClient(item)
+			  project.eachWithIndex {eachcproject,indexes ->
+				  projectlist.add(eachcproject);
+				  //println("Clients "+item)
 			 }
-		 }
-		   
+		   }
 		   JSONObject jObject = new JSONObject();
-	 
-				   JSONArray jArray = new JSONArray();
-				   for (Project project : 	 projectlist) {
-					   JSONObject json = new JSONObject();
-					   json .put("name", project.getName());
-						   json .put("description", project.getDescription());
-						   json .put("projectId", project.getId());
-						   println("client.."+project.client.getName())
-						   json .put("clientName", project.client.getName());
-					   jArray.add(json );
-					 
-					   
-				  
+
+		   JSONArray jArray = new JSONArray();
+		   for (Project project : 	 projectlist) {
+			   JSONObject json = new JSONObject();
+			   json .put("name", project.getName());
+			   json .put("description", project.getDescription());
+			   json .put("projectId", project.getId());
+			   //println("client.."+project.client.getName())
+			   json .put("clientName", project.client.getName());
+			   jArray.add(json );
 		   }
 		   
-		 println(jArray)
+		   //println(jArray)
 		   jObject.put("totalproject", jArray);
-			 def length=jArray.size()
+		   def length=jArray.size()
 			 
-			 println("length "+length)
-			 	def totaltask=TotalTask()
-				 def totalclient=totalClients()
-				def totalUsers= totalUsers()
-				def timeEntry=UserTaskTimeEntry()
-				println("userTimeEntry.."+timeEntry);
-			
-			 render view: "/reviewStatus" ,model: [projects: jObject,totalProject:length,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,userTimeEntry:timeEntry,clientList:clients]
-			 
-		}
-		
-		
-		else{
-			
+		   //println("length "+length)
+		   def totaltask=TotalTask()
+		   def totalclient=totalClients()
+		   def totalUsers= totalUsers()
+		   def timeEntry=UserTaskTimeEntry()
+		   //println("userTimeEntry.."+timeEntry);
+		   render view: "/reviewStatus" ,model: [projects: jObject,totalProject:length,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,userTimeEntry:timeEntry,clientList:clients]
+		} else {
 			def totalProject=0;
 			def totaltask=0;
 			def totalclient=totalClients();
@@ -241,12 +229,9 @@ class ProjectController {
 			println("Total Users .." +totalUsers);
 			def totalTask=0;
 			def tasklength=0;
-			 render view: "/reviewStatus" ,model: [totalProject:totalProject,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,clientList:clients]
-			}
-		
-		
-	
-		
+			
+			render view: "/reviewStatus" ,model: [totalProject:totalProject,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,clientList:clients]
+		}	
 	}
 
 	def totalProjectCount = {

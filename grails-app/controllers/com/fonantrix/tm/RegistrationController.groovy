@@ -24,10 +24,7 @@ class RegistrationController  {
 	}
 	
 	def save = {	
-		
-		
-		def testUser = new User(username: params.username, email: params.username, firstName:params.firstName,lastName:params.lastName,password: params.password)
-		
+		def testUser = new User(username: params.username, email: params.username, firstName:params.firstName,lastName:params.lastName,password: params.password)		
 		try {
 			testUser.save(failOnError: true)
 			//changes made by sunil	
@@ -38,12 +35,12 @@ class RegistrationController  {
 			UserRole.create testUser, userRole, true
 			redirect action: 'index', controller: 'home'
 			return
-			}
-			 catch(HibernateException e)
-		 	{
+		}
+		catch(HibernateException e)
+		{
 			render (text:testUser.errors,status:500)
 			return
-			 }
+		}
 		
 	}
 	
