@@ -188,7 +188,7 @@ class ProjectController {
 		Client[] clients = Client.list()
 		
 		List projectlist=new ArrayList();
-		if (users && clients)
+		if (clients)
 		{
 		   clients.eachWithIndex { item, index ->
 			 List project= Project.findAllByClient(item)

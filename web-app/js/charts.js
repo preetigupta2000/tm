@@ -1,7 +1,10 @@
 
 var piechart=[];
 jQuery(document).ready(function () {
-		
+	
+	/* to hide json object values */
+		jQuery(".list").hide();
+	
 	var list =jQuery("#hidden").text();
 	var totalTask =jQuery("#hiddenTask").text();
 	var hiddenTimeEntry=jQuery("#hiddenTimeEntry").text();
