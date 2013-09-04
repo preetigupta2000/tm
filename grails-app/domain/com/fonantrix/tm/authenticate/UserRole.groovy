@@ -15,14 +15,14 @@ class UserRole implements Serializable {
 		other.user?.id == user?.id &&
 			other.role?.id == role?.id
 	}
-
+/*
 	int hashCode() {
 		def builder = new HashCodeBuilder()
 		if (user) builder.append(user.id)
 		if (role) builder.append(role.id)
 		builder.toHashCode()
 	}
-
+*/
 	static UserRole get(long userId, long roleId) {
 		find 'from UserRole where user.id=:userId and role.id=:roleId',
 			[userId: userId, roleId: roleId]
