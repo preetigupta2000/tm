@@ -28,7 +28,7 @@ class RegistrationController  {
 		try {
 			testUser.save(failOnError: true)
 			//changes made by sunil	
-			def userInfo= new UserInfo(designation:"designation",corresAddress:"address",user:testUser)
+			//def userInfo= new UserInfo(designation:"designation",corresAddress:"address",user:testUser)
 			userInfo.save(failOnError: true)  //changes made by sunil
 			List<Role> roleList = Role.findAllByAuthority("ROLE_USER")
 			Role userRole = roleList.get(0)
