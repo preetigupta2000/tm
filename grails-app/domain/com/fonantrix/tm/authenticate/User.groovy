@@ -6,7 +6,6 @@ class User {
 
 	transient springSecurityService
 	
-	UserInfo userInfo
 	String username
 	String password
 	String firstName
@@ -20,9 +19,6 @@ class User {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		time nullable: true 
-		userInfo nullable:true
-		
 	}
 	
 	static mapping = {
