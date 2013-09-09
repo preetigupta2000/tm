@@ -28,9 +28,10 @@ class UserRole implements Serializable {
 			[userId: userId, roleId: roleId]
 	}
 
-	static UserRole create(User user, Role role, boolean flush = false) {
-		//new UserRole(user: user, role: role).save(flush: flush, insert: true)
-		new UserRole(user: user, role: role).save(flush: flush)
+	static UserRole create(User user, Role role, boolean flush = true) {
+		println "user:" + user.id
+		println "role:" + role.id
+		new UserRole(user: user, role: role).save(flush: flush, insert: true)
 	}
 
 	static boolean remove(User user, Role role, boolean flush = false) {
