@@ -11,6 +11,10 @@ class UserInfo {
 	
 	static belongsTo = [user: User]
 	
+	static mapping = {
+		designation(nullable: true)
+		corresAddress(nullable: true)
+	}
 	
 }
 

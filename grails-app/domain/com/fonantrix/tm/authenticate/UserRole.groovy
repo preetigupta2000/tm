@@ -28,7 +28,7 @@ class UserRole implements Serializable {
 			[userId: userId, roleId: roleId]
 	}
 
-	static UserRole create(User user, Role role, boolean flush = true) {
+	static UserRole create(User user, Role role, boolean flush = false) {
 		println "user:" + user.id
 		println "role:" + role.id
 		new UserRole(user: user, role: role).save(flush: flush, insert: true)
