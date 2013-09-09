@@ -2,7 +2,7 @@ dataSource {
     pooled = true
     driverClassName = "com.mysql.jdbc.Driver"
     username = "root"
-    password = "admin"
+    password = "root"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -14,7 +14,7 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://192.168.1.68:3306/timesheet_production"
+            url = "jdbc:mysql://localhost:3306/timesheet_production"
         }
     }
     test {
@@ -41,7 +41,7 @@ environments {
             }
         }*/
 		dataSource {
-			dbCreate = "update"
+			dbCreate = "create-drop"
 			driverClassName = "org.postgresql.Driver"
 			dialect = org.hibernate.dialect.PostgreSQLDialect
 			//dialect = org.hibernate.dialect.PostgreSQL82Dialect

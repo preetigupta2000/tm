@@ -1,4 +1,4 @@
-package com.fonantrix.tm 
+package com.fonantrix.tm
 
 
 import com.fonantrix.tm.authenticate.Role
@@ -19,17 +19,24 @@ class RegistrationController  {
 	 */
 
 	
-    def index() {
+	def index() {
 		render(view: "/registrationform")
 	}
 	
-	def save = {	
-		def testUser = new User(username: params.username, email: params.username, firstName:params.firstName,lastName:params.lastName,password: params.password)		
+	def save = {
+		def testUser = new User(username: params.username, email: params.username, firstName:params.firstName,lastName:params.lastName,password: params.password)
 		try {
 			testUser.save(failOnError: true)
-			//changes made by sunil	
-			//def userInfo= new UserInfo(designation:"designation",corresAddress:"address",user:testUser)
-			//userInfo.save(failOnError: true)  //changes made by sunil
+			//changes made by sunil
+			def userInfo= new UserInfo(designation:"designation",corresAddress:"address",user:testUser)
+			userInfo.save(failOnError: true)  //changes made by sunil
+		}
+		catch(HibernateException e)
+		{
+			render (text:userInfo.errors,status:500)
+			return
+		}
+		try {
 			List<Role> roleList = Role.findAllByAuthority("ROLE_USER")
 			Role userRole = roleList.get(0)
 			UserRole.create testUser, userRole, true
@@ -38,14 +45,10 @@ class RegistrationController  {
 		}
 		catch(HibernateException e)
 		{
-			render (text:testUser.errors,status:500)
+			render (text:userRole.errors + " ### " + testUser.errors,status:500)
 			return
 		}
 		
 	}
-	
-	
-	
+		
 }
-
-
