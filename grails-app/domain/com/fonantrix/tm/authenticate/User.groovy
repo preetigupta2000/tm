@@ -1,12 +1,10 @@
 package com.fonantrix.tm.authenticate
-import com.fonantrix.tm.UserInfo
 import com.fonantrix.tm.Time
 
 class User {
 
 	transient springSecurityService
 	
-	UserInfo userInfo
 	String username
 	String password
 	String firstName
@@ -17,12 +15,11 @@ class User {
 	boolean accountLocked = false
 	boolean passwordExpired = false
 	static  hasMany = [time: Time ]
+	
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
 		time nullable: true
-		userInfo nullable:true
-		
 	}
 	
 	static mapping = {

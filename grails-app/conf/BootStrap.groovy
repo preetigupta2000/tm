@@ -11,7 +11,7 @@ class BootStrap {
 		if (!Role.count() && !User.count()) {	
 		
 		
-			def adminUser = new User(username: "admin@fn.com", email: "admin@fn.com", firstName:"fname",lastName:"lname",password: "password",userInfo:new UserInfo(designation:"",corresAddress:""))
+			def adminUser = new User(username: "admin@fn.com", email: "admin@fn.com", firstName:"fname",lastName:"lname",password: "password")
 		
 			adminUser.save(flush: true)
 		
@@ -20,7 +20,7 @@ class BootStrap {
 			
 			
 		
-			def hrUser = new User(username: "hr@fn.com", email: "hr@fn.com", firstName:"fname",lastName:"lname",password: "password",userInfo:new UserInfo(designation:"",corresAddress:""))
+			def hrUser = new User(username: "hr@fn.com", email: "hr@fn.com", firstName:"fname",lastName:"lname",password: "password")
 			
 			hrUser.save(flush: true)
 		
@@ -28,7 +28,7 @@ class BootStrap {
 			UserRole.create hrUser, hrRole, true
 			
 		
-			def user = new User(username: "user@fn.com", email: "user@fn.com", firstName:"fname",lastName:"lname",password: "password",userInfo:new UserInfo(designation:"designation",corresAddress:"address"))
+			def user = new User(username: "user@fn.com", email: "user@fn.com", firstName:"fname",lastName:"lname",password: "password")
 		
 			user.save(flush: true)
 			
@@ -36,7 +36,7 @@ class BootStrap {
 			UserRole.create user, userRole, true
 			
 			
-			def cordUser = new User(username: "cordinator@fn.com", email: "cordinator@fn.com", firstName:"fname",lastName:"lname",password: "password",userInfo:new UserInfo(designation:"",corresAddress:""))
+			def cordUser = new User(username: "cordinator@fn.com", email: "cordinator@fn.com", firstName:"fname",lastName:"lname",password: "password")
 			cordUser.save(flush: true)
 	
 			def coordinatorRole = new Role(authority: 'ROLE_COORDINATOR').save(failOnError: true, flush: true)	

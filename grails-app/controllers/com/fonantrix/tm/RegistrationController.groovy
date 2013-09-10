@@ -26,7 +26,7 @@ class RegistrationController  {
 	def save = {
 		def testUser = new User(username: params.username, email: params.username, firstName:params.firstName,lastName:params.lastName,password: params.password)
 		try {
-			testUser.save(failOnError: true)
+			testUser.save(flush: true, failOnError: true)
 			//changes made by sunil
 			def userInfo= new UserInfo(designation:"designation",corresAddress:"address",user:testUser)
 			userInfo.save(failOnError: true)  //changes made by sunil
