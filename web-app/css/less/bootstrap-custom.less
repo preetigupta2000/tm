@@ -1,5 +1,5 @@
 /* ---------- Bootstrap Common Variables ----------- */
-@HSCHeaderColor: #38393E; //Dark Black - 
+@HSCHeaderColor: #978a4c; //Dark Black - 
 @hero-unit-color:#e5e5e5;
 @business-info-header: #2b2b2c;
 @profile-img-top-color:#FBB450;
@@ -14,12 +14,12 @@
 }
 
 body > #wrapper{
-    background-color: #E9E9E9;
-    background-repeat: repeat;
+    background-color: #fbfbfa;
+    background: -moz-linear-gradient(center top ,#fbfbfa, #f1f2ed) repeat-x;
 }
 
 .maincontainer {
-    padding-top: 60px;
+    padding-top: 80px;
     padding-bottom: 30px;
 	h2 {
 		small {
@@ -27,12 +27,23 @@ body > #wrapper{
 			color: inherit;
 		}
 	}
-	.cal-size {
-		width:75%;
-	}
 	.tm-info {
-		margin-top: 1em;
-		margin-left: -5.5em;
+		margin-top: 2em;
+		h3 {
+			color: #ffb508;	
+		}
+		p {
+			color: #3c3c3c;	
+			font-size: 16px;
+		}		
+	}
+	.info-heading {
+		text-align: center;
+		margin-top: -10px;
+		margin-bottom: 10px;
+		h1 {
+			color: #ffb508;
+		}
 	}
 }
 
@@ -41,7 +52,7 @@ footer {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    background: -moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444;
+    background: -moz-linear-gradient(center top ,#4c4e55, #2f3132) repeat-x scroll left bottom #444444;
     border-color: #000000;
     border-image: none;
     color: white;
@@ -55,7 +66,7 @@ footer {
 	    -moz-border-left-colors: none;
 	    -moz-border-right-colors: none;
 	    -moz-border-top-colors: none;
-	    background: -moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444;
+	    background: -moz-linear-gradient(center top , #4c4e55, #2f3132) repeat-x scroll left bottom #444444;
 	    border-image: none;
 	    border-radius: 0 0 0 0;
 	    border-style: solid;
@@ -75,19 +86,22 @@ footer {
 }
 
 #ajaxLoginForm {
-	border:solid 2px @login-h3-color;
-	.border-radius(10px);
+	border:solid 1px @login-h3-color;
+	.border-radius(10px 10px 0px 0px);
 	.input-prepend  {
+		margin-bottom: 10px;
 		.add-on {
-			height:32px;
+			height:22px;
+			background-color: #dcded0;
+			border-color: #cacdb8;
 			i {
 				margin-right:5px;
 			}
 		}	
 		input[type="text"], input[type="email"], input[type="password"] {
 		    font-size: 17px;
-		    height: 32px;
-		    background-color:@white;
+		    height: 22px;
+		    background-color:#f2f3ee;
 		    color:#595959;
 		   .box-shadow(none); 
 		}
@@ -110,12 +124,13 @@ footer {
 	    -moz-border-left-colors: none;
 	    -moz-border-right-colors: none;
 	    -moz-border-top-colors: none;
-	    background: -moz-linear-gradient(center top , #2A2A2A, #1A1A1A) repeat-x scroll left bottom #444444;
+	    background: -moz-linear-gradient(center top , #ffcb1a, #ffb90c) repeat-x scroll left bottom #978a4c;
 		text-align:center;
+		text-shadow: 0 0 1px #978a4c;
 		margin:0;
-		padding:0.3em 0;
-		font-weight: normal;
-		.border-radius(8px 8px 0 0);
+		padding:0.1em 0;
+		font-weight: bold;
+		.border-radius(10px 10px 0 0);
 	}
 	h5 {
 		padding:0.2em 0 0 0.4em;
@@ -123,21 +138,28 @@ footer {
     
 
 	.hero-unit {
-		background-color:#f9fafb;
-		padding:1.2em;
-		border-radius: 0px 0px 6px 6px;
+		background-color:#ffffff;
+		padding:1em 0.5em 2em;
+		border-radius: 0px 0px 10px 10px;
+		border-color: #d0d0cf;
 		margin-bottom: 0px;
 		text-align: center;
 		p {
-			font-size: 14px;
+			font-size: 13px;
 	    	line-height: 1;
+	    	margin-bottom: 15px;
 		}
 		small {
 			font-size: 12px;
 			line-height: 1;
 		}
 		.btn {
-			margin-top:10px;		
+			margin-top:10px;
+			border-color: #393939;
+			background-color: #393938;
+			background-image: linear-gradient(to bottom, #808080, #393938);
+			color: #FFFFFF;
+			width: 70%;
 		}
 		i {
 			font-size:24px;

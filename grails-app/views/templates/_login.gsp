@@ -51,7 +51,7 @@
 	</sec:ifLoggedIn>
 	<sec:ifNotLoggedIn>		
 		<form action="${request.contextPath}/j_spring_security_check" method='POST' id='ajaxLoginForm' name='ajaxLoginForm'>
-			<h3>Sign In</h3>
+			<h3>SIGN IN</h3>
 			<g:if test='${flash.message}'>
 				<div class='loginErrorMessage'>${flash.message}</div>
 			</g:if>
@@ -65,8 +65,8 @@
 					<span class="add-on"><i class="icon-lock"></i></span>
 					<input class="input-xlarge" id="j_password" name="j_password" type="Password" placeholder="password" required>
 				</div>
-				<a href="javascript:{}" onclick="document.getElementById('ajaxLoginForm').submit();" type="submit" class="btn btn-large btn-block">Login</a>
-				<a href="register" type="button" class="btn btn-large btn-block">Register</a>
+					<a href="javascript:{}" onclick="document.getElementById('ajaxLoginForm').submit();" type="submit" class="btn">Login</a>
+					<a href="register" type="button" class="btn">Register</a>
 			</div>
 		</form>
 	</sec:ifNotLoggedIn>
