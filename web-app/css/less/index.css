@@ -6051,42 +6051,53 @@ a.badge:hover {
 }
 /* ---------- Bootstrap Common Variables ----------- */
 body > #wrapper {
-  background-color: #E9E9E9;
-  background-repeat: repeat;
+  background-color: #fbfbfa;
+  background: -moz-linear-gradient(center top, #fbfbfa, #f1f2ed) repeat-x;
 }
 .maincontainer {
-  padding-top: 60px;
+  padding-top: 80px;
   padding-bottom: 30px;
 }
 .maincontainer h2 small {
   font-size: 25.5px;
   color: inherit;
 }
-.maincontainer .cal-size {
-  width: 75%;
-}
 .maincontainer .tm-info {
-  margin-top: 1em;
-  margin-left: -5.5em;
+  margin-top: 2em;
+}
+.maincontainer .tm-info h3 {
+  color: #ffb508;
+}
+.maincontainer .tm-info p {
+  color: #3c3c3c;
+  font-size: 16px;
+}
+.maincontainer .info-heading {
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.maincontainer .info-heading h1 {
+  color: #ffb508;
 }
 footer {
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background: -moz-linear-gradient(center top, #2a2a2a, #1a1a1a) repeat-x scroll left bottom #444444;
+  background: -moz-linear-gradient(center top, #4c4e55, #2f3132) repeat-x scroll left bottom #444444;
   border-color: #000000;
   border-image: none;
   color: white;
   padding-bottom: 6px;
 }
 .navbar .navbar-inner {
-  background-color: #38393e;
+  background-color: #978a4c;
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background: -moz-linear-gradient(center top, #2a2a2a, #1a1a1a) repeat-x scroll left bottom #444444;
+  background: -moz-linear-gradient(center top, #4c4e55, #2f3132) repeat-x scroll left bottom #444444;
   border-image: none;
   border-radius: 0 0 0 0;
   border-style: solid;
@@ -6104,13 +6115,18 @@ footer {
   height: 50px;
 }
 #ajaxLoginForm {
-  border: solid 2px #38393e;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  border: solid 1px #978a4c;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+}
+#ajaxLoginForm .input-prepend {
+  margin-bottom: 10px;
 }
 #ajaxLoginForm .input-prepend .add-on {
-  height: 32px;
+  height: 22px;
+  background-color: #dcded0;
+  border-color: #cacdb8;
 }
 #ajaxLoginForm .input-prepend .add-on i {
   margin-right: 5px;
@@ -6119,8 +6135,8 @@ footer {
 #ajaxLoginForm .input-prepend input[type="email"],
 #ajaxLoginForm .input-prepend input[type="password"] {
   font-size: 17px;
-  height: 32px;
-  background-color: #ffffff;
+  height: 22px;
+  background-color: #f2f3ee;
   color: #595959;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -6145,28 +6161,31 @@ footer {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background: -moz-linear-gradient(center top, #2a2a2a, #1a1a1a) repeat-x scroll left bottom #444444;
+  background: -moz-linear-gradient(center top, #ffcb1a, #ffb90c) repeat-x scroll left bottom #978a4c;
   text-align: center;
+  text-shadow: 0 0 1px #978a4c;
   margin: 0;
-  padding: 0.3em 0;
-  font-weight: normal;
-  -webkit-border-radius: 8px 8px 0 0;
-  -moz-border-radius: 8px 8px 0 0;
-  border-radius: 8px 8px 0 0;
+  padding: 0.1em 0;
+  font-weight: bold;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 #ajaxLoginForm h5 {
   padding: 0.2em 0 0 0.4em;
 }
 #ajaxLoginForm .hero-unit {
-  background-color: #f9fafb;
-  padding: 1.2em;
-  border-radius: 0px 0px 6px 6px;
+  background-color: #ffffff;
+  padding: 1em 0.5em 2em;
+  border-radius: 0px 0px 10px 10px;
+  border-color: #d0d0cf;
   margin-bottom: 0px;
   text-align: center;
 }
 #ajaxLoginForm .hero-unit p {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
+  margin-bottom: 15px;
 }
 #ajaxLoginForm .hero-unit small {
   font-size: 12px;
@@ -6174,6 +6193,11 @@ footer {
 }
 #ajaxLoginForm .hero-unit .btn {
   margin-top: 10px;
+  border-color: #393939;
+  background-color: #393938;
+  background-image: linear-gradient(to bottom, #808080, #393938);
+  color: #FFFFFF;
+  width: 70%;
 }
 #ajaxLoginForm .hero-unit i {
   font-size: 24px;
