@@ -6056,7 +6056,7 @@ body > #wrapper {
 }
 .maincontainer {
   padding-top: 80px;
-  padding-bottom: 30px;
+  padding-bottom: 60px;
 }
 .maincontainer h2 small {
   font-size: 25.5px;
@@ -6065,13 +6065,15 @@ body > #wrapper {
 .maincontainer .tm-info {
   margin-top: 2em;
 }
-.maincontainer .tm-info h3 {
+.maincontainer .tm-info h4 {
   color: #ffb508;
+}
+.maincontainer .tm-info h4 small {
+  color: #000000;
 }
 .maincontainer .tm-info p {
   color: #3c3c3c;
-<<<<<<< HEAD
-  font-size: 16px;
+  font-size: 14px;
 }
 .maincontainer .info-heading {
   text-align: center;
@@ -6080,8 +6082,6 @@ body > #wrapper {
 }
 .maincontainer .info-heading h1 {
   color: #ffb508;
-=======
->>>>>>> branch 'master' of https://github.com/preetigupta2000/tm.git
 }
 footer {
   -moz-border-bottom-colors: none;
@@ -6119,18 +6119,12 @@ footer {
 }
 #ajaxLoginForm {
   border: solid 1px #978a4c;
-<<<<<<< HEAD
   -webkit-border-radius: 10px 10px 0px 0px;
   -moz-border-radius: 10px 10px 0px 0px;
   border-radius: 10px 10px 0px 0px;
 }
 #ajaxLoginForm .input-prepend {
   margin-bottom: 10px;
-=======
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
->>>>>>> branch 'master' of https://github.com/preetigupta2000/tm.git
 }
 #ajaxLoginForm .input-prepend .add-on {
   height: 22px;
@@ -6174,13 +6168,8 @@ footer {
   text-align: center;
   text-shadow: 0 0 1px #978a4c;
   margin: 0;
-<<<<<<< HEAD
   padding: 0.1em 0;
   font-weight: bold;
-=======
-  padding: 0.2em 0;
-  font-weight: normal;
->>>>>>> branch 'master' of https://github.com/preetigupta2000/tm.git
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   border-radius: 10px 10px 0 0;
@@ -6190,11 +6179,7 @@ footer {
 }
 #ajaxLoginForm .hero-unit {
   background-color: #ffffff;
-<<<<<<< HEAD
   padding: 1em 0.5em 2em;
-=======
-  padding: 1.2em;
->>>>>>> branch 'master' of https://github.com/preetigupta2000/tm.git
   border-radius: 0px 0px 10px 10px;
   border-color: #d0d0cf;
   margin-bottom: 0px;

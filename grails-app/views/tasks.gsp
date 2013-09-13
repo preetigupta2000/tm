@@ -1,4 +1,3 @@
-
 <g:set var="contextPath" value="${request.contextPath}"/>
 <html>
 	<head>

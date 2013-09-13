@@ -44,8 +44,7 @@
                 <sec:ifAllGranted roles="ROLE_USER">
  
 			       <a href="timeentry/${id}" onclick="viewusertime" id="timenetry-button" class="btn btn-large btn-block">Go to user time entry</a>
-                </sec:ifAllGranted>
-		  <a href="javascript:{}" onclick="document.getElementById('ajaxLoginForm').submit();" type="submit" class="btn btn-large btn-block">Logout</a>					
+                </sec:ifAllGranted>		
 		</div>
 	  </form>
 	</sec:ifLoggedIn>
