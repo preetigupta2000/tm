@@ -6222,23 +6222,12 @@ footer {
 }
 #ajaxLoginForm #user-info div.profile-image a {
   margin-top: 0;
-  background-color: #fbb44e;
-  background-image: -moz-linear-gradient(top, #fbb450, #fab54a);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#fab54a));
-  background-image: -webkit-linear-gradient(top, #fbb450, #fab54a);
-  background-image: -o-linear-gradient(top, #fbb450, #fab54a);
-  background-image: linear-gradient(to bottom, #fbb450, #fab54a);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', endColorstr='#fffab54a', GradientType=0);
-  *background-color: #fab54a;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background: -moz-linear-gradient(center top, #ffcb1a, #ffb90c) repeat-x scroll 0 0 transparent;
   display: block;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding: 17px 12px 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 #ajaxLoginForm #user-info div.profile-image a:hover {
   text-decoration: none;
