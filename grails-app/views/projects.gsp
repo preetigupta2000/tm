@@ -112,8 +112,8 @@
 			        </div>	
 			   </div>
 				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-					<button type="submit" class="btn btn-primary">Add</button>
+					<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
+					<button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Add</button>
 				</div>
 			</form>
 		</div>

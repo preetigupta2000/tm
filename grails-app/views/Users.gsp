@@ -1,15 +1,11 @@
-<!DOCTYPE html>   
-<html lang="en">   
+<g:set var="contextPath" value="${request.contextPath}"/>   
+<html>   
 	<head>  
 		<meta name="layout" content="mainlayout">
 		
 	</head>  
-<body>
-		<div id="wrapper" class="clearfix">
-				<div class="bodycontainer maincontainer">
-					
-					<legend>Manage Accounts</legend>
-			<div id="manageclients">
+	<body>
+		<div id="manageusers">
 			<div class="container maincontainer">
 				<div class="row" id="header">
 					<div class="span9">
@@ -19,10 +15,8 @@
 						</ul>
 		        	</div>
 					<div class="span3">
-						<%--<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addClientModal"><i class="icon-plus"></i>  Add New User</button>
+						<%--<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addClientModal"><i class="icon-plus"></i>  Add New User</button>--%>
 					</div>
-					
-				--%>
 				</div>
 				<div class="row">
 					<div class="span12">
@@ -43,14 +37,9 @@
 								  				<td>${i+1}</td>
 								  				<td data-title="Name">${user.username}</td>
 								  				<td data-title="Description">${user.email}</td>
-								  				<td data-title="Option"><a href="manageUsers/${user.id}"><i class="icon-pencil" title="Edit UserInfo"></i>Edit UserInfo</a> | 
-								  				<g:link id="${user.id}" action="deleteUser"><i class="icon-remove" title="Delete"></i>Delete</g:link>
-								  				<%--
-								  				
-								  				<a href="users/${user.id}/userprojects" class="badge badge-info">View Projects</a>
-								  		
-								  				
-								  				--%></td>
+								  				<td data-title="Option"><a href="manageUsers/${user.id}"><i class="icon-pencil" title="Edit UserInfo"></i></a> | 
+								  				  <g:link id="${user.id}" action="deleteUser"><i class="icon-remove" title="Delete"></i></g:link>
+												</td>
 								  			</tr>
 					  					</g:each>
 					  				</g:if>
@@ -61,10 +50,7 @@
 				</div>		
 			</div>
 		</div>
-		
-				
-						</div>
-			</div>
+	</div>
 		
 </body>
 

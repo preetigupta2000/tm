@@ -6089,7 +6089,6 @@ footer {
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
   background: -moz-linear-gradient(center top, #4c4e55, #2f3132) repeat-x scroll left bottom #444444;
-  border-color: #000000;
   border-image: none;
   color: white;
   padding-bottom: 6px;
@@ -6102,10 +6101,11 @@ footer {
   -moz-border-top-colors: none;
   background: -moz-linear-gradient(center top, #4c4e55, #2f3132) repeat-x scroll left bottom #444444;
   border-image: none;
-  border-radius: 0 0 0 0;
-  border-style: solid;
-  border-width: 1px 0;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  /*border-radius: 0 0 0 0;
+	    border-style: solid;
+	    border-width: 1px 0;
+	    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset;*/
+
   min-height: 50px;
   padding-right: 20px;
   position: relative;
@@ -6206,6 +6206,9 @@ footer {
   font-size: 24px;
   color: rgba(10, 10, 10, 0.7);
 }
+#ajaxLoginForm .samll-buttons .btn {
+  width: 40%;
+}
 #ajaxLoginForm #user-info {
   border: solid 1px #cccccc;
   padding: 0.5em;
@@ -6254,7 +6257,7 @@ table.table.table-condensed {
 #manageclients #header,
 #manageprojects #header,
 #managetasks #header {
-  border-bottom: solid 1px #FA9445;
+  border-bottom: solid 1px #FFB508;
   margin-bottom: 15px;
 }
 #registration .accountAction,
@@ -6288,6 +6291,25 @@ i {
 .well-admin select,
 .well-admin textarea {
   font-size: 16px;
+}
+.modal form {
+  margin: 0;
+}
+.modal form .modal-footer {
+  /*.btn-primary {
+			background: -moz-linear-gradient(center top , #ffcb1a, #ffb90c) repeat-x scroll left bottom #978a4c;
+			color: #FFFFFF;			
+		}*/
+
+}
+.modal form .modal-footer i {
+  font-size: 14px;
+}
+.accordion-heading a.accordion-toggle {
+  display: inline-block;
+}
+.accordion-heading a {
+  margin-right: 10px;
 }
 /*!
  * Bootstrap Responsive v2.2.1
