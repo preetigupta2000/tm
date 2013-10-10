@@ -13,34 +13,33 @@
 			</div>
 	     <sec:ifAllGranted roles="ROLE_HR">
 	     	<div>
-				<!-- changes made by sunil -->  
-				<a href="manageUsers"  id="users-button" class="btn">Manage Users</a>   
-				<a href="viewclient"  id="Users-button" class="btn">Manage Clients</a>
+				
+				 <a href="manageUsers"  id="users-button" class="btn btn-large btn-info">Manage Users</a>   
+				 <a href="#"  id="status-button" class="btn btn-large btn-info">Review Status</a>
+				<a href="viewclient"  id="Users-button" class="btn btn-large btn-block">Manage Clients</a>
 			</div>
 		  </sec:ifAllGranted>
 		  <sec:ifAllGranted roles="ROLE_COORDINATOR">
-		  	<div class="samll-buttons">
-			  	<a href="javascript:{}" onclick="#" id="projectstatus-button" class="btn">Review Project Status</a>
-				<a href="tasks" onclick="#" id="task-button" class="btn">Manage Tasks</a>
-				<a href="projects" onclick="#" id="projects-button" class="btn">Manage Projects</a>
-				<a href="viewclient" id="Users-button" class="btn">Manage Clients</a>
+		  	<div>
+			  	<a href="javascript:{}" onclick="#" id="projectstatus-button" class="btn btn-large btn-info">Review Project Status</a>
+				<a href="tasks" onclick="#" id="task-button" class="btn btn-large btn-info">Manage Tasks</a>
+				<a href="projects" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a>
+				<a href="viewclient" id="Users-button" class="btn btn-large btn-info">Manage Clients</a>
 			</div>
-          </sec:ifAllGranted>
-          <sec:ifAllGranted roles="ROLE_ADMIN">
-        	<div class="samll-buttons">
-	     	<!-- changes made by sunil -->  
-				<a href="adminReviewStatus" onclick="#" id="status-button" class="btn">Review Status</a>	     				
-				<a href="tasks" onclick="#" id="task-button" class="btn">Manage Tasks</a> 
+                </sec:ifAllGranted>
+                <sec:ifAllGranted roles="ROLE_ADMIN">
+                	<div>
+				<a href="adminReviewStatus" onclick="#" id="status-button" class="btn btn-large btn-info">Review Status</a>	     				
+				<a href="tasks" onclick="#" id="task-button" class="btn btn-large btn-info">Manage Tasks</a> 
 				<!-- changes made by sunil --> 
-				<a href="tprojects" onclick="#" id="projects-button" class="btn">Manage Projects</a> 
+				<a href="tprojects" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a> 
 				<!-- changes made by sunil --> 
-				<a href="viewclient" id="Users-button" class="btn">Manage Clients</a> 
-				<!-- changes made by sunil --> 				  	
+				<a href="viewclient" id="Users-button" class="btn btn-large btn-info">Manage Clients</a> 			  	
 			</div>
-           </sec:ifAllGranted>
-           <sec:ifAllGranted roles="ROLE_USER">
-			  <a href="timeentry/${id}" onclick="viewusertime" id="timenetry-button" class="btn">Go to user time entry</a>
-           </sec:ifAllGranted>		
+                </sec:ifAllGranted>
+                <sec:ifAllGranted roles="ROLE_USER">
+			       <a href="usertimetask" id="timenetry-button" class="btn btn-large btn-block">Go to user time entry</a>
+                </sec:ifAllGranted>		
 		</div>
 	  </form>
 	</sec:ifLoggedIn>

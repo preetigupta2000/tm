@@ -19,8 +19,8 @@
 		<fon:stylesheet src="index"/>
 		
 		<r:require modules="corejs"/>
-			<!-- changes made by sunil -->
-		<g:javascript src ="/libs/jquery-1.7.2.min.js"></g:javascript>
+		<!-- Added for User DashBoard Support  -->
+		<r:require modules="calendarjs"/>	
 						
 		<g:layoutHead/>
 		<r:layoutResources/>

@@ -21,8 +21,6 @@ class ProjectController {
 		
 		def clientid = params.id		
 		def projectid = params.pid
-		
-		//println("projectid "+projectid)
 		if(clientid && projectid) {
 			if (params.pid != null ) 
 			{
@@ -55,7 +53,7 @@ class ProjectController {
 				}
 			}
 		} else {
-			//println("client id " +clientid)
+			
 			if(clientid)
 			{
 				Client client = Client.get(clientid)
@@ -70,7 +68,6 @@ class ProjectController {
 							
 			  Client[] clients = Client.list()
 			  List projectlist=new ArrayList();
-			  //println( clients)
 			  if (clients)
 			  {
 				 clients.eachWithIndex { item, index ->
@@ -127,7 +124,6 @@ class ProjectController {
 	
 
 	def deleteProject = {
-		//System.out.println(clientId +"@@@@@@@"+project.id)
 		def project = Project.get(params.id)
 		def clientId = params.clientid
 		if(project){
@@ -155,7 +151,7 @@ class ProjectController {
 					if (mode==null) {
 						redirect action: 'show', id: clientId
 					} else {
-						redirect action: 'show',id: clientId   //change made by sunil
+						redirect action: 'show',id: clientId  
 					}
 					return
 				} catch(HibernateException e){
@@ -194,7 +190,7 @@ class ProjectController {
 			 List project= Project.findAllByClient(item)
 			  project.eachWithIndex {eachcproject,indexes ->
 				  projectlist.add(eachcproject);
-				  //println("Clients "+item)
+				
 			 }
 		   }
 		   JSONObject jObject = new JSONObject();
@@ -205,21 +201,16 @@ class ProjectController {
 			   json .put("name", project.getName());
 			   json .put("description", project.getDescription());
 			   json .put("projectId", project.getId());
-			   //println("client.."+project.client.getName())
 			   json .put("clientName", project.client.getName());
 			   jArray.add(json );
 		   }
 		   
-		   //println(jArray)
 		   jObject.put("totalproject", jArray);
 		   def length=jArray.size()
-			 
-		   //println("length "+length)
 		   def totaltask=TotalTask()
 		   def totalclient=totalClients()
 		   def totalUsers= totalUsers()
 		   def timeEntry=UserTaskTimeEntry()
-		   //println("userTimeEntry.."+timeEntry);
 		   render view: "/reviewStatus" ,model: [projects: jObject,totalProject:length,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,userTimeEntry:timeEntry,clientList:clients]
 		} else {
 			def totalProject=0;
@@ -279,7 +270,6 @@ class ProjectController {
 				upJSON .put("description", task.getDescription());
 				upJSON .put("status", task.getStatus());
 				upJSON .put("projectName", task.project.getName());
-				//println( " task.project.client.getName.."+task.project.client.getName())
 				upJSON .put("clientName", task.project.client.getName());
 				taskId=task.getId()
 				taskCumProjectId=task.get(taskId).project.getId()
@@ -332,7 +322,6 @@ class ProjectController {
 				List project= Project.findAllByClient(item)
 				project.eachWithIndex {eachcproject,indexes ->
 					cprojectlist.add(eachcproject);
-				//println("clients "+item)
 			  }
 			}
 
@@ -353,19 +342,16 @@ class ProjectController {
 	def UserTaskTimeEntry()
 	{
 		def timeList=Time.list()
-		//println("timeList.."+timeList)
 		JSONObject jObject = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		if(timeList)
 		{
 			timeList.eachWithIndex() { item, index ->
 				JSONObject json = new JSONObject();
-				//println("item.."+item.getProject())
-				//println("user.."+item.user.getUsername())
 				json .put("projectName",item.getProject());
 				json .put("taskName",item.getTask())
 				json .put("estimatedhrs",item.getEstimatedHrs())
-				json .put("actualHrs",item.getTime())
+				json .put("actualHrs",item.getActualHours())
 				json .put("userName",item.user.getUsername())
 				jArray.add( json );
 			    def length=jArray.size()

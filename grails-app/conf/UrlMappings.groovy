@@ -11,12 +11,12 @@ class UrlMappings {
 
 		"/viewclient/deleteClient/$id?"(controller:"client", action="deleteClient")
 		//url fire when click on Edit project
-		"/viewclient/$action?/$id?"(resource:"client")  //changes made by sunil 
+		"/viewclient/$action?/$id?"(resource:"client") 
 		//fire when cilck on manage client
 		
 		
 		//url fire when click on Edit project
-		"/client/$id/projects/$pid?"(resource:"project")  //changes made by sunil 
+		"/client/$id/projects/$pid?"(resource:"project") 
 	
 	  	"/projects/$action?/$id?"(resource:"project")    //when click on projects
 		
@@ -33,16 +33,15 @@ class UrlMappings {
 	
 	
 		
-		"/tasks/$action?/$tid?"(resource:"task")  //changes made by sunil
+		"/tasks/$action?/$tid?"(resource:"task")  
 		
-		"/project/$pid/tasks/$tid?"(resource:"task") //changes made by sunil
+		"/project/$pid/tasks/$tid?"(resource:"task") 
 		"/tasks/deleteTask/$id?"(controller:"task", action="deleteTask")
 		
 		
-			// all following changes made by Sunil
 		
 		//User click on Review Status and manage users
-		"/viewclient/client/$id/project/$pid/tasks?"(resource:"task")  //Changes made by Sunil
+		"/viewclient/client/$id/project/$pid/tasks?"(resource:"task")  
 	
 	 	"/manageUsers/$action?/$id?"(resource:"manageUsers")  //fire when click on manage users
 		
@@ -53,8 +52,9 @@ class UrlMappings {
 	
 		"/adminReviewStatus"(controller:"project",action:"reviewStatus") //when click on review status
 		
-		// for time
-		"/timeentry/$id?"(resource:"time")
-		"/timeentry/$action?/$id?"(resource:"time")
+		// code for user dash board
+		
+		"/usertimetask"(resource:"time")
+		"/usertime/$action"(resource:"time")
 	}
 }

@@ -1,82 +1,90 @@
 package com.fonantrix.tm
 
-import com.fonantrix.tm.Time
+import org.codehaus.groovy.grails.web.json.JSONArray;
+import org.codehaus.groovy.grails.web.json.JSONObject;
 import com.fonantrix.tm.authenticate.User
+import org.hibernate.HibernateException
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-import org.codehaus.groovy.grails.web.json.JSONArray
-import org.codehaus.groovy.grails.web.json.JSONObject
 class TimeController {
-	
+
 	def springSecurityService
-	
-	
-	//changes made by sunil
+
+//To Display the Time-Entry page
 	def show={
-		
-		def userid = springSecurityService.principal.id 
+
+		def userid = springSecurityService.principal.id
+		def estHrs;
+		println(userid);
+		JSONObject jsonObj=new JSONObject();
+		JSONArray jSonArr=new JSONArray();
+		JSONObject jsonObjs=new JSONObject();
+		JSONArray jSonArrs=new JSONArray();
 		def taskList=Task.list()
 		def projectList=Project.list()
-		//println("taskList.."+taskList)
-		   
-		JSONObject jObject = new JSONObject();
-		JSONArray jArray = new JSONArray();
-		 
-		 if(userid)
-		 {
+
+		if(userid){
 			taskList.eachWithIndex() { item, index ->
 				JSONObject json = new JSONObject();
-				println("item.."+item.project.getName())
 				json .put("estimatedHrs",item.estimatedHrs);
 				json .put("taskName",item.name)
 				json .put("projectName",item.project.getName())
-							
-				jArray.add( json );
-				println(jArray)
-				def length=jArray.size()
-				println("length "+length)
-				jObject.put("ProjectTaskEstimatedHrs", jArray);
+				jSonArrs.add( json );
+				def length=jSonArrs.size()
+				jsonObjs.put("ProjectTaskEstimatedHrs", jSonArrs);
+				
 			}
-			render view: '/timeentry' ,model:[userid:userid,taskList:taskList,projectList:projectList,ProjectTaskEstimatedHrs:jObject]
-		 }
-		 else
-		 {
-			 def errorMsg = "<h2>No User found with the User id :<b>${params.id}</b> "
-			 render(status: 404, text: errorMsg)
-			 return
-		 }
-		
+			Time[] time = Time.list();
+			if(time){
+						for (Time times : 	time)
+						{
+							JSONObject json=new JSONObject();
+							
+							if(userid==(times.user.id))
+							{
+								json.put("id",times.id);
+								json.put("start", times.start);
+								json.put("end", times.end);
+								json.put("title", times.title);
+								jSonArr.add(json);
+							}
+							jsonObj.put("events", jSonArr)
+						}
+						render view: '/usertimetask',model:[userid:userid,events:jsonObj,taskList:taskList,projectList:projectList,ProjectTaskEstimatedHrs:jsonObjs]
+			}
+			else
+			{
+			render view: '/usertimetask',model:[userid:userid,taskList:taskList,projectList:projectList,ProjectTaskEstimatedHrs:jsonObjs]
+			}
+		}
+		else {
+			def errorMsg = "<h2>No User found with the User id :<b>${params.id}</b> "
+			render(status: 404, text: errorMsg)
+			return
+		}
 	}
-	
-	
-	//changes made by sunil
+
+	//To save the time entry
 	def save ={
 		
-		println "save"
-		println params
-			def user= User.get(params.id)
-		
-			if(user){
-				
-				def time= new  Time(project:params.project,task:params.task,time:params.time,tabid:params.temp,coltd:params.colorvalue,user:user,estimatedHrs:params.estimatedHrs)
-				user.save(flush:true)
-				println("save sucessfully")
+ 		def userid = springSecurityService.principal.id
+	 	 def user= User.get(userid)
+
+		if(user){
 			
-			 if( !time.save(flush:true) ) {
-				 println "Validation errors on save"
-				 time.errors.each {
-					  println it
-				 }
-			  }
-			 else 
-			 {
-				 redirect action: 'show' ,model:[user:user]
+			def time= new  Time(project:params.project,title:params.title,end:params.end,task:params.task,start:params.start,actualHours:params.actualHours,user:user,estimatedHrs:params.estimatedHours)
+			user.save(flush:true)
+	
+		   if( !time.save(flush:true) ) {
+				println "Validation errors on save"
+				time.errors.each {
+					 println it
+				}
 			 }
-	
+
+			println("save sucessfully")
+			redirect action: 'show' ,model:[time:time]
+		}
 	}
-	}
-	
-	
 	
 	
 	
