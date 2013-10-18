@@ -15,6 +15,7 @@ class ManageUsersController  {
 		
 		
 		def userid = params.upid
+		
 		if(params.id)
 		 {
 			
@@ -36,8 +37,11 @@ class ManageUsersController  {
 								 return
 							 }
 		}
+		
 		 
-		 
+		//below code is Not needed yet because Userinfo is not being used. 
+		   
+		/* 
 		 else if(userid)
 		 {
 			 
@@ -49,7 +53,7 @@ class ManageUsersController  {
 			 
 			 render view: '/newInfo', model: [users: allUser]
 			
-		}
+		}*/
 		else
 		 {
 			 
@@ -65,28 +69,28 @@ class ManageUsersController  {
 		 
 	}
 	
-
-	
 	def update = {
 		if(params.id) {
-			def userinfo= UserInfo.get(params.id)
+			//def userinfo= UserInfo.get(params.id)
+			def user= User.get(params.id)
 			def userId =params.id
 			println("UserId.."+userId)
 			
-			if(userinfo) {
+			if(userId) {
 				try {
 					//def setuser = params
 					//println(setuser)
 					
 					//userinfo.properties = setuser
-					userinfo.properties = params['username']
-					userinfo.properties = params['designation']
-			        userinfo.properties = params['corresAddress']
-					userinfo.save(failOnError: true)
+					user.properties = params['username']
+					user.properties = params['firstName']
+			        user.properties = params['lastName']
+					user.properties = params['status']
+					user.save(failOnError: true)
 					redirect(action: "show" ,params: [upid: userId] )
 					return
 				} catch(HibernateException e){
-					render userinfo.errors
+					render user.errors
 					return
 				}
 			} else {
@@ -99,56 +103,83 @@ class ManageUsersController  {
 		}
 	}
 	
+	//To delete a user from HrReview status page
 
-	
+	 def deleteUser(){
+		UserInfo[] userInfo= UserInfo.list()
+		
+		 println("userInfo.."+userInfo);
+		 if(params.id) {
+			 
+			 
+			 println("params.id.."+params.id)
+			 def role = Role.findByAuthority("ROLE_USER")
+			 println("role..."+role)
+			 println "role id "+role.id
+			 def users = User.get(params.id)
+			 def allUsers = UserRole.findAllByRole(role).user
+			 println("allUsers.."+allUsers)
+			 def timeUsers=Time.findAllByUser(users)
+			 println("timeUser.."+timeUsers)
+			 
+			 allUsers.eachWithIndex() { user, index ->
+				 if(user.equals(users))
+				 {
+				
+					  UserRole.executeUpdate("DELETE FROM UserRole WHERE user=:user", [user: user])
+				 }
+				 
+			 }
+			 
+			 timeUsers.eachWithIndex() { timeuser, index ->
+				 def tuser=timeuser.user
+				 
+					 if(tuser.equals(users))
+					 {
+						 println("within tUser")
+						  Time.executeUpdate("DELETE FROM Time WHERE user=:user", [user: tuser])
+					 }
+					 
+				 }
+			 
+			  if(users){
+				  try
+				  {
+					   userInfo.eachWithIndex() { userinfo, index ->
+						   def userss=userinfo.user;
+							  if(userss.equals(users))
+							  {
+							  def userid=userinfo.id;
+							  UserInfo.executeUpdate("DELETE FROM UserInfo WHERE id=:id", [id: userid])
+							  }
+						  }
+				
+					 users.delete()
+					 redirect(action: "show")
+				 } catch(HibernateException e){
+					 render (text:"could not delete user",status:500)
+					 return
+				 }
+			 } else {
+				 render "user not found."
+				 return
+			 }
+		 }
+		 else {
+			 render "Please specify user id to be deletd."
+		 }
+	 }
+	 
+	/* 
 	def deleteUser(){
 		if(params.id) {
-			
-			
-			println("params.id.."+params.id)
-			def role = Role.findByAuthority("ROLE_USER")
-			println("role..."+role)
-			println "role id "+role.id
-			def users = User.get(params.id)
-			def allUsers = UserRole.findAllByRole(role).user
-			println("allUsers.."+allUsers)
-			def timeUsers=Time.findAllByUser(users)
-			println("timeUser.."+timeUsers)
-			
-			allUsers.eachWithIndex() { user, index ->
-			
-				if(user.equals(users))
-				{
-			   
-					
-					 UserRole.executeUpdate("DELETE FROM UserRole WHERE user=:user", [user: user])
-				}
-				
-			}
-			
-			timeUsers.eachWithIndex() { timeuser, index ->
-				
-				println("timeuser.."+timeuser.user)
-				def tuser=timeuser.user
-				
-					if(tuser.equals(users))
-					{
-				   
-						println("within tUser")
-						 Time.executeUpdate("DELETE FROM Time WHERE user=:user", [user: tuser])
-					}
-					
-				}
-			
-		     if(users){
-				 try
-				 {
-		
-				//	userInfo.delete()
-					users.delete()
+			def user = User.get(params.id)
+			if(user) {
+				try {
+					user.delete()
 					redirect(action: "show")
 				} catch(HibernateException e){
-					render (text:"could not delete user",status:500)
+					render (text:"could not delete client",status:500)
 					return
 				}
 			} else {
@@ -160,7 +191,7 @@ class ManageUsersController  {
 			render "Please specify user id to be deletd."
 		}
 	}
-	
+	*/
 	
 	
 	def list = {
@@ -172,4 +203,21 @@ class ManageUsersController  {
 		
 	println(results)
 	}
+	
+	//show users for deleting.This method calls when delete user is click from HrReviewstatus page.
+	def showUsers = {
+	
+			def allUser =User.executeQuery(" from User  where id>4") 
+			//def allUser =User.executeQuery(" from User  where id>4 where id>4 or id=3")
+			if(allUser)
+			render view: '/deleteusers', model: [users: allUser]
+			else {
+				render "user not found."
+			}
+			 
+			
+		}
+	
+
+
 }

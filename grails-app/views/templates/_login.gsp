@@ -14,9 +14,11 @@
 	     <sec:ifAllGranted roles="ROLE_HR">
 	     	<div>
 				
-				 <a href="manageUsers"  id="users-button" class="btn btn-large btn-info">Manage Users</a>   
-				 <a href="#"  id="status-button" class="btn btn-large btn-info">Review Status</a>
-				<a href="viewclient"  id="Users-button" class="btn btn-large btn-block">Manage Clients</a>
+				 <a href="manageUsers"  id="users-button" class="btn btn-large btn-info">Manage Users</a>
+				 <!-- Hr review status link -->   
+				 <a href="hrreviewstatus"  id="status-button" class="btn btn-large btn-info">Review Status</a>
+				  <!-- btn-info class to resolved button alignment issue -->   
+				<a href="viewclient"  id="Users-button" class="btn btn-large btn-info">Manage Clients</a>
 			</div>
 		  </sec:ifAllGranted>
 		  <sec:ifAllGranted roles="ROLE_COORDINATOR">
@@ -31,9 +33,7 @@
                 	<div>
 				<a href="adminReviewStatus" onclick="#" id="status-button" class="btn btn-large btn-info">Review Status</a>	     				
 				<a href="tasks" onclick="#" id="task-button" class="btn btn-large btn-info">Manage Tasks</a> 
-				<!-- changes made by sunil --> 
 				<a href="tprojects" onclick="#" id="projects-button" class="btn btn-large btn-info">Manage Projects</a> 
-				<!-- changes made by sunil --> 
 				<a href="viewclient" id="Users-button" class="btn btn-large btn-info">Manage Clients</a> 			  	
 			</div>
                 </sec:ifAllGranted>

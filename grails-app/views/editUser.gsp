@@ -35,19 +35,29 @@
 									</div>
 								</div>
 							</div>
+						
 							<div class="control-group ">
-						        <label class="control-label"> Designation</label>
+						        <label class="control-label"> First Name</label>
 								<div class="controls">
 								    <div class="input-prepend">
-										<g:textField id="mobile" name="designation" placeholder="designation" class="input-xlarge"  value="${form?.designation}"></g:textField>
+										<g:textField id="firstName" name="firstName" placeholder="First Name" class="input-xlarge"  value="${form?.firstName}"></g:textField>
 									</div>
 								</div>
 								
 								<div class="control-group ">
-						        <label class="control-label"> correspondence Address</label>
+						        <label class="control-label">Last Name</label>
 								<div class="controls">
 								    <div class="input-prepend">
-										<g:textField id="address" name="corresAddress" placeholder="corresAddress" class="input-xlarge"  value="${form?.corresAddress}"></g:textField>
+										<g:textField id="lastName" name="lastName" placeholder="Last Name" class="input-xlarge"  value="${form?.lastName}"></g:textField>
+									</div>
+								</div>
+							</div>
+							
+							<div class="control-group ">
+						        <label class="control-label"> Status</label>
+								<div class="controls">
+								    <div class="input-prepend">
+										<g:textField id="status" name="status" placeholder="status" class="input-xlarge"  value="${form?.status}"></g:textField>
 									</div>
 								</div>
 							</div>

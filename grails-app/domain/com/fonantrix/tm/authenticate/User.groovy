@@ -10,6 +10,7 @@ class User {
 	String firstName
 	String lastName
 	String email
+	String status;
 	boolean enabled = true
 	boolean accountExpired = false
 	boolean accountLocked = false

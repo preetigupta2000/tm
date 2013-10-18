@@ -26,7 +26,9 @@
 									<tr>
 										<th>#</th>
 										<th>User Name</th>
-										<th>Email</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Status</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -36,7 +38,9 @@
 								  			<tr>
 								  				<td>${i+1}</td>
 								  				<td data-title="Name">${user.username}</td>
-								  				<td data-title="Description">${user.email}</td>
+								  				<td data-title="Name">${user.firstName}</td>
+								  				<td data-title="Name">${user.lastName}</td>
+								  				<td data-title="Description">${user.status}</td>
 								  				<td data-title="Option"><a href="manageUsers/${user.id}"><i class="icon-pencil" title="Edit UserInfo"></i></a> | 
 								  				  <g:link id="${user.id}" action="deleteUser"><i class="icon-remove" title="Delete"></i></g:link>
 												</td>
