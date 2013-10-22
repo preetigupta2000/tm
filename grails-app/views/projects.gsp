@@ -7,19 +7,25 @@
 		<div id="manageprojects">
 			<div class="container maincontainer">
 				<div class="row" id="header">
-					<div class="span9">
-						<ul class="breadcrumb breadcrumb-admin">
-							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
-							<g:if test="${clientid != null}">
-								<li><h2><a href="${contextPath}/viewclient">Manage Client</a> <span class="divider">/</span></h2></li>
-							</g:if>						
-		  					<li class="active"><h2>Manage Projects</h2></li>
-						</ul>
-		        	</div>
-					<div class="span3">
-						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addProjectModal"><i class="icon-plus"></i>  Add New Project</button>
-						<!-- changes made by sunil -->	
-						<button id="projectCancel" onclick=" window.history.back();" class="accountAction btn" ><i class="icon-remove"></i>  Cancel</button>
+					<div class="span12">				
+						<div class="headerband">				
+							<span id="headingtext">
+								<a href="${contextPath}/home">
+									<div class="circle pull-left">
+										<i class="icon-home"></i>
+									</div>
+								</a>
+								<span class="line-right"></span>
+								<g:if test="${clientid != null}">
+									<a href="${contextPath}/viewclient">Manage Client</a><span id="line-right"></span>
+								</g:if>						
+			  					Manage Projects
+							</span>
+							<span class="pull-right">
+								<a href="#" onclick="window.history.back();">Return</a>
+								<button id="addNewUser" class="btn btn-small navigationbutton" data-toggle="modal" href="#addProjectModal"><i class="icon-plus"></i>  Add New Project</button>
+							</span>
+						</div>
 					</div>
 				</div>
 				<g:if test="${clientid != null}">
@@ -33,45 +39,60 @@
 				</g:if>
 				<div class="row">
 					<div class="span12">
-						<div class="well well-admin">
 						<!-- changes made by sunil -->	
-							<table class="table table-striped table-bordered table-hover" id="no-more-tables">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Project Name</th>
-										<th>Description</th>
-										<g:if test="${clientid == null}">
-											<th>Client Name</th>
-										</g:if>							
-										<th>Actions</th>
-									</tr>
-								</thead>
-								<tbody id="client-list">
-								   <g:if test="${projects}">
+						<table class="table table-striped" id="no-more-tables">
+							<tbody id="client-list">
+							   <g:if test="${projects}">
 									<g:each in="${projects}" status="i" var="project">
 							  			<tr>
 							  				<td>${i+1}</td>
-							  				<td data-title="Name">${project.name}</td>
-							  				<td data-title="Description">${project.description}</td>
-											<g:if test="${clientid == null}">
-												<td>${project.client.name}</td>
-											</g:if>								  				
-								  			<td data-title="Option"><a href="${request.contextPath}/client/${project.client.id}/projects/${project.id}"><i class="icon-pencil" title="Edit"></i></a> |
-								  				<g:if test="${clientid != null}">
-								  					<g:link id="${project.id}" params='[clientid:"${project.client.id}"]' action="deleteProject"><i class="icon-remove" title="Delete"></i></g:link>
-												</g:if>
-												<g:else>
-													<g:link id="${project.id}" params='[clientid:"${project.client.id}", mode:"project"]' action="deleteProject"><i class="icon-remove" title="Delete"></i></g:link>
-												</g:else>
-												<a href="project/${project.id}/tasks" class="badge badge-info">View Tasks</a>
+							  				<td data-title="Name">
+							  					<h4>${project.name}</h4>
+												<g:if test="${clientid == null}">
+													<h6>${project.client.name}</h6>
+												</g:if>					  					
+							  					<p>${project.description}</p>
+							  				</td>
+							  				<td data-title="Tasks">
+							  					<h4>2</h4>
+							  					<p>Tasks</p>
+												<a href="project/${project.id}/tasks">Add New Task</a>
+							  				</td>	
+								  			<td data-title="Option">
+												<div class="icons">
+													<div class="circle">
+														<a href="${request.contextPath}/client/${project.client.id}/projects/${project.id}">
+															<i class="icon-pencil"></i>
+															<p>Edit</p>
+														</a>
+													</div>
+													<div class="circle">
+														<g:if test="${clientid != null}">
+															<g:link id="${project.id}" params='[clientid:"${project.client.id}"]' action="deleteProject">
+																<i class="icon-remove"></i>
+																<p>Delete</p>
+															</g:link>
+														</g:if>
+														<g:else>
+															<g:remoteLink action="deleteProject" id="${project.id}"  params='[clientid:"${project.client.id}", mode:"project"]' before="if(!confirm('Are you sure?')) return false" >
+																<i class="icon-remove"></i>
+																<p>Delete</p>
+															</g:remoteLink>
+														</g:else>
+													</div>
+													<div class="circle">
+														<a href="project/${project.id}/tasks">
+															<i class="icon-eye-open"></i>
+															<p>View</p>
+														</a>
+													</div>
+												</div>
 											</td>
 							  			</tr>
 				  					</g:each>
-				  				  </g:if>
-								</tbody>
-							</table>
-						</div>			
+			  				  </g:if>
+							</tbody>
+						</table>		
 					</div>
 				</div>		
 			</div>
@@ -113,7 +134,7 @@
 			   </div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
-					<button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Add</button>
+					<button type="submit" class="btn btn-primary navigationbutton"><i class="icon-ok"></i> Add</button>
 				</div>
 			</form>
 		</div>

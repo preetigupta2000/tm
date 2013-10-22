@@ -7,49 +7,69 @@
 		<div id="manageclients">
 			<div class="container maincontainer">
 				<div class="row" id="header">
-					<div class="span9">
-						<ul class="breadcrumb breadcrumb-admin">
-							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
-		  					<li class="active"><h2>Manage Clients</h2></li>
-						</ul>
-		        	</div>
-					<div class="span3">
-						
-						<button id="addNewUser" class="btn accountAction" data-toggle="modal" href="#addClientModal"><i class="icon-plus"></i>  Add New Client</button>
-						<!-- changes made by sunil -->	
-							<button id="CancelClient" onclick=" window.history.back();"   class="btn accountAction" ><i class="icon-remove"></i>  Cancel</button>
+					<div class="span12">
+						<div class="headerband">				
+							<span id="headingtext">
+								<a href="${contextPath}/home">
+									<div class="circle pull-left">
+										<i class="icon-home"></i>
+									</div>
+								</a>
+								<span class="line-right"></span>					
+			  					Manage Clients
+							</span>
+							<span class="pull-right">
+								<a href="#" onclick="window.history.back();">Return</a>
+								<button id="addNewUser" class="btn btn-small navigationbutton" data-toggle="modal" href="#addClientModal"><i class="icon-plus"></i>  Add New Client</button>
+							</span>
+						</div>			
 					</div>
 				</div>
 				<div class="row">
 					<div class="span12">
-						<div class="well well-admin">
 						<!-- changes made by sunil -->	
-							<table class="table table-striped table-bordered table-hover" id="no-more-tables">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Name</th>
-										<th>Description</th>
-										<th>Actions</th>
-									</tr>
-								</thead>
-								<tbody id="client-list">
-									<g:if test="${clients}">
-										<g:each in="${clients}" status="i" var="client">
-								  			<tr>
-								  				<td>${i+1}</td>
-								  				<td data-title="Name">${client.name}</td>
-								  				<td data-title="Description">${client.description}</td>
-								  				<td data-title="Option"><a href="viewclient/${client.id}"><i class="icon-pencil" title="Edit"></i></a> | 
-								  				<g:link id="${client.id}" action="deleteClient"><i class="icon-remove" title="Delete"></i></g:link>
-								  				<a href="client/${client.id}/projects" class="badge badge-info">View Projects</a>
-								  				</td>
-								  			</tr>
-					  					</g:each>
-					  				</g:if>
-								</tbody>
-							</table>
-						</div>			
+						<table class="table table-striped" id="no-more-tables">
+							<tbody id="client-list">
+								<g:if test="${clients}">
+									<g:each in="${clients}" status="i" var="client">
+							  			<tr>
+							  				<td>${i+1}</td>
+							  				<td data-title="Name">
+							  					<h4>${client.name}</h4>			  					
+							  					<p>${client.description}</p>								  				
+							  				</td>
+							  				<td data-title="Projects">
+							  					<h4>2</h4>
+							  					<p>Projects</p>
+												<a href="client/${client.id}/projects">Add New Project</a>								  					
+							  				</td>
+							  				<td data-title="Option">
+												<div class="icons">
+													<div class="circle">
+														<a href="viewclient/${client.id}">
+															<i class="icon-pencil"></i>
+															<p>Edit</p>
+														</a>
+													</div>
+													<div class="circle">
+														<g:link id="${client.id}" action="deleteClient">
+															<i class="icon-remove"></i>
+															<p>Delete</p>
+														</g:link>
+													</div>
+													<div class="circle">
+														<a href="client/${client.id}/projects">
+															<i class="icon-eye-open"></i>
+															<p>View</p>
+														</a>
+													</div>
+												</div>
+							  				</td>
+							  			</tr>
+				  					</g:each>
+				  				</g:if>
+							</tbody>
+						</table>		
 					</div>
 				</div>		
 			</div>
@@ -79,7 +99,7 @@
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
-					<button class="btn btn-primary"><i class="icon-ok"></i> Add</button>
+					<button class="btn navigationbutton"><i class="icon-ok"></i> Add</button>
 				</div>
 			</form>
 		</div>

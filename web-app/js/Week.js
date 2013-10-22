@@ -50,6 +50,7 @@ $(document).ready(function() {
          $dialogContent.dialog({
             modal: true,
             title: "New Calendar Event",
+            width: "auto",
             close: function() {
                $dialogContent.dialog("destroy");
                $dialogContent.hide();

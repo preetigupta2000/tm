@@ -1,11 +1,19 @@
 /* ---------- Bootstrap Common Variables ----------- */
-@HSCHeaderColor: #978a4c; //Dark Black - 
+@tmHeaderColor: #978a4c; //Dark Black - 
 @hero-unit-color:#e5e5e5;
 @business-info-header: #2b2b2c;
 @profile-img-top-color:#FBB450;
 @profile-img-bottom-color:#fab54a;
-@login-h3-color:@HSCHeaderColor;
-@HSCButtonColor: #5282DE; //turquoise blue
+@login-h3-color:@tmHeaderColor;
+@h4-color:#685a47;
+@tmButtonBgColor: #D2A62D;
+@tmButtonTopColor: #FFE762;
+@tmButtonBottomColor: #F1A013;
+@tmHeaderTopColor: #FFCB1A;
+@tmHeaderBottomColor: #FFB90C;
+@tmHeaderLeftBottomColor: #978A4C;
+@tmHeaderBorderColor: #E2D0C4;
+@tmCircleColor: #474641;
 
 .vertical-gradient(@startColor, @endColor) {
 	#gradient > .vertical(@startColor, @endColor);
@@ -63,7 +71,7 @@ footer {
 
 .navbar {
 	.navbar-inner {
-		background-color: @HSCHeaderColor;
+		background-color: @tmHeaderColor;
 	    -moz-border-bottom-colors: none;
 	    -moz-border-left-colors: none;
 	    -moz-border-right-colors: none;
@@ -84,6 +92,9 @@ footer {
 		img#f-logo {
 	    	height: 50px;
 	    }
+	}
+	i {
+		font-size: 20px;
 	}
 }
 

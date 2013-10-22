@@ -6257,8 +6257,72 @@ table.table.table-condensed {
 #manageclients #header,
 #manageprojects #header,
 #managetasks #header {
-  border-bottom: solid 1px #FFB508;
   margin-bottom: 15px;
+}
+#registration #header span#headingtext,
+#manageclients #header span#headingtext,
+#manageprojects #header span#headingtext,
+#managetasks #header span#headingtext {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+}
+#registration #header .line-right,
+#manageclients #header .line-right,
+#manageprojects #header .line-right,
+#managetasks #header .line-right {
+  margin: 4px;
+  border-right: 2px solid black;
+}
+#registration #header .circle,
+#manageclients #header .circle,
+#manageprojects #header .circle,
+#managetasks #header .circle {
+  background-color: #474641;
+  border-radius: 22px;
+  height: 22px;
+  padding: 1px;
+  text-align: center;
+  width: 22px;
+}
+#registration #header .circle i,
+#manageclients #header .circle i,
+#manageprojects #header .circle i,
+#managetasks #header .circle i {
+  color: #FFFFFF;
+  margin-top: 1px;
+}
+#registration #header i,
+#manageclients #header i,
+#manageprojects #header i,
+#managetasks #header i {
+  font-size: 14px;
+}
+#registration #header a,
+#manageclients #header a,
+#manageprojects #header a,
+#managetasks #header a {
+  font-size: 12px;
+  font-weight: 600;
+  color: #474641;
+  text-decoration: underline;
+  font-family: serif;
+}
+#registration #header div.headerband,
+#manageclients #header div.headerband,
+#manageprojects #header div.headerband,
+#managetasks #header div.headerband {
+  background: -moz-linear-gradient(center top, #ffcb1a, #ffb90c) repeat-x scroll left bottom #978a4c;
+  border: 4px solid #E2D0C4;
+  border-radius: 4px 4px 4px 4px;
+  padding: 6px;
+}
+#registration #header button.headerbutton,
+#manageclients #header button.headerbutton,
+#manageprojects #header button.headerbutton,
+#managetasks #header button.headerbutton {
+  background-color: #D2A62D;
+  background-image: linear-gradient(to bottom, #ffe762, #f1a013);
 }
 #registration .accountAction,
 #manageclients .accountAction,
@@ -6268,29 +6332,63 @@ table.table.table-condensed {
   float: right;
   margin-left: 5px;
 }
-i {
-  font-size: 20px;
+table#no-more-tables {
+  border-collapse: separate;
+  border-spacing: 0.2em;
 }
-.well-admin {
-  background-color: #FFFFFF;
-  border: 1px solid #ABABAB;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  -webkit-box-shadow: 0 2px 2px 0 #c2ad9b;
-  -moz-box-shadow: 0 2px 2px 0 #c2ad9b;
-  box-shadow: 0 2px 2px 0 #c2ad9b;
-  font-size: 16px;
-  margin-bottom: 20px;
-  min-height: 20px;
-  padding: 19px;
+table#no-more-tables tr {
+  box-shadow: 1px 1px 1px #888888;
+  border: 0 none;
 }
-.well-admin label,
-.well-admin input,
-.well-admin button,
-.well-admin select,
-.well-admin textarea {
+table#no-more-tables tbody tr:nth-child(2n+1) td,
+table#no-more-tables .table-striped tbody tr:nth-child(2n+1) th {
+  background-color: #F9F5DC;
+}
+table#no-more-tables td {
+  border: 0 none;
+  border-left: 1px solid #DDDDDD;
+  margin-top: 10px;
+  text-align: center;
+}
+table#no-more-tables td h4 {
   font-size: 16px;
+  margin: 0;
+}
+table#no-more-tables a {
+  color: #685a47;
+}
+table#no-more-tables td[data-title=Name] {
+  text-align: left;
+}
+table#no-more-tables td[data-title=Name] h4 {
+  color: #685a47;
+}
+table#no-more-tables td[data-title=Name] h6 {
+  margin: 0;
+}
+table#no-more-tables p {
+  margin: 0 0 5px;
+}
+table#no-more-tables .icons {
+  text-align: center;
+}
+table#no-more-tables .icons .circle {
+  background-color: #474641;
+  border-radius: 20px;
+  display: inline-block;
+  height: 20px;
+  padding: 2px;
+  margin-right: 2em;
+  text-align: center;
+  width: 20px;
+}
+table#no-more-tables .icons i {
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 15px;
+}
+table#no-more-tables .icons p {
+  margin: 10px 0px;
 }
 .modal form {
   margin: 0;
