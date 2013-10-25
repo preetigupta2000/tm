@@ -6117,6 +6117,9 @@ footer {
 .navbar .brand img#f-logo {
   height: 50px;
 }
+.navbar i {
+  font-size: 20px;
+}
 #ajaxLoginForm {
   border: solid 1px #978a4c;
   -webkit-border-radius: 10px 10px 0px 0px;
@@ -6313,16 +6316,9 @@ table.table.table-condensed {
 #manageprojects #header div.headerband,
 #managetasks #header div.headerband {
   background: -moz-linear-gradient(center top, #ffcb1a, #ffb90c) repeat-x scroll left bottom #978a4c;
-  border: 4px solid #E2D0C4;
+  border: 4px solid #e2d0c4;
   border-radius: 4px 4px 4px 4px;
   padding: 6px;
-}
-#registration #header button.headerbutton,
-#manageclients #header button.headerbutton,
-#manageprojects #header button.headerbutton,
-#managetasks #header button.headerbutton {
-  background-color: #D2A62D;
-  background-image: linear-gradient(to bottom, #ffe762, #f1a013);
 }
 #registration .accountAction,
 #manageclients .accountAction,
@@ -6332,12 +6328,19 @@ table.table.table-condensed {
   float: right;
   margin-left: 5px;
 }
+button.navigationbutton {
+  background-color: #d2a62d;
+  background-image: linear-gradient(to bottom, #ffe762, #f1a013);
+}
+button.navigationbutton:hover {
+  background-color: #d2a62d;
+}
 table#no-more-tables {
   border-collapse: separate;
-  border-spacing: 0.2em;
+  background-color: #FFFFFF;
 }
 table#no-more-tables tr {
-  box-shadow: 1px 1px 1px #888888;
+  box-shadow: 1px 1px #888888, -1px -1px #f4f4f4, 2px 0 1px 1px #dddddd;
   border: 0 none;
 }
 table#no-more-tables tbody tr:nth-child(2n+1) td,
@@ -6392,6 +6395,10 @@ table#no-more-tables .icons p {
 }
 .modal form {
   margin: 0;
+}
+.modal form .modal-header {
+  background-color: #d2a62d;
+  background-image: linear-gradient(to bottom, #ffe762, #f1a013);
 }
 .modal form .modal-footer {
   /*.btn-primary {
