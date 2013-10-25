@@ -18,5 +18,8 @@ class Time {
 			
 			user unique: false
 			cache usage:'read-write', include:'non-lazy'
-			}
+		}
+		static constraints = {
+			actualHours nullable: true
+		}
 }
