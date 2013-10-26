@@ -1,10 +1,11 @@
-import com.fonantrix.tm.UserInfo
-import com.fonantrix.tm.authenticate.Role;
-import com.fonantrix.tm.authenticate.User;
-import com.fonantrix.tm.authenticate.UserRole;
-import com.fonantrix.tm.Client;
-import com.fonantrix.tm.Project;
+import com.fonantrix.tm.authenticate.Role
+import com.fonantrix.tm.authenticate.User
+import com.fonantrix.tm.authenticate.UserRole
+import com.fonantrix.tm.Client
+import com.fonantrix.tm.Project
 import groovy.json.JsonSlurper
+
+import org.apache.commons.io.IOUtils
 
 
 class BootStrap {
@@ -47,10 +48,13 @@ class BootStrap {
 		
 		
 		println("#########" + servletContext + "#######")
-		println("#########" + org.codehaus.groovy.grails.web.context.ServletContextHolder.getServletContext().getRealPath() + "#######")
-		println("#########" + servletContext.getRealPath("/json/client.json") + "#######")
+		println("#########" + org.codehaus.groovy.grails.web.context.ServletContextHolder.getServletContext() + "#######")
+		println("#########" + servletContext.getResourceAsStream('/json/client.json') + "#######")
 
-		String jsonClientData = new File(servletContext.getRealPath("/json/client.json")).text
+		
+		String jsonClientData =  IOUtils.toString(servletContext.getResourceAsStream('/json/client.json'), "UTF-8")
+		
+		//String jsonClientData = (servletContext.getRealPath("/json/client.json")).toString()
 		
 		if (!Client.count()) {
 			def slurper = new JsonSlurper()
