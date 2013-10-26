@@ -32,7 +32,7 @@
 									<g:each in="${users}" status="i" var="user">
 							  			<tr>
 							  				<td>${i+1}</td>
-							  				<td data-title="Name">${}
+							  				<td data-title="Name">
 							  					<h4>${user.username}</h4>			  					
 							  					<p>${user.firstName} ${user.lastName}</p>
 							  				</td>
