@@ -17,7 +17,7 @@
 								</a>
 								<span class="line-right"></span>
 								<g:if test="${clientid != null}">
-									<a href="${contextPath}/viewclient">Manage Client</a><span id="line-right"></span>
+									<a href="${contextPath}/viewclient">Manage Client</a><span class="line-right"></span>
 								</g:if>						
 			  					Manage Projects
 							</span>

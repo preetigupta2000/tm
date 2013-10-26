@@ -6270,6 +6270,14 @@ table.table.table-condensed {
   font-size: 16px;
   font-weight: 600;
 }
+#registration #header span#headingtext a,
+#manageclients #header span#headingtext a,
+#manageprojects #header span#headingtext a,
+#managetasks #header span#headingtext a {
+  color: #474641;
+  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 #registration #header .line-right,
 #manageclients #header .line-right,
 #manageprojects #header .line-right,
@@ -6362,6 +6370,7 @@ table#no-more-tables a {
 }
 table#no-more-tables td[data-title=Name] {
   text-align: left;
+  max-width: 820px;
 }
 table#no-more-tables td[data-title=Name] h4 {
   color: #685a47;

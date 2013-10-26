@@ -1,0 +1,49 @@
+{
+    "clients": [
+        {
+        	"description": "Bringing TV Audiences To Online Advertisers",
+        	"name": "Psychability Inc.",
+			"projects": [{
+				        	"description": "OpenRTB project is to spur greater growth in the real-time bidding (RTB) advertising marketplace by providing open industry standards for communication between buyers of advertising and sellers of publisher inventory",
+				        	"name": "Open RTB-Open Run time Bidding"
+				        } 
+				    ]
+		},        
+        {
+        	"description": "SeaChange International (NASDAQ: SEAC) enables transformative multi-screen video services through an open, cloud-based, intelligent software platform trusted by cable, IPTV and mobile operators globally.",
+        	"name": "SeaChange International",
+			"projects": [{
+				        	"description": "TimeSheet is project to maintain a record of users and their tasks",
+				        	"name": "TimeSheet"
+				        },
+				        {
+				        	"description": "This project is based on database management ,to maintain projects database",
+				        	"name": "Global Dataware House"
+				        },
+						{
+				        	"description": "Ism is a project based on the Advertisment video between the Televison programme and Inernet.",
+				        	"name": "ISM-Infusion Spot Manager",
+							"tasks": [{
+								        	"description": "Plot a pie chart for user bandwidth using HighChart",
+								        	"name": "Open RTB-Open Run time Bidding",
+								        	"estimated_hrs": "5",
+								        	"status": "InProgress"
+								      },
+								      {
+								        	"description": "Plot a pie chart for user bandwidth using HighChart",
+								        	"name": "Open RTB-Open Run time Bidding",
+								        	"estimated_hrs": "7",
+								        	"status": "InProgress"
+								      },
+								      {
+								        	"description": "Create a batch for Campaign summary",
+								        	"name": "Create a query",
+								        	"estimated_hrs": "40",
+								        	"status": "Completed"
+								      }				      
+								    ]
+						}		        
+				    ]
+			}
+    ]
+}

@@ -22,6 +22,5 @@ class Time {
 		static constraints = {
 			actualHours nullable: true
 			end nullable: true
-
 		}
 }

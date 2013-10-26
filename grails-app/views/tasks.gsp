@@ -17,10 +17,10 @@
 								</a>
 								<span class="line-right"></span>
 									<g:if test="${clientid != null}">
-										<a href="${contextPath}/viewclient">Manage Client</a><span id="line-right"></span>
+										<a href="${contextPath}/viewclient">Manage Client</a><span class="line-right"></span>
 									</g:if>						
 									<g:if test="${projectid != null}">
-										<a href="${contextPath}/projects">Manage Project (${projectid})</a><span id="line-right"></span>
+										<a href="${contextPath}/projects">Manage Project</a><span class="line-right"></span>
 									</g:if>										
 			  						Manage Tasks
 							</span>
@@ -31,6 +31,20 @@
 						</div>
 					</div>
 				</div>
+				<g:if test="${clientid != null}">
+					<div class="row">
+						<div class="span6">
+							<div class="well">
+								Client Id : ${clientid}
+							</div>
+						</div>
+						<div class="span6">
+							<div class="well">
+								Project Id : ${projectid}
+							</div>
+						</div>						
+					</div>
+				</g:if>				
 				<div class="row">
 					<div class="span12">
 						<!-- changes made by sunil -->	
@@ -47,7 +61,7 @@
 						  				<td data-title="Project">
 						  					<h6>25th Oct. 2013</h6>
 						  					<p>Estimated Date of Completion</p>						  					
-						  				</td>						  				
+						  				</td>					  				
 						  				<td data-title="Project">
 						  					<h6>Bhupender, Arpit</h6>
 						  					<p>Assigned To</p>						  					
