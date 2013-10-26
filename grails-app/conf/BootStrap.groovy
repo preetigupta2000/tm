@@ -45,6 +45,11 @@ class BootStrap {
 	
 	def bootstrap_clients =	{ servletContext ->
 		
+		def grailsApplication
+		
+		println("#########" + servletContext + "#######")
+		println("#########" + org.codehaus.groovy.grails.web.context.ServletContextHolder.getServletContext().getRealPath() + "#######")
+		println("#########" + servletContext.getRealPath("/json/client.json") + "#######")
 		String jsonClientData = new File(servletContext.getRealPath("/json/client.json")).text
 		
 		if (!Client.count()) {
@@ -79,7 +84,7 @@ class BootStrap {
 	}
 	
 	def init = { servletContext ->
-		updateGrailsConfigForHeroku();
+		//updateGrailsConfigForHeroku();
 		bootstrap_user_data(servletContext);
 		bootstrap_clients(servletContext);
 	}
