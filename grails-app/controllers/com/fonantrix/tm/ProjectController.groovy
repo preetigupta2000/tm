@@ -341,7 +341,7 @@ class ProjectController {
 	
 	def UserTaskTimeEntry()
 	{
-		def timeList=Time.list()
+		def timeList=UsersTimeEntry.list()
 		JSONObject jObject = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		if(timeList)
