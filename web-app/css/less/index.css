@@ -6259,13 +6259,15 @@ table.table.table-condensed {
 #registration #header,
 #manageclients #header,
 #manageprojects #header,
-#managetasks #header {
+#managetasks #header,
+#manageusers #header {
   margin-bottom: 15px;
 }
 #registration #header span#headingtext,
 #manageclients #header span#headingtext,
 #manageprojects #header span#headingtext,
-#managetasks #header span#headingtext {
+#managetasks #header span#headingtext,
+#manageusers #header span#headingtext {
   color: #000000;
   font-size: 16px;
   font-weight: 600;
@@ -6273,7 +6275,8 @@ table.table.table-condensed {
 #registration #header span#headingtext a,
 #manageclients #header span#headingtext a,
 #manageprojects #header span#headingtext a,
-#managetasks #header span#headingtext a {
+#managetasks #header span#headingtext a,
+#manageusers #header span#headingtext a {
   color: #474641;
   font-size: 16px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -6281,14 +6284,16 @@ table.table.table-condensed {
 #registration #header .line-right,
 #manageclients #header .line-right,
 #manageprojects #header .line-right,
-#managetasks #header .line-right {
+#managetasks #header .line-right,
+#manageusers #header .line-right {
   margin: 4px;
   border-right: 2px solid black;
 }
 #registration #header .circle,
 #manageclients #header .circle,
 #manageprojects #header .circle,
-#managetasks #header .circle {
+#managetasks #header .circle,
+#manageusers #header .circle {
   background-color: #474641;
   border-radius: 22px;
   height: 22px;
@@ -6299,20 +6304,23 @@ table.table.table-condensed {
 #registration #header .circle i,
 #manageclients #header .circle i,
 #manageprojects #header .circle i,
-#managetasks #header .circle i {
+#managetasks #header .circle i,
+#manageusers #header .circle i {
   color: #FFFFFF;
   margin-top: 1px;
 }
 #registration #header i,
 #manageclients #header i,
 #manageprojects #header i,
-#managetasks #header i {
+#managetasks #header i,
+#manageusers #header i {
   font-size: 14px;
 }
 #registration #header a,
 #manageclients #header a,
 #manageprojects #header a,
-#managetasks #header a {
+#managetasks #header a,
+#manageusers #header a {
   font-size: 12px;
   font-weight: 600;
   color: #474641;
@@ -6322,7 +6330,8 @@ table.table.table-condensed {
 #registration #header div.headerband,
 #manageclients #header div.headerband,
 #manageprojects #header div.headerband,
-#managetasks #header div.headerband {
+#managetasks #header div.headerband,
+#manageusers #header div.headerband {
   background: -moz-linear-gradient(center top, #ffcb1a, #ffb90c) repeat-x scroll left bottom #978a4c;
   border: 4px solid #e2d0c4;
   border-radius: 4px 4px 4px 4px;
@@ -6331,7 +6340,8 @@ table.table.table-condensed {
 #registration .accountAction,
 #manageclients .accountAction,
 #manageprojects .accountAction,
-#managetasks .accountAction {
+#managetasks .accountAction,
+#manageusers .accountAction {
   margin-top: 10px;
   float: right;
   margin-left: 5px;

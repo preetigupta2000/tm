@@ -1,5 +1,5 @@
 package com.fonantrix.tm.authenticate
-import com.fonantrix.tm.Time
+import com.fonantrix.tm.UsersTimeEntry
 
 class User {
 
@@ -15,7 +15,7 @@ class User {
 	boolean accountExpired = false
 	boolean accountLocked = false
 	boolean passwordExpired = false
-	static  hasMany = [time: Time ]
+	static  hasMany = [time: UsersTimeEntry ]
 	
 	static constraints = {
 		username blank: false, unique: true

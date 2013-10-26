@@ -2,8 +2,10 @@ package com.fonantrix.tm
 
 import org.codehaus.groovy.grails.web.json.JSONArray;
 import org.codehaus.groovy.grails.web.json.JSONObject;
+import com.fonantrix.tm.UsersTimeEntry
 import com.fonantrix.tm.authenticate.User
 import org.hibernate.HibernateException
+
 
 class TimeController {
 
@@ -33,9 +35,9 @@ class TimeController {
 				jsonObjs.put("ProjectTaskEstimatedHrs", jSonArrs);
 				
 			}
-			Time[] time = Time.list();
+			UsersTimeEntry[] time = UsersTimeEntry.list()
 			if(time){
-						for (Time times : 	time)
+						for (UsersTimeEntry times : 	time)
 						{
 							JSONObject json=new JSONObject();
 							
@@ -71,7 +73,7 @@ class TimeController {
 
 		if(user){
 			
-			def time= new  Time(project:params.project,title:params.title,end:params.end,task:params.task,start:params.start,actualHours:params.actualHours,user:user,estimatedHrs:params.estimatedHours)
+			def time= new  UsersTimeEntry(project:params.project,title:params.title,end:params.end,task:params.task,start:params.start,actualHours:params.actualHours,user:user,estimatedHrs:params.estimatedHours)
 			user.save(flush:true)
 	
 		   if( !time.save(flush:true) ) {

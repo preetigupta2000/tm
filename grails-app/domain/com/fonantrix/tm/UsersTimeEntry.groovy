@@ -2,10 +2,11 @@ package com.fonantrix.tm
 
 import com.fonantrix.tm.authenticate.User
 
-class Time {
 
-		String start
-		String end
+class UsersTimeEntry {
+
+		String starttime
+		String endtime
 		String project
 		String task
 		User user   
@@ -21,6 +22,5 @@ class Time {
 		}
 		static constraints = {
 			actualHours nullable: true
-			end nullable: true
 		}
 }
