@@ -45,6 +45,8 @@ class BootStrap {
 	
 	def bootstrap_clients =	{ servletContext ->
 		
+		System.println("#########" + servletContext.getRealPath() + "#######3")
+		System.println("#########" + servletContext.getRealPath("/json/client.json") + "#######3")
 		String jsonClientData = new File(servletContext.getRealPath("/json/client.json")).text
 		
 		if (!Client.count()) {
