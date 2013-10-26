@@ -1,10 +1,10 @@
 modules = {
 	libs {
 		resource url:'js/libs/jquery-1.7.2.min.js'
-			// Added for User DashBoard Support  -->
-			resource url:'js/libs/jquery-ui.min.js'
-			resource url:'js/libs/jquery.weekcalendar.js'
-			resource url:'js/libs/date.js'
+		// Added for User DashBoard Support  -->
+		resource url:'js/libs/jquery-ui.min.js'
+		resource url:'js/libs/jquery.weekcalendar.js'
+		resource url:'js/libs/date.js'
 		resource url:'js/libs/bootstrap-collapse.js'
 		resource url:'js/libs/bootstrap-dropdown.js'
 		resource url:'js/libs/bootstrap-modal.js'
@@ -30,7 +30,7 @@ modules = {
 	//Hr review status js
 	hrchartsjs {
 		dependsOn "corejs"
-		resource url:'js/reviewStatus-charts.js'
+		//resource url:'js/reviewStatus-charts.js'
 	}
 	
 	// Added for User DashBoard Support  -->
