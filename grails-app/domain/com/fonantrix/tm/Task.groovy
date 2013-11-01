@@ -12,5 +12,8 @@ class Task {
 	static mapping = {
 
 	}
-	
+	static constraints = {
+		description nullable: true
+		
+	}
 }

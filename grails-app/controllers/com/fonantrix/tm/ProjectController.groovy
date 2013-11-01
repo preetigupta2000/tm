@@ -13,115 +13,99 @@ import org.hibernate.HibernateException
  DELETE	delete
  */
 class ProjectController {
-	
+
 	def tasklength;
-	
+
 
 	def show = {
-		
-		def clientid = params.id		
+
+		def clientid = params.id
 		def projectid = params.pid
 		if(clientid && projectid) {
-			if (params.pid != null ) 
-			{
+			if (params.pid != null ) {
 				Client client = Client.get(clientid)
-				Project project = Project.findByClientAndId(client , projectid) 
-				if(project) 
-				{
+				Project project = Project.findByClientAndId(client , projectid)
+				if(project) {
 					render view: '/editProject', model: [project: project, clientid:clientid]
 					return
 				}
-				else
-				{
+				else {
 					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
 					render(status: 404, text: errorMsg)
 					return
 				}
 			} else {
 				Project project = Project.get(projectid)
-			 	Client[] clients = Client.list()			
-		 		if (project)
-			 	{
-					 render view: '/projects', model: [project: project, clientList:clients]
-					 return
-				} 
-				else
-				{
+				Client[] clients = Client.list()
+				if (project) {
+					render view: '/projects', model: [project: project, clientList:clients]
+					return
+				}
+				else {
 					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
 					render(status: 404, text: errorMsg)
 					return
 				}
 			}
 		} else {
-			
-			if(clientid)
-			{
+
+			if(clientid) {
 				Client client = Client.get(clientid)
 				def allProject
-	
-				if (client) 
-				{
+
+				if (client) {
 					allProject = Project.findAllByClient(client)
 				}
 				render view: '/projects', model: [projects: allProject, clientid:clientid]
 			} else {
-							
-			  Client[] clients = Client.list()
-			  List projectlist=new ArrayList();
-			  if (clients)
-			  {
-				 clients.eachWithIndex { item, index ->
-					List project= Project.findAllByClient(item)
-					project.eachWithIndex {eachproject,indexes ->
-						projectlist.add(eachproject);
+
+				Client[] clients = Client.list()
+				List projectlist=new ArrayList();
+				if (clients) {
+					clients.eachWithIndex { item, index ->
+						List project= Project.findAllByClient(item)
+						project.eachWithIndex {eachproject,indexes ->
+							projectlist.add(eachproject);
+						}
 					}
-				  }
-				  render view: '/projects', model: [projects: projectlist, clientList:clients]
-			  } 
-					 
+					render view: '/projects', model: [projects: projectlist, clientList:clients]
+				}
 			}
 		}//else end
 	}
-	
-	
+
+
 	def save = {
-		
-			if (params.clientid) {
+
+		if (params.clientid) {
 			def client = Client.get(params.clientid)
 			if (client) {
-						
+
 				def project = new Project(name: params.name, description: params.description)
 				client.addToProjects(project)
 				println("project " +project)
 				client.save(flush:true, failOnError: true)
-				
+
 				redirect action: 'show', id: params.clientid
 			}
 		}
-			
-		
-			
-			else 
-			{
-				def client = Client.get(params.client)
-			
-			
-				println(client)
-			
-			
-					if(client)
-					{
-				
-						def project = new Project(name: params.name, description: params.description)
-						client.addToProjects(project)
-						client.save(flush:true, failOnError: true)
-						redirect action: 'show'
-					}
+
+		else {
+			def client = Client.get(params.client)
+
+
+			println(client)
+
+
+			if(client) {
+
+				def project = new Project(name: params.name, description: params.description)
+				client.addToProjects(project)
+				client.save(flush:true, failOnError: true)
+				redirect action: 'show'
+			}
 		}
-		
-		
 	}
-	
 
 	def deleteProject = {
 		def project = Project.get(params.id)
@@ -131,17 +115,11 @@ class ProjectController {
 		}
 		redirect action: 'show', id: clientId
 	}
-	
 
-	
-
-	
 	def update = {
 		if(params.id) {
 			def project = Project.get(params.id)
-	
 			def clientId = params.clientid
-			
 			def mode = params.mode
 			if(project) {
 				try {
@@ -151,7 +129,7 @@ class ProjectController {
 					if (mode==null) {
 						redirect action: 'show', id: clientId
 					} else {
-						redirect action: 'show',id: clientId  
+						redirect action: 'show',id: clientId
 					}
 					return
 				} catch(HibernateException e){
@@ -159,10 +137,7 @@ class ProjectController {
 					return
 				}
 			}
-			
-			
-			
-			 else {
+			else {
 				render "project not found."
 				return
 			}
@@ -171,67 +146,60 @@ class ProjectController {
 			render "Please specify project id to be updated."
 		}
 	}
-	
-	
-	
-	
-	
-	
-	def reviewStatus = {
-		
-		User[] users =User.executeQuery(" from User  where id>4")
-		
-		Client[] clients = Client.list()
-		
-		List projectlist=new ArrayList();
-		if (clients)
-		{
-		   clients.eachWithIndex { item, index ->
-			 List project= Project.findAllByClient(item)
-			  project.eachWithIndex {eachcproject,indexes ->
-				  projectlist.add(eachcproject);
-				
-			 }
-		   }
-		   JSONObject jObject = new JSONObject();
 
-		   JSONArray jArray = new JSONArray();
-		   for (Project project : 	 projectlist) {
-			   JSONObject json = new JSONObject();
-			   json .put("name", project.getName());
-			   json .put("description", project.getDescription());
-			   json .put("projectId", project.getId());
-			   json .put("clientName", project.client.getName());
-			   jArray.add(json );
-		   }
-		   
-		   jObject.put("totalproject", jArray);
-		   def length=jArray.size()
-		   def totaltask=TotalTask()
-		   def totalclient=totalClients()
-		   def totalUsers= totalUsers()
-		   def timeEntry=UserTaskTimeEntry()
-		   render view: "/reviewStatus" ,model: [projects: jObject,totalProject:length,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,userTimeEntry:timeEntry,clientList:clients]
+	/*Fucntion is used  for admin review status*/
+	def reviewStatus = {
+
+		User[] users =User.executeQuery(" from User  where id>4")
+
+		Client[] clients = Client.list()
+
+		List projectlist=new ArrayList();
+		if (clients) {
+			clients.eachWithIndex { item, index ->
+				List project= Project.findAllByClient(item)
+				project.eachWithIndex {eachcproject,indexes ->
+					projectlist.add(eachcproject);
+				}
+			}
+			JSONObject jObject = new JSONObject();
+
+			JSONArray jArray = new JSONArray();
+			for (Project project : 	 projectlist) {
+				JSONObject json = new JSONObject();
+				json .put("name", project.getName());
+				json .put("description", project.getDescription());
+				json .put("projectId", project.getId());
+				json .put("clientName", project.client.getName());
+				jArray.add(json );
+			}
+
+			jObject.put("totalproject", jArray);
+			def length=jArray.size()
+			def totaltask=TotalTask()
+			def totalclient=totalClients()
+			def totalUsers= totalUsers()
+			def timeEntry=UserTaskTimeEntry()
+			render view: "/reviewStatus" ,model: [projects: jObject,totalProject:length,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,userTimeEntry:timeEntry,clientList:clients]
 		} else {
 			def totalProject=0;
 			def totaltask=0;
 			def totalclient=totalClients();
-	        def totalUsers= totalUsers();
+			def totalUsers= totalUsers();
 			println("Total Users .." +totalUsers);
 			def totalTask=0;
 			def tasklength=0;
-			
+
 			render view: "/reviewStatus" ,model: [totalProject:totalProject,taskTask:totaltask,totalClient:totalclient,totalUsers:totalUsers,taskLength:tasklength,userList:users,clientList:clients]
-		}	
+		}
 	}
 
 	def totalProjectCount = {
 		Client[] clients = Client.list()
 		List projectlist=new ArrayList();
 		List totalproject=new ArrayList();
-		if (clients)
-		{
-		    clients.eachWithIndex { item, index ->
+		if (clients) {
+			clients.eachWithIndex { item, index ->
 				List project= Project.findAllByClient(item)
 				if (project != null) {
 					project.eachWithIndex {eachcproject,indexes ->
@@ -240,30 +208,26 @@ class ProjectController {
 				}
 			}
 			render view: '/projects', model: [projects:projectlist,clientList:clients]
-			}else
-		{
+		}else {
 			render view: '/projects', model: [projects:projectlist,clientList:clients]
-			
 		}
-		
 	}
-	
-	def TotalTask()
-	{
+
+	/*To count total number of tasks*/
+	def TotalTask() {
 		Project[] projects = Project.list()
 		def taskId
-		def taskCumProjectId 
+		def taskCumProjectId
 		List usertasklist=new ArrayList();
-		if (projects)
-		{
-			JSONObject jTaskObject = new JSONObject();				  
+		if (projects) {
+			JSONObject jTaskObject = new JSONObject();
 			JSONArray jTaskArray = new JSONArray();
 			projects.eachWithIndex { item, index ->
 				List task = Task.findAllByProject(item)
 				task.eachWithIndex {eachtask,indexes ->
 					usertasklist.add(eachtask);
 				}
-			 }
+			}
 			for (Task task : 	usertasklist) {
 				JSONObject upJSON = new JSONObject();
 				upJSON .put("name", task.getName());
@@ -275,77 +239,68 @@ class ProjectController {
 				taskCumProjectId=task.get(taskId).project.getId()
 				upJSON .put("taskCumProjectId",taskCumProjectId);
 				jTaskArray.add(upJSON );
-			}						
+			}
 			jTaskObject.put("totalTask",jTaskArray);
 			tasklength=jTaskArray.size()
 			return jTaskObject
-		}			 
+		}
 	}
-	
-	
-	def totalClients()
-	{
+
+	/*To count total number of clients*/
+	def totalClients() {
 		def allClient = Client.list()
 		def NoOfClient;
-		if(allClient)
-		{
-			 NoOfClient=allClient.size();
+		if(allClient) {
+			NoOfClient=allClient.size();
 		}
-		else
-		{
-			 NoOfClient=0;
+		else {
+			NoOfClient=0;
 		}
-		return NoOfClient	
-	 }
-	
-	def totalUsers()
-	{
+		return NoOfClient
+	}
+	/*To count total number of users*/
+	def totalUsers() {
 		def allUser =User.executeQuery("from User  where id>4")
 		def NoOfUser;
-		if(allUser)
-		{
+		if(allUser) {
 			NoOfUser=allUser.size();
 		}
-		else
-		{
-			 NoOfUser=0;
+		else {
+			NoOfUser=0;
 		}
 		return NoOfUser;
-	 }
-	
+	}
+
 	def clientsProjects = {
-		Client[] clients = Client.list()	
+		Client[] clients = Client.list()
 		List cprojectlist=new ArrayList();
-		if (clients)
-		{
-		    clients.eachWithIndex { item, index ->
+		if (clients) {
+			clients.eachWithIndex { item, index ->
 				List project= Project.findAllByClient(item)
 				project.eachWithIndex {eachcproject,indexes ->
 					cprojectlist.add(eachcproject);
-			  }
+				}
 			}
 
-		   JSONObject jObject = new JSONObject();
-		   JSONArray jArray = new JSONArray();
+			JSONObject jObject = new JSONObject();
+			JSONArray jArray = new JSONArray();
 			for (Project cProject : cprojectlist) {
-			   JSONObject cpJSON = new JSONObject();
-			   cpJSON .put("name", cProject.getName());
-			   cpJSON .put("description", cProject.getDescription());
-			   cpJSON .put("projectId", cProject.getId());
-			   jArray.add(cpJSON );
-		   }
+				JSONObject cpJSON = new JSONObject();
+				cpJSON .put("name", cProject.getName());
+				cpJSON .put("description", cProject.getDescription());
+				cpJSON .put("projectId", cProject.getId());
+				jArray.add(cpJSON );
+			}
 			def length=jArray.size()
 		}
 	}
-	
-	
-	def UserTaskTimeEntry()
-	{
+
+	/*used for user task time entry..and this json used in chart.js to view High charts*/
+	def UserTaskTimeEntry() {
 		def timeList=UsersTimeEntry.list()
 		JSONObject jObject = new JSONObject();
 		JSONArray jArray = new JSONArray();
-		if(timeList)
-		{
+		if(timeList) {
 			timeList.eachWithIndex() { item, index ->
 				JSONObject json = new JSONObject();
 				json .put("projectName",item.getProject());
@@ -354,16 +309,14 @@ class ProjectController {
 				json .put("actualHrs",item.getActualHours())
 				json .put("userName",item.user.getUsername())
 				jArray.add( json );
-			    def length=jArray.size()
-			    jObject.put("timeEntryDetail", jArray);
+				def length=jArray.size()
+				jObject.put("timeEntryDetail", jArray);
 			}
 			return jObject
-		 } else
-		 {
-			 def errorMsg = "<h2>No User found with the User id :<b>${params.id}</b> "
-			 render(status: 404, text: errorMsg)
-			 return
-		 }
+		} else {
+			def errorMsg = "<h2>No User found with the User id :<b>${params.id}</b> "
+			render(status: 404, text: errorMsg)
+			return
+		}
 	}
-	
 }

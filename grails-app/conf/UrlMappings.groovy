@@ -77,17 +77,19 @@ class UrlMappings {
 		"/blockuser/$id/BlockActiveUser"(controller:"HRReviewStatus",action:"editActiveStaus")
 		"/hrreviewstatus/blockuser"(controller:"HRReviewStatus",action:"blockUser")
 		
-		//url hit when a user is deleted.
+		//url related to show user,delete user,edit user.
 		"/deleteUsers"(controller:"manageUsers", action="showUsers")
 	   "/deleteUser/$id?"(controller:"manageUsers", action="deleteUser")
 	   "/editUser/$id?"(resource:"manageUsers")
+	   //url related to search and reset functionality
 	   "/HRReviewStatus/searchFunction/$id?"(controller:"HRReviewStatus",action:"searchFunction")
 	   "/HRReviewStatus/resetFunction/$id?"(controller:"HRReviewStatus",action:"resetFunction")
 	   
 	   // code for user dash board
 	   "/usertimetask"(resource:"time")
-	   "/usertime/$action"(resource:"time")
-	   
+	   "/usertimesave/$action"(resource:"time")
+	   "/usertimeupadte/$action"(controller:"time", action:"update")
+	   "/usertimedelete/$action"(controller:"time", action:"delete")
 		
 	}
 }

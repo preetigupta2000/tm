@@ -11,7 +11,10 @@ class Project {
 		tasks lazy: true
 	}
 	
+	
 	String name
 	String description
-
+	static constraints = {
+		description nullable: true
+	}
 }

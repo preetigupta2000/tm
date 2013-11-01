@@ -3,8 +3,9 @@
 		<meta name="layout" content="mainlayout"/>
 	</head>
 	<body>
-		<div class="container maincontainer">
-			<g:form id="${user.id}" method="put" action="manageUsers">
+		<div class="container maincontainer"><%--
+			<g:form id="${user.id}" method="put" action="blockStatus" controller="HRReviewStatus">
+				--%><g:form id="${user.id}" method="put" action="update" controller="HRReviewStatus">
 			<div class="row" id="header">
 				<div class="span9">
 					<ul class="breadcrumb breadcrumb-admin">
@@ -35,32 +36,15 @@
 									</div>
 								</div>
 							</div>
-						
-							<div class="control-group ">
-						        <label class="control-label"> First Name</label>
-								<div class="controls">
-								    <div class="input-prepend">
-										<g:textField id="firstName" name="firstName" placeholder="First Name" class="input-xlarge"  value="${form?.firstName}"></g:textField>
-									</div>
-								</div>
-								
-								<div class="control-group ">
-						        <label class="control-label">Last Name</label>
-								<div class="controls">
-								    <div class="input-prepend">
-										<g:textField id="lastName" name="lastName" placeholder="Last Name" class="input-xlarge"  value="${form?.lastName}"></g:textField>
-									</div>
-								</div>
-							</div>
-							
 							<div class="control-group ">
 						        <label class="control-label"> Status</label>
 								<div class="controls">
 								    <div class="input-prepend">
-										<g:textField id="status" name="status" placeholder="status" class="input-xlarge"  value="${form?.status}"></g:textField>
+										<g:textField id="mobile" name="status" placeholder="status" class="input-xlarge"  value="${form?.status}"></g:textField>
 									</div>
 								</div>
-							</div>
+								
+								
 					</div>
 				</div>
 			</div>

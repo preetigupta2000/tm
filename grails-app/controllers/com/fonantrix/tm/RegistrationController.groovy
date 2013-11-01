@@ -28,7 +28,7 @@ class RegistrationController  {
 		try {
 			testUser.save(flush: true, failOnError: true)
 			def userInfo= new UserInfo(designation:"designation",corresAddress:"address",user:testUser)
-			userInfo.save(failOnError: true)  //changes made by sunil
+			userInfo.save(failOnError: true)  
 		}
 		catch(HibernateException e)
 		{

@@ -1,8 +1,6 @@
-$(document).ready(function() {
+jQuery(document).ready(function() {
 
-	jQuery("#hidden").hide();
-	jQuery("#user").hide();
-	//jQuery("#estimatedHrs").hide();
+	jQuery(".hiddenItems").hide();
 	jQuery("#task").attr("disabled",true);
 	var jsondata=jQuery("#hidden").text();
 	var jsonlist=$.parseJSON(jsondata);
@@ -61,8 +59,8 @@ $(document).ready(function() {
                   calEvent.id = id;
                   id++;
                   calEvent.title = titleField.val();
-                  calEvent.start = new Date(startField.val());
-                  calEvent.end = new Date(endField.val());
+                  calEvent.starttime = new Date(startField.val());
+                  calEvent.endtime = new Date(endField.val());
                   calEvent.project = projectField.val();
                   calEvent.task = taskField.val();
                   calEvent.actualHours = ActualHoursField.val();
@@ -74,7 +72,7 @@ $(document).ready(function() {
                   $calendar.weekCalendar("updateEvent", calEvent);
                   $dialogContent.dialog("close");
                   $.ajax({
-                		url:"/tm/usertime/save",
+                		url:"/tm/usertimesave/save",
                 		dataType: 'json',
                 		type:'post',
                 		data: Data
@@ -104,13 +102,14 @@ $(document).ready(function() {
          resetForm($dialogContent);
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
-         var projectField = $dialogContent.find("select[name='project']");
-         var taskField = $dialogContent.find("select[name='task']");
+         var projectField = $dialogContent.find("select[name='project']").val(calEvent.project);
+         var taskField = $dialogContent.find("select[name='task']").val(calEvent.task);
          var ActualHoursField = $dialogContent.find("input[name='hours']");
-         var titleField = $dialogContent.find("input[name='title']");
+         var titleField = $dialogContent.find("input[name='title']").val(calEvent.title);
          var userField = $("#user").val();
-         var esHrsField = $("#esHrs").val();
-         
+         var esHrsField = $dialogContent.find("input[name='estimatedHrs']");
+         var evenTitle = titleField.val();
+         var eventId = getEventIdFromTitle(evenTitle);
       
          $dialogContent.dialog({
             modal: true,
@@ -122,32 +121,34 @@ $(document).ready(function() {
             },
             buttons: {
                save : function() {
-            	   calEvent.id = id;
-                   id++;
+            	   calEvent.id = eventId;
                    calEvent.title = titleField.val();
-                   calEvent.start = new Date(startField.val());
-                   calEvent.end = new Date(endField.val());
+                   calEvent.starttime = new Date(startField.val());
+                   calEvent.endtime = new Date(endField.val());
                    calEvent.project = projectField.val();
                    calEvent.task = taskField.val();
-                   calEvent.expectedHours = ActualHoursField.val();
+                   calEvent.actualHours = ActualHoursField.val();
                    calEvent.user = userField;
-                   calEvent.estimatedHours = esHrsField;
+                   calEvent.estimatedHours = esHrsField.val();
                    var Data = new Array();
                    Data = calEvent;
                   $calendar.weekCalendar("updateEvent", calEvent);
                   $dialogContent.dialog("close");
                   $.ajax({
-              		url:"/tm/usertime/update",
-              		dataType: 'json',
+              		url:"/tm/usertimeupadte/update",
+              		dataType: 'array',
               		type:'post',
               		data: Data
               	});
                },
                "delete" : function() {
+            	   calEvent.id = eventId;
                   $calendar.weekCalendar("removeEvent", calEvent.id);
+                  var Data = new Array();
+                  Data = calEvent;
                   $.ajax({
-                		url:"/tm/usertime/delete",
-                		dataType: 'json',
+                		url:"/tm/usertimedelete/delete",
+                		dataType: 'array',
                 		type:'post',
                 		data: Data
                 	});
@@ -214,19 +215,18 @@ $(document).ready(function() {
 		
 		return eventArr
    }
-   
-   function getHoursAndMins(time){
-	   var dt = new Date(time);
-	      var hh=dt.getHours();
-	      var mm=dt.getMinutes();
-	      var hhmm=hh+":"+mm;
-	      return hhmm;
-
-   }
-   
-   
- 
-
+  
+   function getEventIdFromTitle(title){
+	  var eventid
+	   if(jsonlist!=null)
+			for(i=0;i<jsonlist.events.length;i++) {
+		  		currentTime = jsonlist.events[i];
+		  		if(currentTime.title==title) {
+		  		eventid=currentTime.id;
+		  		}
+			}
+	   return eventid;
+   };
    /*
     * Sets up the start and end time fields in the calendar event
     * form for editing based on the calendar event being edited
@@ -279,27 +279,32 @@ $(document).ready(function() {
          $endTimeField.find("option:eq(1)").attr("selected", "selected");
       }
       
-      if(endTimeSelected){
-    	  $(function() {
-      	    $('#end').change(function() {
-      	    	var sTime = $("#start").val();
-      		     var eTime =  $("#end").val();
-      		     var start = getHoursAndMins(sTime);
-      		     var end = getHoursAndMins(eTime);
-      		   s = start.split(':');
-      		   e = end.split(':');
-      		 var minsdiff=parseInt(e[0],10)*60+parseInt(e[1],10)-parseInt(s[0],10)*60-parseInt(s[1],10);
-      		 var time = String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1);
-      	       $('#hours').val(time);
-      	    });
-      	});
-      }
-
+      if (endTimeSelected) {
+    	  $('#end').change(function() {
+    	        var sTime = $("#start").val();
+    	              var eTime =  $("#end").val();
+    	              var start = getHoursAndMins(sTime);
+    	              var end = getHoursAndMins(eTime);
+    	            s = start.split(':');
+    	            e = end.split(':');
+    	          var minsdiff=parseInt(e[0],10)*60+parseInt(e[1],10)-parseInt(s[0],10)*60-parseInt(s[1],10);
+    	          var time = String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1);
+    	        $('#hours').val(time);
+    	     });
+       }
    });
 });
 
 
 
+function getHoursAndMins(time){
+	   var dt = new Date(time);
+	      var hh=dt.getHours();
+	      var mm=dt.getMinutes();
+	      var hhmm=hh+":"+mm;
+	      return hhmm;
+
+}
 function taskHrs() {
 	var test =  $("#task option:selected").text();
 	var project=$("#project option:selected").text();
@@ -340,4 +345,7 @@ function projectTask() {
 	}
    
   
+
+
+
 }

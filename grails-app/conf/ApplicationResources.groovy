@@ -30,7 +30,7 @@ modules = {
 	//Hr review status js
 	hrchartsjs {
 		dependsOn "corejs"
-		//resource url:'js/reviewStatus-charts.js'
+		resource url:'js/reviewStatus-charts.js'
 	}
 	
 	// Added for User DashBoard Support  -->
