@@ -3,7 +3,7 @@
 		<meta name="layout" content="mainlayout"/>
 	</head>
 	<body>
-		<div class="container maincontainer"><%--
+		<div class="container"><%--
 			<g:form id="${user.id}" method="put" action="blockStatus" controller="HRReviewStatus">
 				--%><g:form id="${user.id}" method="put" action="update" controller="HRReviewStatus">
 			<div class="row" id="header">

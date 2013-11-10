@@ -6,13 +6,13 @@
 	</head>  
 <body>
 		<div id="wrapper" class="clearfix">
-				<div class="bodycontainer maincontainer">
+				<div class="bodycontainer">
 					
 					<legend>Manage Accounts</legend>
 			<div id="manageclients">
-			<div class="container maincontainer">
+			<div class="container">
 				<div class="row" id="header">
-					<div class="span12">
+					<div class="col-md-12">
 						<ul class="breadcrumb breadcrumb-admin">
 							<li><h2><a href="${contextPath}/home">Home</a> <span class="divider">/</span></h2></li>
 		  					<li class="active"><h2>Manage Users</h2></li>
@@ -20,8 +20,8 @@
 		        	</div>
 					
 				</div>
-				<div class="row-fluid">
-				    	<div class="span12">
+				<div class="row">
+				    	<div class="col-md-12">
 						<div class="well well-admin">
 						
 							<table class="table table-striped table-bordered table-hover" id="no-more-tables">

@@ -14,15 +14,15 @@
 					<g:hiddenField name="estimatedHrs" class="estimatedHrs"/>
          </div>	  
          <div class="modal-body">
-         	<div class="control-group">
+         	<div class="form-group">
 					<label class="control-label" for="project">User Id</label>
 						<div class="controls">
 						
-								<g:textField disabled id="id-display" name="id-display" class="input-large" value="${userid}"></g:textField>
+								<g:textField disabled id="id-display" name="id-display" class="input-lg" value="${userid}"></g:textField>
 						
 						</div>
 				</div>
-              <div class="control-group">
+              <div class="form-group">
 					<label class="control-label" for="project">Project</label>
 						<div class="controls">
 							<g:if test="${projectList}">
@@ -30,7 +30,7 @@
 							</g:if>
 						</div>
 				</div>
-				<div class="control-group">
+				<div class="form-group">
 					<label class="control-label" for="task"> Task</label>
 						<div class="controls">
 							<g:if test="${taskList}">
@@ -39,13 +39,13 @@
 						</div>
 				</div>
 				
-				<div class="control-group">
+				<div class="form-group">
 					<label class="control-label" for="task"> Estimated Hrs</label>
 						<div class="controls">
 						
-						<g:textField   disabled id="id-display" name="id-display"  name ="estimatedHrs" class="input-large estimatedHrs" ></g:textField></div>
+						<g:textField   disabled id="id-display" name="id-display"  name ="estimatedHrs" class="input-lg estimatedHrs" ></g:textField></div>
 				</div>
-				<div class="control-group">
+				<div class="form-group">
 					<label class="control-label" for="expectedtime">Time</label>
 						<div class="controls">
 							<g:textField  name="time" id="expectedtime" placeholder="Please Enter no of hours" class="input-xmedium" value=""></g:textField>

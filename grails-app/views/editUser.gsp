@@ -3,7 +3,7 @@
 		<meta name="layout" content="mainlayout"/>
 	</head>
 	<body>
-		<div class="container maincontainer">
+		<div class="container">
 			<g:form id="${user.id}" method="put" action="manageUsers">
 			<div class="row" id="header">
 				<div class="span9">

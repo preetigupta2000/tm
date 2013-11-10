@@ -5,7 +5,7 @@
 </head>  
 <body>
 	<div id="wrapper" class="clearfix">
-		<div class="container maincontainer">
+		<div class="container">
 			<legend>Manage Accounts</legend>
 			<div class="row" id="header">
 				<ul class="span12 breadcrumb breadcrumb-admin">

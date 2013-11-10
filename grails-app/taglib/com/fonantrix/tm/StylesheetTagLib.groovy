@@ -7,7 +7,7 @@ class StylesheetTagLib {
 	static namespace = "fon"
 	GrailsApplication grailsApplication
 
-	public static final String LESS_SCRIPT_FILE_LOCATION = "js/lesscompiler/less-1.3.1.min.js"
+	public static final String LESS_SCRIPT_FILE_LOCATION = "js/lesscompiler/less-1.4.2.min.js"
 	public static final String LESS_BUILDCOMPILER_PATH = "web-app/js/lesscompiler/lessc.wsf"
 
 	public static final String LESS_FOLDER_NAME = "less"

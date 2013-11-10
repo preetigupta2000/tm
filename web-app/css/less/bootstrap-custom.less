@@ -15,6 +15,13 @@
 @tmHeaderBorderColor: #E8E8E8;
 @tmCircleColor: #474641;
 
+// Border Radius
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
 .vertical-gradient(@startColor, @endColor) {
 	#gradient > .vertical(@startColor, @endColor);
 	*background-color: @endColor; /* Darken IE7 buttons by default so they stand out more given they won't have borders */
@@ -70,25 +77,23 @@ footer {
     padding-bottom: 6px;
 }
 
-.navbar {
-	.navbar-inner {
-		background-color: @tmHeaderColor;
-	    -moz-border-bottom-colors: none;
-	    -moz-border-left-colors: none;
-	    -moz-border-right-colors: none;
-	    -moz-border-top-colors: none;
-	    background: -moz-linear-gradient(center top , #4c4e55, #2f3132) repeat-x scroll left bottom #444444;
-	    border-image: none;
-	    /*border-radius: 0 0 0 0;
-	    border-style: solid;
-	    border-width: 1px 0;
-	    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset;*/
-	    min-height: 50px;
-	    padding-right: 20px;
-	    position: relative;
-	    z-index: 100;
-	}
-	.brand {
+.navbar-inverse {
+	background-color: @tmHeaderColor;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(center top , #4c4e55, #2f3132) repeat-x scroll left bottom #444444;
+    border-image: none;
+    /*border-radius: 0 0 0 0;
+    border-style: solid;
+    border-width: 1px 0;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset;*/
+    min-height: 50px;
+    padding-right: 20px;
+    position: relative;
+    z-index: 100;
+	.navbar-brand {
 		padding: 0 20px;
 		img#f-logo {
 	    	height: 50px;
@@ -102,22 +107,16 @@ footer {
 #ajaxLoginForm {
 	border:solid 1px @login-h3-color;
 	.border-radius(10px 10px 0px 0px);
-	.input-prepend  {
-		margin-bottom: 10px;
-		.add-on {
-			height:22px;
+	.input-group  {
+		margin: 12px;
+		.input-group-addon {
 			background-color: #dcded0;
 			border-color: #cacdb8;
-			i {
-				margin-right:5px;
-			}
+			font-size: 24px;
 		}	
 		input[type="text"], input[type="email"], input[type="password"] {
-		    font-size: 17px;
-		    height: 22px;
 		    background-color:#f2f3ee;
 		    color:#595959;
-		   .box-shadow(none); 
 		}
 	}	
 	.errorMessage {
@@ -132,7 +131,7 @@ footer {
 	    .box-shadow(@shadow);
 	}
 	h3 {
-		color:@white;
+		color: #FFFFFF;
 		font-size:20px;
 	    -moz-border-bottom-colors: none;
 	    -moz-border-left-colors: none;
@@ -151,9 +150,9 @@ footer {
 	}
     
 
-	.hero-unit {
+	.jumbotron {
 		background-color:#ffffff;
-		padding:1em 0.5em 2em;
+		padding:20px;
 		border-radius: 0px 0px 10px 10px;
 		border-color: #d0d0cf;
 		margin-bottom: 0px;
@@ -163,33 +162,20 @@ footer {
 	    	line-height: 1;
 	    	margin-bottom: 15px;
 		}
-		small {
-			font-size: 12px;
-			line-height: 1;
-		}
 		.btn {
-			margin-top:10px;
 			border-color: #393939;
 			background-color: #393938;
 			background-image: linear-gradient(to bottom, #808080, #393938);
 			color: #FFFFFF;
-			width: 70%;
 		}
 		i {
-			font-size:24px;
 			color:rgba(10, 10, 10, 0.7);
 		}		
 	}
 	
-	.samll-buttons {
-		.btn {
-			width: 40%;
-		}
-	}
-	
 	#user-info {
 		border:solid 1px darken(@hero-unit-color,10%);
-		padding:0.5em;
+		padding:5px;
 		text-align: left;
 		div {
 			display:inline-block;
@@ -200,7 +186,6 @@ footer {
 			 a {
 				margin-top:0;
 				background:-moz-linear-gradient(center top , #FFCB1A, #FFB90C) repeat-x scroll 0 0 transparent;
-				display:block;
 				.border-radius(5px);
 				 padding: 5px 10px;
 				&:hover {
@@ -217,7 +202,7 @@ footer {
 			small {
 				font-size:16px;
 				font-weight:normal;
-				color:@black;
+				color: #000000;
 			}
 		}
 	}

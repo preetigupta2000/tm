@@ -6,7 +6,7 @@
 	</head>  
 	<body>
 		<div id="manageusers">
-			<div class="container maincontainer">
+			<div class="container">
 				<div class="row" id="header">
 					<div class="span9">
 						<ul class="breadcrumb breadcrumb-admin">

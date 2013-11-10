@@ -1,8 +1,10 @@
 <!--
 Less.js compiler for Windows Script Host
 http://blog.dotsmart.net/
+Modified by Van Kichline (vank), Microsoft. 10/2012:
+Emit errors in imported files.
 
-Copyright (c) 2010, Duncan Smart
+Copyright (c) 2013, Duncan Smart
 Licensed under the Apache 2.0 License.
 -->
 <job>
@@ -11,24 +13,21 @@ Licensed under the Apache 2.0 License.
     var window = this;
     var location = window.location = { 
         port: 0,
-        href: ''
+        href: '',
+        protocol: 'http:',      // vank: added to support development env setting
+        hostname: 'localhost'   // vank: added to support development env setting
     };
     var fso = new ActiveXObject("Scripting.FileSystemObject");
     var input = null;
 
     var util = {
         readText: function (filename) {
-            //WScript.StdErr.WriteLine("readText: " + filename);
-            var file = fso.OpenTextFile(filename);
-            // Don't error on empty files
-            var text = file.AtEndOfStream ? '' : file.ReadAll();
-
-            // Strip off any UTF-8 BOM
-            var utf8bom = String.fromCharCode(0xEF, 0xBB, 0xBF);
-            if (text.substr(0, utf8bom.length) == utf8bom) {
-                text = text.substr(utf8bom.length);
-            }
-            file.Close();
+            var stream = WScript.CreateObject("ADODB.Stream"); // this should solve issue with OpenTextFile
+            stream.Charset = 'utf-8';
+            stream.Open();
+            stream.LoadFromFile(filename);
+            var text = stream.ReadText();
+            stream.close();
             return text;
         }
     };
@@ -42,7 +41,10 @@ Licensed under the Apache 2.0 License.
         send: function () {
             // get the file path relative to the input less file/directory
             var currDir = fso.folderExists(input) ? input : fso.getParentFolderName(input);
-            var filename = fso.BuildPath(currDir, this.url);
+
+            var filename = this.url.replace(/\//g, '\\');
+            if (!/^([a-zA-Z]+:|[\/\\])/.test(filename))  // SLaks: If the filename is not already an absolute path, normalize it.
+                filename = fso.BuildPath(currDir, filename);
             
             //WScript.StdErr.WriteLine("XHR.send " + filename);
             
@@ -75,13 +77,29 @@ Licensed under the Apache 2.0 License.
         getElementsByTagName: function(){ return []; },
         getElementById: function(){ return this._dummyElement; },
         createElement:  function(){ return this._dummyElement; },
-        createTextNode: function(){ return this._dummyElement; }
+        createTextNode: function () { return this._dummyElement; },
+        // vank: added 'body' to capture errors in @imported files
+        body: {
+            replaceChild: function (elem) {
+                if (!elem.innerHTML.match(/null or not an object/i)) {
+                    document._dummyElement.error = elem.innerHTML;
+                }
+            }
+        }
     };        
         
+    // vank: added 'setInterval' and 'clearInterval' to support development env setting
+    function setInterval(f, int) {
+        f();
+        return 'x';
+    }
+    function clearInterval(t) { }
 </script>
 
-<!-- less.js from https://github.com/cloudhead/less.js/tree/master/dist/ -->
-<script language="jscript" src="less-1.3.1.min.js" />
+<!-- less.js from https://github.com/less/less.js/tree/master/dist/ -->
+<script language="jscript" src="es5-shim.min.js" />
+<script language="jscript" src="less-1.4.2.min.js" />
+
 
 <script language="jscript"> 
     // Parse args
@@ -150,8 +168,17 @@ Licensed under the Apache 2.0 License.
             data = util.readText(input);
         }
 
+            // SLaks: Make sure LESS can resolve relative import URLs.
+            // LESS.js tries to normalize \ to /, but they forgot that
+            // replace() with a non-regex only replaces the 1st match.
+            // It also tries to detect drive letters but only supports
+            // lowercase.
+            var safeFilename = input.replace(/\\/g, '/').replace(/^[A-Z]+:/, function (m) { return m.toLowerCase(); });
         var parser = new less.Parser({
-            filename: input
+                filename: safeFilename,
+                filename: fso.getFileName(input),
+                relativeUrls: true                
+                
         });
 
         try {
@@ -171,7 +198,13 @@ Licensed under the Apache 2.0 License.
                         compress: args.compress
                     });
                     if (output) {
-                        var outputfile = fso.CreateTextFile(output);
+                        if (fso.FileExists(output)) {
+                            var checkfile = fso.GetFile(output);
+                            if (checkfile.Attributes & 1) {
+					       		checkfile.Attributes = checkfile.Attributes ^ 1
+					   }
+				    }
+                            var outputfile = fso.CreateTextFile(output, true, true);	// filename, overwrite, writeUTF16
                         outputfile.Write(css);
                         outputfile.Close();
                     }
@@ -201,6 +234,16 @@ Licensed under the Apache 2.0 License.
             WScript.StdErr.WriteLine(s);
             WScript.Quit(2);
         }
+        // vank: added to display output from errors in @imported files.
+        if (document._dummyElement.error && document._dummyElement.error.match(/Syntax Error/i)) {
+            var s = document._dummyElement.error;
+            s = s.replace(/<[^>]+(\/?)>/g, function (m) { return m.indexOf('/') > 0 && m !== '</label>' ? "\n" : '' });
+            s = s.replace(/\n+/g, '\n');
+
+            WScript.StdErr.WriteLine("ERR: ");
+            WScript.StdErr.WriteLine(s);
+            WScript.Quit(2);
+		}
     }
 </script>
 </job>

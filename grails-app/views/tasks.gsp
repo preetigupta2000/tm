@@ -5,14 +5,14 @@
 	</head>
 	<body>
 		<div id="managetasks">
-			<div class="container maincontainer">
+			<div class="container">
 				<div class="row" id="header">
-					<div class="span12">
+					<div class="col-md-12">
 						<div class="headerband">				
 							<span id="headingtext">
 								<a href="${contextPath}/home">
 									<div class="circle pull-left">
-										<i class="icon-home"></i>
+										<i class="fa fa-home"></i>
 									</div>
 								</a>
 								<span class="line-right"></span>
@@ -26,19 +26,19 @@
 							</span>
 							<span class="pull-right">
 								<a href="#" onclick="window.history.back();">Return</a>
-								<button id="addNewUser" class="btn btn-small navigationbutton" data-toggle="modal" href="#addTaskModal"><i class="icon-plus"></i>  Add New Task</button>
+								<button id="addNewUser" class="btn btn-default btn-sm navigationbutton" data-toggle="modal" href="#addTaskModal"><i class="glyphicon .glyphicon-plus"></i>  Add New Task</button>
 							</span>
 						</div>
 					</div>
 				</div>
 				<g:if test="${clientid != null}">
 					<div class="row">
-						<div class="span6">
+						<div class="col-md-6">
 							<div class="well">
 								Client Id : ${clientid}
 							</div>
 						</div>
-						<div class="span6">
+						<div class="col-md-6">
 							<div class="well">
 								Project Id : ${projectid}
 							</div>
@@ -46,7 +46,7 @@
 					</div>
 				</g:if>				
 				<div class="row">
-					<div class="span12">
+					<div class="col-md-12">
 						<!-- changes made by sunil -->	
 						<table class="table table-striped" id="no-more-tables">
 							<tbody id="Project-list">
@@ -70,13 +70,13 @@
 											<div class="icons">
 												<div class="circle">
 													<a href="${request.contextPath}/project/${task.project.id}/tasks/${task.id}">
-														<i class="icon-pencil"></i>
+														<i class="fa fa-pencil"></i>
 														<p>Edit</p>
 													</a>
 												</div>
 												<div class="circle">
 													<g:link id="${task.id}" params='[projectId:"${projectid}"]' action="deleteTask">
-														<i class="icon-remove"></i>
+														<i class="fa fa-times"></i>
 														<p>Delete</p>
 													</g:link>
 												</div>
@@ -100,14 +100,14 @@
 					<h3 id="myModalLabel">Add New Task Information</h3>
 				</div>
 				<div class="modal-body">
-					<div class="control-group">
+					<div class="form-group">
 			          <!-- Text input-->
 			          <label class="control-label" for="input01">Task Name</label>
 			          <div class="controls">
 			            <g:textField  name="name" placeholder="Please enter the Task name" class="input-xlarge" value="${form?.name}"></g:textField>
 			          </div>
 			        </div>
-			    	<div class="control-group">
+			    	<div class="form-group">
 			          <!-- Text input-->
 			          <label class="control-label" for="input01">Task Description</label>
 			          <div class="controls">
@@ -116,7 +116,7 @@
 			        </div>
 					
 			        <!-- changes made by sunil -->
-			        <div class="control-group">
+			        <div class="form-group">
 			          <label class="control-label">EstimatedHrs</label>
 			          <div class="controls">
 			         
@@ -126,19 +126,19 @@
 			        </div>	
 						
 						<!-- changes made by sunil -->
-					<div class="control-group">
+					<div class="form-group">
 			          <label class="control-label">Select Project</label>
 			          <div class="controls">
 			          	<g:if test="${projectid == null}">
 			          		<g:select id="project" optionKey="id" optionValue="name" name="project" from="${projectList}" onchange="setProjectId(this);" />
 			          	</g:if>
 			          	<g:else>
-			          		<g:textField disabled id="id-display" name="id-display" class="input-large" value="${projectid}"></g:textField>
+			          		<g:textField disabled id="id-display" name="id-display" class="input-lg" value="${projectid}"></g:textField>
 			          	</g:else>
 			          </div>
 			        </div>	
 					<!-- changes made by sunil -->	
-			       <div class="control-group">
+			       <div class="form-group">
 			          <label class="control-label">Status</label>
 			          <div class="controls">
 			         
@@ -149,8 +149,8 @@
 			        
 			   </div>
 				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
-					<button type="submit" class="btn navigationbutton"><i class="icon-ok"></i> Add</button>
+					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>
+					<button type="submit" class="btn btn-default navigationbutton"><i class="fa fa-ok"></i> Add</button>
 				</div>
 			</form>
 		</div>
