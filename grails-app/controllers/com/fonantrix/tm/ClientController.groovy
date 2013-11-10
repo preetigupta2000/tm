@@ -1,7 +1,7 @@
 package com.fonantrix.tm
 
 import org.hibernate.HibernateException
-
+import groovy.json.JsonBuilder
 
 class ClientController {
 
@@ -27,9 +27,18 @@ class ClientController {
 			}
 		}
 		else {
-			
 			def allClient = Client.list()
 			render view: '/clients', model: [clients: allClient]
+			/*def data = [
+				clients: allClient.collect {[
+					id: it.id,
+					name : it.name,
+					description : it.description,
+					noOfProjects: it.projects.size()
+				]}
+			]
+			def json = new JsonBuilder(data.clients)
+			render json.toString()*/
 		}
 	}
 	

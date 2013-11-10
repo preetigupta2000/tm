@@ -90,6 +90,9 @@ class UrlMappings {
 	   "/usertimesave/$action"(resource:"time")
 	   "/usertimeupadte/$action"(controller:"time", action:"update")
 	   "/usertimedelete/$action"(controller:"time", action:"delete")
-		
+
+	   "/adminclient"(controller:"admin")
+	   "/api/client/$id?"(resource:"client")
+	   "/getTemplate"(controller:"tmTemplate")	   
 	}
 }
