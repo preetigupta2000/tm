@@ -20,7 +20,7 @@
 							</span>
 							<span class="pull-right">
 								<a href="#" onclick="window.history.back();">Return</a>
-								<button id="addNewUser" class="btn btn-sm navigationbutton" data-toggle="modal" href="#addClientModal"><i class="fa fa--plus"></i>  Add New Client</button>
+								<button id="addNewUser" class="btn btn-sm navigationbutton" data-toggle="modal" href="#addClientModal"><i class="fa fa-plus"></i>  Add New Client</button>
 							</span>
 						</div>			
 					</div>
