@@ -12,7 +12,9 @@
 			</span>
 			<span class="pull-right">
 				<a href="#" onclick="window.history.back();">Return</a>
-				<button id="addNewClient" class="btn btn-default btn-sm navigationbutton" data-toggle="modal" href="#addClientModal"><i class="fa fa-plus"></i>  Add New Client</button>
+				<a id="addNewClient" role="button" class="btn btn-default btn-sm navigationbutton overlay-modal"  data-is-template="true" data-auto-size="false" data-template-url="add-client" data-height="330px" data-max-width="550px">
+					<i class="fa fa-plus"></i>  Add New Client
+				</a>
 			</span>
 		</div>			
 	</div>

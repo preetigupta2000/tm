@@ -2,7 +2,8 @@
 ClientModel = new function() {        
 	var Model = Backbone.Model.extend({
 			defaults: {
-				name : ""
+				name : "",
+				description : ""
 			},
 		    validate: function( attributes ){
 		    	var errors = [];			
@@ -11,22 +12,17 @@ ClientModel = new function() {
 		    	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;		    	
 		    	
 	            if (name == "") {
-	            	errors.push("Client name can't be blank")
 	            	$('#error-name').removeClass('hide');
-	            	$('#error-username').addClass('hide');
 	            } else if (!re.test(name)) {
 	            	errors.push("Client name must be a valid")
 	            	$('#error-name').addClass('hide');
-	            	$('#error-username').removeClass('hide');
 	            } else {
 	            	$('#error-name').addClass('hide');
-	            	$('#error-username').addClass('hide');
 	            };
 	            if (description == "") {
-	            	errors.push("Client description can't be blank")
-	            	$('#error-password').removeClass('hide');
+	            	$('#error-description').removeClass('hide');
 	            }else {
-	            	$('#error-password').addClass('hide');
+	            	$('#error-description').addClass('hide');
 	            };            
 	            if(errors.length == 0) {
 	            	return null;

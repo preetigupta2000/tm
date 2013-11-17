@@ -53,13 +53,13 @@
 }	
 
 
-button.navigationbutton {
+a.navigationbutton {
 	background-color: @tmButtonBgColor;
 	background-image: linear-gradient(to bottom, @tmButtonTopColor, @tmButtonBottomColor);
 	color: #5E2F02;
 }
 
-button.navigationbutton:hover {
+a.navigationbutton:hover {
 	background-color: @tmButtonBgColor;
 }
 
@@ -133,13 +133,27 @@ table#no-more-tables {
 	}
 }
 
-.modal form {
+.fancybox-skin {
+    background: none repeat scroll 0 0 #E8E8E8;
+}
+
+.fancybox-outer, .fancybox-inner {
+   background: -moz-linear-gradient(center top , #FBFBFA, #F1F2ED) repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.fancybox-inner form {
 	margin: 0;
 	.modal-header {
 		background-color: @tmButtonBgColor;
 		background-image: linear-gradient(to bottom, @tmButtonTopColor, @tmButtonBottomColor);
+		padding: 5px;
+	}
+	#description {
+		width: 60%;
 	}
 	.modal-footer {
+	    margin-top: 5px;
+	    padding: 5px 5px 5px;
 		i {
 		    font-size: 14px;
 		}

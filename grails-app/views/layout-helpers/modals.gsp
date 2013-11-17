@@ -47,7 +47,7 @@
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true">x</button>
 		<h3 id="ajax-error-label">
-			HSC App Error Report
+			Time Management App Error Report
 		</h3>
 	</div>
 	<div class="modal-body">

@@ -30,9 +30,28 @@ ClientView = new function() {
 	    },
 	    
 	    addClient: function(){
-	    	//ClientAddView.initialize();
+	    	ClientCollection.get().create(
+	    		this.newAttributes(),
+	    		{
+	    			wait : true,
+	    			success: function(collection, response) {
+	    				alert(response);
+	    				$.fancybox.close();
+	    				Backbone.history.navigate("#/clients/list", {trigger:true,replace:true});
+	    			},
+	    			error: function(response){
+	    				alert(response);
+	    				$.fancybox.close();
+	    			},
+	    		}
+	    	);
 	    },
-
+	    newAttributes: function() {
+		      return {
+		    	  name : $("#clientform #name").val(),
+		    	  description	: 	$("#clientform #description").val()
+		    };
+		},
 	    editClient: function(userId){
 	    	//ClientEditView.initialize(userId);
 	    },
@@ -86,10 +105,15 @@ ClientView = new function() {
 		},
 		
 		createOnEnter: function(event)	{
-			//Backbone.history.navigate("#/clients/addClient", {trigger:true});
+			$('[title="Close"]').live('click', function(event){
+			    event.stopPropagation();
+			    $.fancybox.close();
+			});
+			$('#addclient').live('click', function(event){
+				Backbone.history.navigate("#/clients/addClient", {trigger:true,replace:true});
+			});			
 		
-		},
-		
+		},	
 		render : function() {
 
 			var compiled_template_body = Mustache.render(this.template_body);
@@ -108,9 +132,8 @@ ClientView = new function() {
 			this.setElement(this.myPanelId);
 
 			return this; //Do this at the end to allow for method chaining.			
-		}
-	});
-	
+		}		
+	});    
 	
 	this.routerInitialize = function(){
 		router = new Router();   

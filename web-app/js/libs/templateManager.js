@@ -1,29 +1,40 @@
  /*
  -----------------
+
  GLOBAL Util Module
  -----------------
  */
- 
-function namespace(namespaceString) {
-     var parts = namespaceString.split('.'),
-         parent = window,
-         currentPart = '';
- 
-     for(var i = 0, length = parts.length; i < length; i++) {
-         currentPart = parts[i];
-         parent[currentPart] = parent[currentPart] || {};
-         parent = parent[currentPart];
-     }
- 
-     return parent;
- }
- 
+
+/*JSHINT global variables*/
+/*global window */
+/*global com */
+(function () {
+	"use strict";
+
+	function namespace(namespaceString) {
+		var parts = namespaceString.split('.'),
+			parent = window,
+			currentPart = '';
+
+		for (var i = 0, length = parts.length; i < length; i++) {
+			currentPart = parts[i];
+			parent[currentPart] = parent[currentPart] || {};
+			parent = parent[currentPart];
+		}
+		return parent;
+	}
+
+	namespace("com.fonantrix.tm.fn");
+	
+	com.fonantrix.tm.fn.namespace = namespace;
+})();
+
 /*JSHINT global variables*/
 /*global com*/
 /*global $*/
 /*global Handlebars*/
 "use strict";
-namespace("com.fonantrix.tm.util");
+com.fonantrix.tm.fn.namespace("com.fonantrix.tm.util");
 
 com.fonantrix.tm.util.TemplateManager = {
 	

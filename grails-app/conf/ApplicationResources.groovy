@@ -18,6 +18,7 @@ modules = {
 		
 		resource url:'js/libs/underscore.js'
 		resource url:'js/libs/backbone.js'
+		resource url:'js/libs/jquery.fancybox.js'
 	}
 	
 	corejs {
@@ -31,6 +32,7 @@ modules = {
 		//Main Application JavaScript - init and event binding
 		resource url:'js/index.js'
 		resource url:'js/libs/templateManager.js'
+		resource url:'js/libs/overlay.js'
 		
 		//Backbone client View & Models & Collections
 		resource url:'js/bb/client/clientmodel.js'
