@@ -6,8 +6,7 @@ ClientView = new function() {
 	/* -------------------------------------------------*/
 
 	this.initialize = function(){
-		if (listbbclientView == null)
-			listbbclientView = new View();
+		listbbclientView = new View();
 	};
 	
 	var Router = Backbone.Router.extend({
@@ -37,8 +36,7 @@ ClientView = new function() {
 	    			wait : true,
 	    			success: function(response) {
 	    				$.fancybox.close();
-	    				collection.fetch();
-	    				Backbone.history.navigate("#/clients/list", {trigger:true,replace:true});
+	    				Backbone.history.navigate("#/client/list", {trigger:true,replace:true});
 	    			},
 	    			error: function(error){
 	    				console.log(error.responseText);
@@ -133,7 +131,7 @@ ClientView = new function() {
 			this.setElement(this.myPanelId);
 
 			return this; //Do this at the end to allow for method chaining.			
-		}		
+		}
 	});    
 	
 	this.routerInitialize = function(){
