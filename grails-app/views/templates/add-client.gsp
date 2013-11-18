@@ -27,6 +27,6 @@
 		</div>
 		<div class="modal-footer">
 			<a class="btn btn-default" title="Close"><i class="fa fa-times"></i> Close</a>
-			<a class="btn btn-default navigationbutton" id="addclient"><i class="fa fa-check"></i> Add</a>
+			<a class="btn btn-default navigationbutton" id="add"><i class="fa fa-check"></i> Add</a>
 		</div>
 	</form>

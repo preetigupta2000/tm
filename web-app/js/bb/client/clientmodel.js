@@ -13,14 +13,16 @@ ClientModel = new function() {
 		    	
 	            if (name == "") {
 	            	$('#error-name').removeClass('hide');
-	            } else if (!re.test(name)) {
+	            	errors.push("Client name must be a passed")
+	            } else if (re.test(name)) {
 	            	errors.push("Client name must be a valid")
-	            	$('#error-name').addClass('hide');
+	            	$('#error-name').removeClass('hide');
 	            } else {
 	            	$('#error-name').addClass('hide');
 	            };
 	            if (description == "") {
 	            	$('#error-description').removeClass('hide');
+	            	errors.push("Client description must be a passed")
 	            }else {
 	            	$('#error-description').addClass('hide');
 	            };            

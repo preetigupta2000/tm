@@ -30,17 +30,18 @@ ClientView = new function() {
 	    },
 	    
 	    addClient: function(){
-	    	ClientCollection.get().create(
+	    	collection = ClientCollection.get()
+	    	collection.create(
 	    		this.newAttributes(),
 	    		{
 	    			wait : true,
-	    			success: function(collection, response) {
-	    				alert(response);
+	    			success: function(response) {
 	    				$.fancybox.close();
+	    				collection.fetch();
 	    				Backbone.history.navigate("#/clients/list", {trigger:true,replace:true});
 	    			},
-	    			error: function(response){
-	    				alert(response);
+	    			error: function(error){
+	    				console.log(error.responseText);
 	    				$.fancybox.close();
 	    			},
 	    		}
@@ -109,8 +110,8 @@ ClientView = new function() {
 			    event.stopPropagation();
 			    $.fancybox.close();
 			});
-			$('#addclient').live('click', function(event){
-				Backbone.history.navigate("#/clients/addClient", {trigger:true,replace:true});
+			$('.modal-footer #add').live('click', function(event){
+				Backbone.history.navigate("#/clients/addClient", {trigger:true});
 			});			
 		
 		},	
