@@ -1,3 +1,4 @@
+<g:set var="contextPath" value="${request.contextPath}"/>
 <div class="row" id="header">
 	<div class="col-md-12">
 		<div class="headerband">				

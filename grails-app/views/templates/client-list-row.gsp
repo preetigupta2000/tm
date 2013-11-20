@@ -1,3 +1,4 @@
+<g:set var="contextPath" value="${request.contextPath}"/>
 			<tr>
  				<td>{{id}}</td>
  				<td data-title="Name">
@@ -11,14 +12,14 @@
  				</td>
  				<td data-title="Option">
 				<div class="icons">
-					<div class="circle">
-						<a href="viewclient/{{id}}" id="editClient">
+					<div class="circle">								
+						<a class="overlay-modal" data-response-type="json"  data-type="iframe" data-href="${contextPath}/api/client/{{id}}" data-id="{{id}}" id="editClient" data-is-template="true" data-auto-size="false" data-template-url="edit-client" data-height="330px" data-max-width="550px">
 							<i class="fa fa-pencil"></i>
 							<p>Edit</p>
 						</a>
 					</div>
 					<div class="circle">
-						<a id="deleteClient" href="">
+						<a id="delete" href="">
 							<i class="fa fa-times"></i>
 							<p>Delete</p>
 						</a>

@@ -19,7 +19,17 @@ class ClientController {
 			if(client) {
 				render view: '/editClient', model: [client: client]
 				return
-				
+				/*def data = [
+					clients: client.collect {[
+						id: it.id,
+						name : it.name,
+						description : it.description,
+						noOfProjects: it.projects.size()
+					]}
+				]
+				def json = new JsonBuilder(data.clients)
+				render json.toString()
+				//redirect(uri: "/getTemplate", path:'templates/edit-client', modal: [client: client])*/
 			} else {
 				def errorMsg = "<p>No client found with the id :<b>${params.id}</b></p>"
 				render(status: 404, text: errorMsg)
@@ -45,8 +55,13 @@ class ClientController {
 		
 	def save = {	
 		def client = new Client(params)
-		client.save(failOnError: true)
-		redirect(action: "show")
+		try {
+			client.save(failOnError: true)
+			redirect(action: "show")
+		} catch(HibernateException e){
+			render client.errors
+			return
+		}
 	}
 	
 	def update = {

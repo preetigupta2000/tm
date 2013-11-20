@@ -1018,6 +1018,11 @@
     // to populate its element (`this.el`), with the appropriate HTML. The
     // convention is for **render** to always return `this`.
     render: function() {
+    	/*logger.info("Render Start", this.myPanelId);
+    	if(this.customRender) {
+    		this.customRender();
+    	}
+    	logger.info("Render End", this.myPanelId);*/    	
       return this;
     },
 

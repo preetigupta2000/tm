@@ -13,8 +13,8 @@
 					</ul>
 	        	</div>
 				<div class="col-md-3">
-					<button id="clientCancel" href="javascript:history.back();" class="accountAction btn btn-default" ><i class="fa fa--remove"></i>  Cancel</button>
-					<button id="clientEdit" class="accountAction btn btn-default" ><i class="fa fa--save"></i>  Save</button>					
+					<button id="clientCancel" href="javascript:history.back();" class="accountAction btn btn-default" ><i class="fa fa-remove"></i>  Cancel</button>
+					<button id="clientEdit" class="accountAction btn btn-default" ><i class="fa fa-save"></i>  Save</button>					
 				</div>
 			</div>
 			<div class="row">

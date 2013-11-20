@@ -23,7 +23,10 @@ ClientModel = new function() {
 	            if (description == "") {
 	            	$('#error-description').removeClass('hide');
 	            	errors.push("Client description must be a passed")
-	            }else {
+	            } else if (description.length > 255) {
+	            	$('#error-description').removeClass('hide');
+	            	errors.push("Client description must be lower than 256 charcaters.")
+	            } else {
 	            	$('#error-description').addClass('hide');
 	            };            
 	            if(errors.length == 0) {
@@ -36,9 +39,10 @@ ClientModel = new function() {
 				// If we specify error callback in set or save, this event will not be fired.
 	            this.bind("error", function(model, error){
 	               if (_.isArray(error)) {
-//	               	    alert(error.join("\n"));
+	               	    alert(error.join("\n"));
 	               } else {
 	               		alert("Something unexpected happened and your request could not be completed. Please try again later");
+		            	$.fancybox.close();
 	               }
 	            });
 			}			

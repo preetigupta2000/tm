@@ -51,8 +51,23 @@ ClientView = new function() {
 		    	  description	: 	$("#clientform #description").val()
 		    };
 		},
-	    editClient: function(userId){
-	    	//ClientEditView.initialize(userId);
+	    editClient: function(clientId){
+	    	this.collection = ClientCollection.get(clientId);
+
+	    	collection.create(
+	    		this.newAttributes(),
+	    		{
+	    			wait : true,
+	    			success: function(response) {
+	    				$.fancybox.close();
+	    				Backbone.history.navigate("#/client/list", {trigger:true,replace:true});
+	    			},
+	    			error: function(error){
+	    				console.log(error.responseText);
+	    				$.fancybox.close();
+	    			},
+	    		}
+	    	);
 	    },
 
 	    deleteClient: function(userId){
@@ -69,7 +84,8 @@ ClientView = new function() {
 		/*------------------------------------------------------*/
 		
 		events:{
-			"click #addNewClient": "createOnEnter"
+			"click #addNewClient": "createOnEnter",
+			"click #editClient": "editExistingClient"
 		},
 		
 		initialize: function() {
@@ -110,9 +126,20 @@ ClientView = new function() {
 			});
 			$('.modal-footer #add').live('click', function(event){
 				Backbone.history.navigate("#/clients/addClient", {trigger:true});
-			});			
+			});	
 		
-		},	
+		},
+		editExistingClient: function(event) {
+			$('[title="Close"]').live('click', function(event){
+			    event.stopPropagation();
+			    $.fancybox.close();
+			});
+			$('.modal-footer #edit').live('click', function(event){
+				var clientId = $(event.target).attr('data-id')
+				clientId = clientId(clientId.lastindexOf("/"));
+				Backbone.history.navigate("#/clients/edit/"+ clientId, {trigger:true});
+			});				
+		},
 		render : function() {
 
 			var compiled_template_body = Mustache.render(this.template_body);
@@ -131,7 +158,15 @@ ClientView = new function() {
 			this.setElement(this.myPanelId);
 
 			return this; //Do this at the end to allow for method chaining.			
-		}
+		},
+		paintEdit : function(clientId) {
+			that = this;
+	    	this.collection.fetch({data: {"id": clientId}, success: function() {
+	    		that.collection.each(function(user){	    		
+	    			$(that.myPanelId).html(Mustache.render(that.template_body, client.toJSON()));
+		    	});    		
+	    	}});	
+		}		
 	});    
 	
 	this.routerInitialize = function(){
