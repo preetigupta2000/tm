@@ -61,10 +61,11 @@ com.fonantrix.tm.util.TemplateManager = {
 					},
 					success: function (template) {
 						//var compiledTemplate = mustache.compile(template);
+						var compiledTemplate = Handlebars.compile(template);
 						if (cache) {
 							templateManagerRef.templates[id] = template;
 						}
-						callback(template);
+						callback(compiledTemplate);
 					}
 				});
 		}

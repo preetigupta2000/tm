@@ -142,16 +142,14 @@ ClientView = new function() {
 		},
 		render : function() {
 
-			var compiled_template_body = Mustache.render(this.template_body);
-			$(this.myPanelId).html(compiled_template_body);
+			$(this.myPanelId).html(this.template_body());
 			
 			/* ----- Appending Rows  ----------- */
 			that = this;
 	    	this.collection.fetch({success: function() {
 				that.collection.each( function(client) {				
 					/* ----- Appending Rows  ----------- */
-			    	var compiled_template_body_row = Mustache.render(that.template_body_row, client.toJSON());	    	
-			    	$(that.myPanelRowId).append(compiled_template_body_row);
+			    	$(that.myPanelRowId).append(that.template_body_row(client.toJSON()));
 			    });
 	    	}});	    	
 			
@@ -163,7 +161,7 @@ ClientView = new function() {
 			that = this;
 	    	this.collection.fetch({data: {"id": clientId}, success: function() {
 	    		that.collection.each(function(user){	    		
-	    			$(that.myPanelId).html(Mustache.render(that.template_body, client.toJSON()));
+	    			$(that.myPanelId).html(that.template_body(client.toJSON()));
 		    	});    		
 	    	}});	
 		}		
