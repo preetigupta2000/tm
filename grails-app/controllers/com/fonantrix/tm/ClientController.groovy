@@ -17,19 +17,18 @@ class ClientController {
 			Client client = Client.get(params.id)
 			
 			if(client) {
-				render view: '/editClient', model: [client: client]
-				return
-				/*def data = [
-					clients: client.collect {[
-						id: it.id,
-						name : it.name,
-						description : it.description,
-						noOfProjects: it.projects.size()
-					]}
+				//render view: '/editClient', model: [client: client]
+				//return
+				def data = [
+					id: client.id,
+					name : client.name,
+					description : client.description,
+					noOfProjects: client.projects.size()
 				]
-				def json = new JsonBuilder(data.clients)
+				def json = new JsonBuilder(data)
 				render json.toString()
-				//redirect(uri: "/getTemplate", path:'templates/edit-client', modal: [client: client])*/
+				return;
+				//redirect(uri: "/getTemplate", path:'templates/edit-client', modal: [client: client])
 			} else {
 				def errorMsg = "<p>No client found with the id :<b>${params.id}</b></p>"
 				render(status: 404, text: errorMsg)
@@ -38,8 +37,8 @@ class ClientController {
 		}
 		else {
 			def allClient = Client.list()
-			render view: '/clients', model: [clients: allClient]
-			/*def data = [
+			//render view: '/clients', model: [clients: allClient]
+			def data = [
 				clients: allClient.collect {[
 					id: it.id,
 					name : it.name,
@@ -48,7 +47,7 @@ class ClientController {
 				]}
 			]
 			def json = new JsonBuilder(data.clients)
-			render json.toString()*/
+			render json.toString()
 		}
 	}
 	

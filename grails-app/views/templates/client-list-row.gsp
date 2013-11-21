@@ -13,7 +13,7 @@
  				<td data-title="Option">
 				<div class="icons">
 					<div class="circle">								
-						<a class="overlay-modal" data-response-type="json"  data-type="iframe" data-href="${contextPath}/api/client/{{id}}" data-id="{{id}}" id="editClient" data-is-template="true" data-auto-size="false" data-template-url="edit-client" data-height="330px" data-max-width="550px">
+						<a class="overlay-modal" data-type="iframe" href="${contextPath}/api/client/{{id}}" data-id="{{id}}" id="editClient" data-auto-size="false" data-template-url="edit-client" data-height="330px" data-max-width="550px">
 							<i class="fa fa-pencil"></i>
 							<p>Edit</p>
 						</a>
