@@ -51,11 +51,17 @@ ClientView = new function() {
 		    	  description	: 	$("#clientform #description").val()
 		    };
 		},
+	    updateAttributes: function() {
+		      return {
+		    	  name : $("#clientform #name").val(),
+		    	  description	: 	$("#clientform #description").val()
+		    };
+		},		
 	    editClient: function(clientId){
 	    	collection = ClientCollection.get().get(clientId);
 
 	    	collection.save(
-	    		this.newAttributes(),
+	    		this.updateAttributes(),
 	    		{
 	    			wait : true,
 	    			success: function(response) {
@@ -134,7 +140,7 @@ ClientView = new function() {
 			    event.stopPropagation();
 			    $.fancybox.close();
 			});
-			$('.modal-footer #edit').live('click', function(event){
+			$('.modal-footer #edit').die().live('click', function(event){
 				var clientId = event.currentTarget.attributes['client-id'].value;
 				Backbone.history.navigate("#/clients/edit/"+ clientId, {trigger:true});
 			});				

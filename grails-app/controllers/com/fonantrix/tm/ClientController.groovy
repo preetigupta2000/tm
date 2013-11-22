@@ -68,7 +68,8 @@ class ClientController {
 		if(params.id) {
 			def client = Client.get(params.id)
 			if(client) {
-				client.properties = params['client']
+				client.properties['name'] = params['name'] 
+				client.properties['description'] = params['description']
 				try {
 					client.save(failOnError: true)
 					//redirect(action: "show")
