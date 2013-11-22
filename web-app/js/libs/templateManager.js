@@ -60,11 +60,11 @@ com.fonantrix.tm.util.TemplateManager = {
 						path: "/templates/" + id,
 					},
 					success: function (template) {
-						//var compiledTemplate = mustache.compile(template);
+						var compiledTemplate = Handlebars.compile(template);
 						if (cache) {
-							templateManagerRef.templates[id] = template;
+							templateManagerRef.templates[id] = compiledTemplate;
 						}
-						callback(template);
+						callback(compiledTemplate);
 					}
 				});
 		}

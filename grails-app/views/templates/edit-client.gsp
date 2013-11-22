@@ -18,7 +18,7 @@
 	          <!-- Text input-->
 	          <label class="control-label" for="input01">Client Description</label>
 	          <div class="controls">
-	            <textarea id="description" name="description" placeholder="Please enter the Client Description" rows="2" value="{{description}}"></textarea>
+	            <textarea id="description" name="description" placeholder="Please enter the Client Description" rows="2">{{description}}</textarea>
 				<span class="alert alert-danger hide" id="error-description">
 					<strong>Warning!</strong> Client description is not correct.
 				</span>	            
@@ -27,6 +27,6 @@
 		</div>
 		<div class="modal-footer">
 			<a class="btn btn-default" title="Close"><i class="fa fa-times"></i> Close</a>
-			<a class="btn btn-default navigationbutton" id="edit"><i class="fa fa-save"></i> Save</a>
+			<a class="btn btn-default navigationbutton" client-id="{{id}}" id="edit"><i class="fa fa-save"></i> Save</a>
 		</div>
 	</form>		

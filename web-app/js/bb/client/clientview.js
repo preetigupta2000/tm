@@ -52,9 +52,9 @@ ClientView = new function() {
 		    };
 		},
 	    editClient: function(clientId){
-	    	this.collection = ClientCollection.get(clientId);
+	    	collection = ClientCollection.get().get(clientId);
 
-	    	collection.create(
+	    	collection.save(
 	    		this.newAttributes(),
 	    		{
 	    			wait : true,
@@ -135,23 +135,20 @@ ClientView = new function() {
 			    $.fancybox.close();
 			});
 			$('.modal-footer #edit').live('click', function(event){
-				var clientId = $(event.target).attr('data-id')
-				clientId = clientId(clientId.lastindexOf("/"));
+				var clientId = event.currentTarget.attributes['client-id'].value;
 				Backbone.history.navigate("#/clients/edit/"+ clientId, {trigger:true});
 			});				
 		},
 		render : function() {
 
-			var compiled_template_body = Mustache.render(this.template_body);
-			$(this.myPanelId).html(compiled_template_body);
+			$(this.myPanelId).html(this.template_body());
 			
 			/* ----- Appending Rows  ----------- */
 			that = this;
 	    	this.collection.fetch({success: function() {
 				that.collection.each( function(client) {				
 					/* ----- Appending Rows  ----------- */
-			    	var compiled_template_body_row = Mustache.render(that.template_body_row, client.toJSON());	    	
-			    	$(that.myPanelRowId).append(compiled_template_body_row);
+			    	$(that.myPanelRowId).append(that.template_body_row(client.toJSON()));
 			    });
 	    	}});	    	
 			
@@ -163,7 +160,7 @@ ClientView = new function() {
 			that = this;
 	    	this.collection.fetch({data: {"id": clientId}, success: function() {
 	    		that.collection.each(function(user){	    		
-	    			$(that.myPanelId).html(Mustache.render(that.template_body, client.toJSON()));
+	    			$(that.myPanelId).html(that.template_body(client.toJSON()));
 		    	});    		
 	    	}});	
 		}		

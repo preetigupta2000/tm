@@ -2,6 +2,7 @@ package com.fonantrix.tm
 
 import org.hibernate.HibernateException
 import groovy.json.JsonBuilder
+import grails.converters.JSON
 
 class ClientController {
 
@@ -67,11 +68,11 @@ class ClientController {
 		if(params.id) {
 			def client = Client.get(params.id)
 			if(client) {
+				client.properties = params['client']
 				try {
-					client.properties = params['name']
-					client.properties = params['description']
 					client.save(failOnError: true)
-					redirect(action: "show")
+					//redirect(action: "show")
+					render client as JSON
 					return
 				} catch(HibernateException e){
 					render client.errors
