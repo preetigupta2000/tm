@@ -157,7 +157,7 @@ com.fonantrix.tm.util.overlay = (function () {
 			if (isTemplate && isTemplate === "true") {
 				var templateURL = overlayModalAnchor.attr('data-template-url');
 				TemplateManager.get(templateURL, function (overlayTemplate) {
-					var html = overlayTemplate;
+					var html = overlayTemplate('');
 					setFancyBox(overlayModalAnchor, html);
 				});
 			} else {

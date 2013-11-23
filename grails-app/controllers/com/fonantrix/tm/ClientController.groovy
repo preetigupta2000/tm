@@ -89,6 +89,27 @@ class ClientController {
 		}
 	}
 	
+	def delete = {
+		if(params.id) {
+			def client = Client.get(params.id)
+			if(client) {
+				try {
+					client.delete()
+					render ""
+				} catch(HibernateException e){
+					render (text:"could not delete client",status:500)
+					return
+				}
+			} else {
+				render "Client not found."
+				return
+			}
+		}
+		else {
+			render "Please specify client id to be deletd."
+		}
+	}
+	
 	def deleteClient() {
 		if(params.id) {
 			def client = Client.get(params.id)

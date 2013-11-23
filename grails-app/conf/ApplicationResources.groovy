@@ -14,10 +14,9 @@ modules = {
 		resource url:'js/libs/highcharts.js'
 		resource url:'js/libs/exporting.js'
 		//View Templates
-		resource url:'js/libs/underscore.js'
-		resource url:'js/libs/handlebars.js'
-		
+		resource url:'js/libs/underscore.js'		
 		resource url:'js/libs/backbone.js'
+		resource url:'js/libs/handlebars.js'
 		resource url:'js/libs/jquery.fancybox.js'
 	}
 	

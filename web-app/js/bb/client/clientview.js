@@ -14,7 +14,7 @@ ClientView = new function() {
 			"client/list": "clientlist",
 			"clients/addClient": "addClient",
 			"clients/edit/:clientId": "editClient",
-			"clients/delete/:id": "deleteClient"
+			"clients/delete/:clientId": "deleteClient"
 	    },	    
 
 	    clientlist : function() {
@@ -51,17 +51,11 @@ ClientView = new function() {
 		    	  description	: 	$("#clientform #description").val()
 		    };
 		},
-	    updateAttributes: function() {
-		      return {
-		    	  name : $("#clientform #name").val(),
-		    	  description	: 	$("#clientform #description").val()
-		    };
-		},		
 	    editClient: function(clientId){
 	    	collection = ClientCollection.get().get(clientId);
 
 	    	collection.save(
-	    		this.updateAttributes(),
+	    		this.newAttributes(),
 	    		{
 	    			wait : true,
 	    			success: function(response) {
@@ -76,8 +70,20 @@ ClientView = new function() {
 	    	);
 	    },
 
-	    deleteClient: function(userId){
-	    	//ClientDeleteView.initialize(userId);
+	    deleteClient: function(clientId){
+	    	collection = ClientCollection.get().get(clientId);
+
+	    	collection.destroy({
+	    			success: function(response) {
+	    				$.fancybox.close();
+	    				Backbone.history.navigate("#/client/list", {trigger:true,replace:true});
+	    			},
+	    			error: function(error){
+	    				console.log(error.responseText);
+	    				$.fancybox.close();
+	    			},
+	    		}
+	    	);
 	    }
 	});
 
@@ -91,7 +97,8 @@ ClientView = new function() {
 		
 		events:{
 			"click #addNewClient": "createOnEnter",
-			"click #editClient": "editExistingClient"
+			"click #editClient": "editExistingClient",
+			"click #deleteClient": "deleteExistingClient"
 		},
 		
 		initialize: function() {
@@ -126,27 +133,36 @@ ClientView = new function() {
 		},
 		
 		createOnEnter: function(event)	{
-			$('[title="Close"]').live('click', function(event){
+			$(document).on('click', '[title="Close"]', function(event){
 			    event.stopPropagation();
 			    $.fancybox.close();
 			});
-			$('.modal-footer #add').live('click', function(event){
+			$(document).on('click', '.modal-footer >a#add', function(event){
 				Backbone.history.navigate("#/clients/addClient", {trigger:true});
 			});	
 		
 		},
 		editExistingClient: function(event) {
-			$('[title="Close"]').live('click', function(event){
+			$(document).on('click', '[title="Close"]', function(event){
 			    event.stopPropagation();
 			    $.fancybox.close();
 			});
-			$('.modal-footer #edit').die().live('click', function(event){
+			$('.modal-footer >a#edit').die().live('click', function(event){
 				var clientId = event.currentTarget.attributes['client-id'].value;
 				Backbone.history.navigate("#/clients/edit/"+ clientId, {trigger:true});
 			});				
 		},
+		deleteExistingClient: function(event) {
+			$(document).on('click', '[title="Close"]', function(event){
+			    event.stopPropagation();
+			    $.fancybox.close();
+			});
+			$('.modal-footer >a#delete').die().live('click', function(event){
+				var clientId = event.currentTarget.attributes['client-id'].value;
+				Backbone.history.navigate("#/clients/delete/"+ clientId, {trigger:true});
+			});				
+		}, 
 		render : function() {
-
 			$(this.myPanelId).html(this.template_body());
 			
 			/* ----- Appending Rows  ----------- */
@@ -154,7 +170,8 @@ ClientView = new function() {
 	    	this.collection.fetch({success: function() {
 				that.collection.each( function(client) {				
 					/* ----- Appending Rows  ----------- */
-			    	$(that.myPanelRowId).append(that.template_body_row(client.toJSON()));
+					$(that.myPanelRowId).append(that.template_body_row(client.toJSON()));
+
 			    });
 	    	}});	    	
 			
