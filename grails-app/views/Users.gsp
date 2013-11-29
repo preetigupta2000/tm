@@ -49,11 +49,21 @@
 												${user.email}
 											</h6>
 										</td>
-										<td data-title="Option"><a href="manageUsers/${user.id}"><i
-												class="icon-pencil" title="Edit UserInfo"></i></a> | <g:link
-												id="${user.id}" action="deleteUser">
-												<i class="icon-remove" title="Delete"></i>
-											</g:link></td>
+										<td data-title="Option"><div class="icons">
+													<div class="circle">
+														<a href="editusers/${user.id}">
+															<i class="fa fa-pencil"></i>
+															<p>Edit</p>
+														</a>
+													</div><div class="circle">
+														<g:link id="${user.id}" action="deleteUser">
+															<i class="fa fa-times"></i>
+															<p>Delete</p>
+														</g:link>
+													</div>
+													</div>
+												
+													</td>
 									</tr>
 								</g:each>
 							</g:if>

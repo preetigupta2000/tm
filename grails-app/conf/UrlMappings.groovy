@@ -12,9 +12,8 @@ class UrlMappings {
 		"/viewclient/deleteClient/$id?"(controller:"client", action="deleteClient")
 		//url fire when click on Edit project
 		"/viewclient/$action?/$id?"(resource:"client") 
-		//fire when cilck on manage client
-		
-		
+		//fire when cilck on edit client
+		"/editclient/$id?"(resource:"client")
 		//url fire when click on Edit project
 		"/client/$id/projects/$pid?"(resource:"project")  
 		
@@ -52,7 +51,7 @@ class UrlMappings {
 		
 		//fire when click on manage users
 	 	"/manageUsers/$action?/$id?"(resource:"manageUsers")  
-		
+		 "/editusers/$id?"(resource:"manageUsers")
 		 //url hit when a user is deleted.
 		"/manageUsers/deleteUser/$id?"(controller:"manageUsers", action="deleteUser")
 		

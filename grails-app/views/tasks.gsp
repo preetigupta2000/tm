@@ -92,10 +92,12 @@
 			</div>
 		</div>	
 		<!-- Modal -->
-		<div id="addTaskModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id="addTaskModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<form action="tasks" method="post">
 			<g:hiddenField id="projectid" name="projectid" value="${projectid}"/>
-				<div class="modal-header">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">Add New Task Information</h3>
 				</div>
@@ -152,6 +154,8 @@
 					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>
 					<button type="submit" class="btn btn-default navigationbutton"><i class="fa fa-ok"></i> Add</button>
 				</div>
+				 </div>
+			     </div>
 			</form>
 		</div>
 	</body>

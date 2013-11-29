@@ -46,7 +46,7 @@
 							  				<td data-title="Option">
 												<div class="icons">
 													<div class="circle">
-														<a href="viewclient/${client.id}">
+														<a href="editclient/${client.id}">
 															<i class="fa fa-pencil"></i>
 															<p>Edit</p>
 														</a>
@@ -75,8 +75,10 @@
 			</div>
 		</div>
 		<!-- Modal Client -->
-		<div id="addClientModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id="addClientModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<form id="addclient" method="post" name="addclient" action="viewclient">
+			<div class="modal-dialog">
+			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">Add New Client Information</h3>
@@ -100,6 +102,8 @@
 				<div class="modal-footer">
 					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>
 					<button class="btn btn-default navigationbutton"><i class="fa fa-ok"></i> Add</button>
+				</div>
+				</div>
 				</div>
 			</form>
 		</div>

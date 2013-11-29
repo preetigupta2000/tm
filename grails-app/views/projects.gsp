@@ -98,10 +98,12 @@
 			</div>
 		</div>	
 		<!-- Modal -->
-		<div id="addProjectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id="addProjectModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<form action="projects" method="post">
 				<g:hiddenField id="clientid" name="clientid" value="${clientid}"/>
-				<div class="modal-header">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">Add New Project Information</h3>
 				</div>
@@ -135,6 +137,8 @@
 				<div class="modal-footer">
 					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>
 					<button type="submit" class="btn btn-primary navigationbutton"><i class="fa fa-ok"></i> Add</button>
+				</div>
+				</div>
 				</div>
 			</form>
 		</div>
