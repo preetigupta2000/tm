@@ -13,15 +13,14 @@
 	type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'Week.css')}"
 	type="text/css">
-<meta name="layout" content="mainlayout" />
+<meta name="layout" content="hrlayout" />
 
 </head>
 
 <body>
 	<h1>User Time Entry</h1>
 	<div>
-		<g:textField disabled id="user" name="user" class="input-large"
-			value="${userid}"></g:textField>
+		<g:textField disabled id="user" name="user" class="input-large" value="${userid}"></g:textField>
 
 	</div>
 	<div id='calendar'></div>

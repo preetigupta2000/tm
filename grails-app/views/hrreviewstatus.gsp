@@ -1,7 +1,7 @@
 <!DOCTYPE html>   
 <html lang="en">   
 <head>  
-	<meta name="layout" content="mainlayout">
+	<meta name="layout" content="hrlayout">
 </head>  
 <body>
 	<div id="wrapper" class="clearfix">
