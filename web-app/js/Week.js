@@ -288,7 +288,7 @@ jQuery(document).ready(function() {
     	            s = start.split(':');
     	            e = end.split(':');
     	          var minsdiff=parseInt(e[0],10)*60+parseInt(e[1],10)-parseInt(s[0],10)*60-parseInt(s[1],10);
-    	          var time = String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1);
+    	          var time = String(100+Math.floor(minsdiff/60)).substr(1)+'.'+String(100+minsdiff%60).substr(1);
     	        $('#hours').val(time);
     	     });
        }

@@ -61,4 +61,9 @@ modules = {
 		resource url:'js/Week.js'
 	}
 	
+	reviewjs {
+		dependsOn "corejs"
+		resource url:'js/review.js'
+	}
+	
 }
