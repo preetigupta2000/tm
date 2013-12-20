@@ -56,6 +56,8 @@
  
  	//DOM Dependencies
  	var idTopContainer = "#bb-container";
+ 	var clsMainHeader = ".main-header";
+ 	var currentPanelId = -1;
  	var isIE = false;
  	var globalAjaxOptions = {
  		elProgress : "#loadingIcon",
@@ -70,19 +72,31 @@
  	// Config 
  	var config = {
  	};
+ 	//User Logged In Flag
+ 	var userinfo = {
+ 			loggedin: false,
+ 			name: "John Doe",
+ 			email: "(john@pearson.com)",
+ 			facebookuser: false,
+ 			admin: false
+ 	}
  			
  	//Logger
  	var logger = JSLog.Register(JSLogsSettingsConfig.loggerPrefix);
  	 	
+ 	//...
+ 	var facebookLoginCheckTimer;
+ 	var facebookLoginTries=20;
  	/*
  	 * Backbone Initialization
  	 * 
  	 * 
  	 */
 	function backbone_init_routers()	{
+ 		HomeView.routerInitialize();
 		ClientView.routerInitialize();
-		//One time loading of client View
-		ClientView.initialize();		
+ 		//One time loading of common Header View
+ 		HeaderView.initialize();
 	}
 	
  	
@@ -92,6 +106,12 @@
 			Backbone.history.navigate("#/clients/list", {trigger:true,replace:true});
 		} 		
  	}	
+ 	/*
+ 	 * Global Viewas
+ 	 * 
+ 	 * 
+ 	 */
+ 	var appHeader;
  	
  	/*
  	 * Global errorHandler 
@@ -126,7 +146,6 @@
  		    if (xhr.status == 0) { // Not connected. Verify Network
  		    	statusCode = xhr.status;
  		    	msgHeader = statusCode + " :No Network Detected!";
- 		        msgDesc = xhr.responseText;
  		    } else if (xhr.status == 401) { // UnAuthorized
  		    	Backbone.history.navigate("#/home");
  			    return true;
@@ -193,6 +212,35 @@
  			$(globalAjaxOptions.elProgress).hide();
  		});
  	}
+ 	function handleLoginSuccess(isFacebookUser) {
+ 		
+ 		//Check for double call
+ 		if(userinfo.loggedin)	{
+ 			return;
+ 		}
+ 		userinfo.facebookuser =  isFacebookUser;
+ 		userinfo.loggedin = true;
+ 		Backbone.history.navigate("#/discipline");
+ 	}
+ 	function getFBLoginStatus(){
+ 		
+ 		FB.getLoginStatus(function(response) {
+ 			  if (response.status === 'connected')  {
+ 				  clearInterval(facebookLoginCheckTimer);
+ 				  handleLoginSuccess(true);
+ 			  }
+ 			  else
+ 			  {
+ 				  facebookLoginTries--;
+ 				  if(facebookLoginTries == 0)	{
+ 					  //No more checking
+ 					  clearInterval(facebookLoginCheckTimer);
+ 					  facebookLoginTries=20;
+ 					  alert("Unable to login via Facebook. Did not recive a timely response from Facebook.")
+ 				  }
+ 			  }
+ 		});
+ 	}
 
  	
  	function muscula_log_init()	{
@@ -256,7 +304,18 @@
 	    innerHTML += "</ol>";
 	    return innerHTML;
 	}
- 	 		
+ 	function setHeaderOptions(updateHeader, showHomeLink, showBackLink, showProfileButton) {
+ 		if (updateHeader) {
+ 			if (showProfileButton != undefined) {
+ 				HeaderView.setHeaderMenu(showProfileButton);
+ 			} else {
+ 				HeaderView.setHeaderMenu();
+ 			}
+ 		}
+ 		
+ 		HeaderView.setHomeIcon(showHomeLink);
+ 		HeaderView.setBackIcon(showBackLink);
+ 	}	
  	/********************************************************/
  	/*                 ONE TIME INIT FUNCTION              */
  	/********************************************************/
@@ -330,8 +389,13 @@
  
  	return	{
  		"config":config,
+ 		"userinfo": userinfo,
+ 		"appHeader":appHeader,
+ 		"idTopContainer" : idTopContainer,
+ 		"clsMainHeader" : clsMainHeader,
  		"globalAjaxOptions" : globalAjaxOptions,
  		"isIE":isIE,
+ 		"handleLoginSuccess" : handleLoginSuccess,
  		"logger" : logger,
  		"JSLogsSettingsConfig" : JSLogsSettingsConfig,
  		"version" : version

@@ -33,6 +33,21 @@ modules = {
 		resource url:'js/libs/templateManager.js'
 		resource url:'js/libs/overlay.js'
 		
+		//Backbone home View
+		resource url:'js/bb/app/homeview.js'
+		
+		//Backbone header View
+		resource url:'js/bb/app/headerview.js'
+		
+		//authenticate - spring security
+		resource url:'js/authenticate/authenticate.js'
+		
+		//Backbone User View & Models & Collections
+		resource url:'js/bb/user/usermodel.js'
+		resource url:'js/bb/user/userAddView.js'
+		resource url:'js/bb/user/userEditView.js'
+		resource url:'js/bb/user/userDeleteView.js'
+		
 		//Backbone client View & Models & Collections
 		resource url:'js/bb/client/clientmodel.js'
 		resource url:'js/bb/client/clientcollection.js'
@@ -59,6 +74,11 @@ modules = {
 	calendarjs {
 		dependsOn "corejs"
 		resource url:'js/Week.js'
+	}
+	
+	reviewjs {
+		dependsOn "corejs"
+		resource url:'js/review.js'
 	}
 	
 }

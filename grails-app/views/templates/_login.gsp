@@ -22,7 +22,7 @@
 		  </sec:ifAllGranted>
 		  <sec:ifAllGranted roles="ROLE_COORDINATOR">
 		  	<div>
-			  	<a href="javascript:{}" onclick="#" id="projectstatus-button" class="btn btn-default">Review Project Status</a>
+			  	<a href="reviewProjectStatus" onclick="#" id="projectstatus-button" class="btn btn-default">Review Project Status</a>
 				<a href="tasks" onclick="#" id="task-button" class="btn">Manage Tasks</a>
 				<a href="projects" onclick="#" id="projects-button" class="btn btn-default">Manage Projects</a>
 				<a href="viewclient" id="Users-button" class="btn btn-default">Manage Clients</a>

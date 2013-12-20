@@ -19,6 +19,10 @@
 		<fon:stylesheet src="index"/>
 		<!-- Added Admin review status   -->
 		<r:require modules="corejs"/>
+		<!-- Added for User DashBoard Support  -->
+		<r:require modules="calendarjs"/>
+		<!-- Added for Cordinator Support -->	
+		<r:require modules="reviewjs"/>				
 		<g:layoutHead/>
 		<r:layoutResources/>
 	</head>

@@ -1,4 +1,5 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<!-- Top  Navbar for logo, brand, menu, and language selection -->
+<div class="navbar navbar-inverse navbar-fixed-top main-header" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
             <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">

@@ -7,6 +7,6 @@
 	
 	<body>
 		<div id="bb-container" class="container">
-		</div>   		
+		</div>
 	</body>
 </html>

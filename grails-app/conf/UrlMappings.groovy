@@ -92,6 +92,10 @@ class UrlMappings {
 
 	   "/adminclient"(controller:"admin")
 	   "/api/client/$id?"(resource:"client")
-	   "/getTemplate"(controller:"tmTemplate")	   
+	   "/api/user/$id?"(resource:"user")
+	   "/getTemplate"(controller:"tmTemplate")	
+		// code for Co-ordinator 
+	   "/reviewProjectStatus"(resource:"Cordinator",action:"show")
+	   "/reviewProject"(controller:"Cordinator", action:"show")   
 	}
 }

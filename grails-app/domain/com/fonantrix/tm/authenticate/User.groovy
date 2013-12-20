@@ -11,6 +11,8 @@ class User {
 	String lastName
 	String email
 	String status;
+	boolean isAdmin = false
+	boolean isFacebookUser = false
 	boolean enabled = true
 	boolean accountExpired = false
 	boolean accountLocked = false
