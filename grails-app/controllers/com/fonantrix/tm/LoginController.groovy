@@ -33,8 +33,7 @@ class LoginController {
 	def index = {
 
 		if (springSecurityService.isLoggedIn()) {
-			redirect action: 'auth'
-			//redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
+			redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
 		}
 		else {
 			redirect action: 'auth', params: params
@@ -45,18 +44,20 @@ class LoginController {
 	 * Show the login page.
 	 */
 	def auth = {
-		
-		def config = SpringSecurityUtils.securityConfig
-		if (springSecurityService.isLoggedIn()) {
-			def user = springSecurityService.getCurrentUser().getProperty("id")
-			def firstuser = User.list().get(user.toInteger() - 1).firstName
-			render view: '../home', model: [firstName: firstuser]
-			//redirect uri: config.successHandler.defaultTargetUrl
-			return
-		}
-		String view = '../home'
-		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-		render view: view, model: [postUrl: postUrl,rememberMeParameter: config.rememberMe.parameter]
+		redirect uri:"/"
+		return	
+
+//		def config = SpringSecurityUtils.securityConfig
+//
+//		if (springSecurityService.isLoggedIn()) {
+//			redirect uri: config.successHandler.defaultTargetUrl
+//			return
+//		}
+//
+//		String view = '/login'
+//		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
+//		render view: view, model: [postUrl: postUrl,
+//		                           rememberMeParameter: config.rememberMe.parameter]
 	}
 
 	/**
@@ -77,6 +78,7 @@ class LoginController {
 			// have cookie but the page is guarded with IS_AUTHENTICATED_FULLY
 			redirect action: 'full', params: params
 		}
+		render view:'/denied'		
 	}
 
 	/**
@@ -112,7 +114,8 @@ class LoginController {
 				msg = g.message(code: "springSecurity.errors.login.locked")
 			}
 			else {
-				msg = g.message(code: "springSecurity.errors.login.fail")
+				//msg = g.message(code: "springSecurity.errors.login.fail")
+				msg = "Sorry, we're not able to match your username and/or password. Please try again."
 			}
 		}
 
@@ -129,8 +132,7 @@ class LoginController {
 	 * The Ajax success redirect url.
 	 */
 	def ajaxSuccess = {
-
-		render([success: true, username: springSecurityService.authentication.name] as JSON)
+		render([success: true, isAdmin: springSecurityService.currentUser.isAdmin] as JSON)
 	}
 
 	/**
@@ -141,4 +143,10 @@ class LoginController {
 		render([error: 'access denied'] as JSON)
 	}
 	
+	/**
+	 * Facebook login success handler (in case of standalone web apps).
+	 */
+	def facebookLoginSuccess() {
+		redirect(controller:"singlepage", action: "index", params: [isFacebookLoginSuccess: true])
+	}
 }

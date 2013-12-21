@@ -33,6 +33,9 @@ modules = {
 		resource url:'js/libs/templateManager.js'
 		resource url:'js/libs/overlay.js'
 		
+		//Main Application JavaScript - init and event binding
+		resource url:'js/index.js'
+		
 		//Backbone home View
 		resource url:'js/bb/app/homeview.js'
 		

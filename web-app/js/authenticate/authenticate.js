@@ -1,6 +1,6 @@
 Authenticate = new function() {
 	var clsMainHeader = ".main-header";
-	var mainApp = com.fonantrix.tm;
+	var mainApp = com.fonantrix.application.tm;
 	var facebookAppId;
 	
 	this.authAjax = function(){

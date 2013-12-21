@@ -220,7 +220,7 @@
  		}
  		userinfo.facebookuser =  isFacebookUser;
  		userinfo.loggedin = true;
- 		Backbone.history.navigate("#/discipline");
+ 		Backbone.history.navigate("#/home");
  	}
  	function getFBLoginStatus(){
  		
@@ -391,6 +391,7 @@
  		"config":config,
  		"userinfo": userinfo,
  		"appHeader":appHeader,
+ 		"setHeaderOptions":setHeaderOptions,
  		"idTopContainer" : idTopContainer,
  		"clsMainHeader" : clsMainHeader,
  		"globalAjaxOptions" : globalAjaxOptions,

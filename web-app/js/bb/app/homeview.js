@@ -31,7 +31,7 @@ HomeView = new function() {
 	    		return true;
 	    	}
 	    	$('#message').html("The requested page does not exist.");
-	    	var logger = com.compro.application.hsc.logger;
+	    	var logger = com.compro.application.tm.logger;
 	    	logger.error("No such route defined.");
 	    	logger.error("The requested route "+ location.hash +" does not match with the specified routes.");
 	    	$('#headers').html("");
@@ -82,11 +82,11 @@ HomeView = new function() {
 			var view = this;
 			if(mainApp.userinfo.loggedin){
 				UserModel.get().fetch({
-					success: function(template){
+					success: function(model, response){
 						mainApp.userinfo.name = model.get("username");
 						mainApp.userinfo.email =  model.get("email");
 						mainApp.userinfo.admin =  model.get("isAdmin");
-						$("#loginform").html(template(), {"facebookuser":mainApp.userinfo.facebookuser,"loggedin": mainApp.userinfo.loggedin,"username": mainApp.userinfo.name,"firstname": model.get("firstName"),"lastname": model.get("lastName"), "email":  mainApp.userinfo.email, "isADMIN" : mainApp.userinfo.admin});
+						$("#loginform").html(view.template_body_home({"facebookuser":mainApp.userinfo.facebookuser,"loggedin": mainApp.userinfo.loggedin,"username": mainApp.userinfo.name,"firstname": model.get("firstName"),"lastname": model.get("lastName"), "email":  mainApp.userinfo.email, "isADMIN" : mainApp.userinfo.admin}));
 						
 						/*
 						 * 1st parameter - update header for login
