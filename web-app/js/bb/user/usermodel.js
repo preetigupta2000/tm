@@ -15,7 +15,7 @@ UserModel = new function() {
     },
     
     this.destroy = function(){
-    	modelObj.id = null;
+    	modelObj = null;
     }
 	
 	

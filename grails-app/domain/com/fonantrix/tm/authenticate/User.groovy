@@ -11,7 +11,10 @@ class User {
 	String lastName
 	String email
 	String status;
-	boolean isAdmin = false
+	boolean is_admin;
+	boolean ishr;
+	boolean is_coordinator;
+	boolean is_user;
 	boolean isFacebookUser = false
 	boolean enabled = true
 	boolean accountExpired = false

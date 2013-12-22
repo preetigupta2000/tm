@@ -36,6 +36,7 @@
 	</head>
 	<body>
 		<g:include view="layout-helpers/modals.gsp"/>
+		<g:include view="layout-helpers/facebook_init.gsp"/>
 		<div id="wrapper" class="clearfix">
 			<g:include view="layout-helpers/header.gsp"/>		
 			<g:layoutBody/>	

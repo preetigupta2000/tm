@@ -49,7 +49,8 @@ grails.project.dependency.resolution = {
 		runtime ":yui-minify-resources:0.1.5" //Provides support for minifying static resources.	
 		
         build ":tomcat:$grailsVersion"
-		compile ":spring-security-core:1.2.7.3"
+		runtime ":spring-security-core:1.2.7.3"
+		runtime ":spring-security-facebook:0.10.2"
 
         runtime ":database-migration:1.1"
 

@@ -31,7 +31,7 @@ HomeView = new function() {
 	    		return true;
 	    	}
 	    	$('#message').html("The requested page does not exist.");
-	    	var logger = com.compro.application.tm.logger;
+	    	var logger = com.fonantrix.application.tm.logger;
 	    	logger.error("No such route defined.");
 	    	logger.error("The requested route "+ location.hash +" does not match with the specified routes.");
 	    	$('#headers').html("");
@@ -85,8 +85,14 @@ HomeView = new function() {
 					success: function(model, response){
 						mainApp.userinfo.name = model.get("username");
 						mainApp.userinfo.email =  model.get("email");
-						mainApp.userinfo.admin =  model.get("isAdmin");
-						$("#loginform").html(view.template_body_home({"facebookuser":mainApp.userinfo.facebookuser,"loggedin": mainApp.userinfo.loggedin,"username": mainApp.userinfo.name,"firstname": model.get("firstName"),"lastname": model.get("lastName"), "email":  mainApp.userinfo.email, "isADMIN" : mainApp.userinfo.admin}));
+						mainApp.userinfo.admin =  model.get("is_admin");
+						mainApp.userinfo.hr =  model.get("ishr");
+						mainApp.userinfo.coordinator =  model.get("is_coordinator");
+						mainApp.userinfo.user =  model.get("is_user");
+						$("#loginform").html(view.template_body_home({"facebookuser":mainApp.userinfo.facebookuser,"loggedin": mainApp.userinfo.loggedin,"username": mainApp.userinfo.name,
+							"firstname": model.get("firstName"),"lastname": model.get("lastName"), "email":  mainApp.userinfo.email, 
+							"isADMIN" : mainApp.userinfo.admin, "isHR" : mainApp.userinfo.hr, 
+							"isCOORDINATOR" : mainApp.userinfo.coordinator, "isUSER" : mainApp.userinfo.user}));
 						
 						/*
 						 * 1st parameter - update header for login
@@ -102,7 +108,9 @@ HomeView = new function() {
 				});
 			} else {
 				$("#loginform").html(view.template_body_home({loggedin: mainApp.userinfo.loggedin, isHR: false, isCOORDINATOR:false, isADMIN:true, isUSER:false}));
-
+				if (typeof FB != 'undefined') {
+					$("button#facebook-login").show();
+				}
 		
 			}
 			this.setElement("#loginform");			
@@ -117,7 +125,7 @@ HomeView = new function() {
 			return false;
 		},
 		browseClients: function() {
-			Backbone.history.navigate("#/adminclient");
+			Backbone.history.navigate("#/client/list");
 		},
 		listUsers: function() {
 			Backbone.history.navigate("#/user");

@@ -33,7 +33,6 @@ ClientView = new function() {
 	    	collection.create(
 	    		this.newAttributes(),
 	    		{
-	    			wait : true,
 	    			success: function(response) {
 	    				$.fancybox.close();
 	    				Backbone.history.navigate("#/client/list", {trigger:true,replace:true});
@@ -52,13 +51,12 @@ ClientView = new function() {
 		    };
 		},
 	    editClient: function(clientId){
-	    	collection = ClientCollection.get().get(clientId);
+	    	model = ClientCollection.get().get(clientId);
 
-	    	collection.save(
+	    	model.save(
 	    		this.newAttributes(),
 	    		{
-	    			wait : true,
-	    			success: function(response) {
+	    			success: function(model, response) {
 	    				$.fancybox.close();
 	    				Backbone.history.navigate("#/client/list", {trigger:true,replace:true});
 	    			},
@@ -71,9 +69,9 @@ ClientView = new function() {
 	    },
 
 	    deleteClient: function(clientId){
-	    	collection = ClientCollection.get().get(clientId);
+	    	collection = ClientCollection.get();
 
-	    	collection.destroy({
+	    	collection.get(clientId).destroy({
 	    			success: function(response) {
 	    				$.fancybox.close();
 	    				Backbone.history.navigate("#/client/list", {trigger:true,replace:true});

@@ -16,9 +16,22 @@ Authenticate = new function() {
 	    		j_password:  form.j_password.value
 	    	},
 	        success: function(response) {
-				if (response.success) { 
-					mainApp.userinfo.admin =  response.isAdmin;
-					mainApp.handleLoginSuccess(false);						
+				if (response.success) {
+					mainApp.userinfo.loggedin = true;
+					mainApp.userinfo.firstName = response.model.firstName;
+					mainApp.userinfo.lastName = response.model.lastName;
+					mainApp.userinfo.name =  response.model.username;
+					mainApp.userinfo.email = response.model.email;
+					mainApp.userinfo.admin =  response.model.is_admin;
+					mainApp.userinfo.hr =  response.model.ishr;
+					mainApp.userinfo.coordinator =  response.model.is_coordinator;
+					mainApp.userinfo.user =  response.model.is_user;
+					com.fonantrix.tm.util.TemplateManager.get('/home', function(template){
+						$("#loginform").html(template({"facebookuser":mainApp.userinfo.facebookuser,"loggedin": mainApp.userinfo.loggedin,"username": mainApp.userinfo.name,
+							"firstname":  mainApp.userinfo.firstName,"lastname":  mainApp.userinfo.lastName, "email":  mainApp.userinfo.email, 
+							"isADMIN" : mainApp.userinfo.admin, "isHR" : mainApp.userinfo.hr, 
+							"isCOORDINATOR" : mainApp.userinfo.coordinator, "isUSER" : mainApp.userinfo.user}));
+					 });
 				} else {
 					mainApp.userinfo.loggedin = false;						
 					$("#loginErrorMessage").show();
@@ -74,15 +87,15 @@ Authenticate = new function() {
 	
 	function ajaxLogout() {
 		$.ajax({
-			url: com.compro.cgrails.REQUEST_CONTEXT + "/j_spring_security_logout",
+			url: com.fonantrix.tm.REQUEST_CONTEXT + "/j_spring_security_logout",
 			type: 'GET',    	
 			success: function(response) {
 				mainApp.userinfo.loggedin = false;
 				mainApp.userinfo.admin = false;
 				mainApp.userinfo.facebookuser =  false;
 				UserModel.destroy();
-				TemplateManager.get('authenticate/home', function(template){
-					var templateHTML = Mustache.render(template, {"loggedin": mainApp.userinfo.loggedin});
+				com.fonantrix.tm.util.TemplateManager.get('/home', function(template){
+					var templateHTML = template ({"loggedin": mainApp.userinfo.loggedin});
 					$("#loginform").html(templateHTML);	
 					if (typeof FB != 'undefined') {
 						$("button#facebook-login").show();
@@ -97,8 +110,6 @@ Authenticate = new function() {
 				mainApp.setHeaderOptions(true, false, false);
 			}
 		});
-		if(mainApp.soundManagerConfig.soundManagerObject!=null)
-			mainApp.soundManagerConfig.soundManagerObject.stop();
 	}
 	function isStandaloneWebApp () {
 		if(("standalone" in window.navigator) && window.navigator.standalone){
@@ -109,8 +120,8 @@ Authenticate = new function() {
 	
 	function formFacebookRedirectURI () {
   		var URI = window.location.protocol + "//" + window.location.host 
-  					+ com.compro.cgrails.REQUEST_CONTEXT + "/"
-  					+ com.compro.cgrails.SKIN + "/login/facebookLoginSuccess/"  					
+  					+ com.fonantrix.tm.REQUEST_CONTEXT + "/"
+  					+ "/login/facebookLoginSuccess/"  					
   		return URI;
   	}
 };

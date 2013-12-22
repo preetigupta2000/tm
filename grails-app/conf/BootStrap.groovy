@@ -14,28 +14,28 @@ class BootStrap {
 	
 		if (!Role.count() && !User.count()) {		
 		
-			def adminUser = new User(username: "admin@fn.com", email: "admin@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"active")
+			def adminUser = new User(username: "admin@fn.com", email: "admin@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"active", is_admin:true, is_facebook_user:false, is_coordinator:false, ishr:false, is_user:false)
 			adminUser.save(flush: true)
 		
 			def adminRole = new Role(authority: 'ROLE_ADMIN').save(failOnError: true, flush: true)
 			UserRole.create adminUser, adminRole, true
 			
 		
-			def hrUser = new User(username: "hr@fn.com", email: "hr@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"active")			
+			def hrUser = new User(username: "hr@fn.com", email: "hr@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"active", is_admin:false, is_facebook_user:false, is_coordinator:false, ishr:true, is_user:false)			
 			hrUser.save(flush: true)
 		
 			def hrRole = new Role(authority: 'ROLE_HR').save(failOnError: true, flush: true)
 			UserRole.create hrUser, hrRole, true
 			
 		
-			def user = new User(username: "user@fn.com", email: "user@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"block")
+			def user = new User(username: "user@fn.com", email: "user@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"block", is_admin:false, is_facebook_user:false, is_coordinator:false, ishr:false, is_user:true)
 			user.save(flush: true)
 			
 			def userRole = new Role(authority: 'ROLE_USER').save(failOnError: true, flush: true)
 			UserRole.create user, userRole, true
 			
 			
-			def cordUser = new User(username: "cordinator@fn.com", email: "cordinator@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"active")
+			def cordUser = new User(username: "cordinator@fn.com", email: "cordinator@fn.com", firstName:"fname",lastName:"lname",password: "password",status:"active", is_admin:false, is_facebook_user:false, is_coordinator:true, ishr:false, is_user:false)
 			cordUser.save(flush: true)
 	
 			def coordinatorRole = new Role(authority: 'ROLE_COORDINATOR').save(failOnError: true, flush: true)	

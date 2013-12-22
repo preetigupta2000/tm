@@ -102,3 +102,8 @@ grails.plugins.springsecurity.authority.className = 'com.fonantrix.tm.authentica
 grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
 
 grails.plugins.springsecurity.logout.afterLogoutUrl = '/home'
+
+grails.plugins.springsecurity.facebook.domain.classname='com.fonantrix.tm.authenticate.FacebookUser'
+grails.plugins.springsecurity.facebook.appId='443347489063227'
+grails.plugins.springsecurity.facebook.secret='a1432dcbc23c06047f0d826d520e6c21'
+grails.plugins.springsecurity.facebook.filter.type='transparent'

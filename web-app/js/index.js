@@ -75,10 +75,15 @@
  	//User Logged In Flag
  	var userinfo = {
  			loggedin: false,
+ 			firstname: "John",
+ 			lastname: "Doe",
  			name: "John Doe",
  			email: "(john@pearson.com)",
  			facebookuser: false,
- 			admin: false
+ 			admin: false,
+ 			hr: false,
+ 			coordinator: false,
+ 			user: false
  	}
  			
  	//Logger
@@ -102,9 +107,9 @@
  	
  	function backbone_start_navigation()	{
  		Backbone.history.start();
- 		if (location.href.indexOf("#") == -1) { //Normal App startup
-			Backbone.history.navigate("#/clients/list", {trigger:true,replace:true});
-		} 		
+ 		if (location.href.indexOf("?isFacebookLoginSuccess=") != -1) { //Facebook login success in iOS Home Screen Apps
+ 			facebookLoginCheckTimer=setInterval(function(){getFBLoginStatus()}, 500);
+ 		}	
  	}	
  	/*
  	 * Global Viewas
@@ -213,14 +218,13 @@
  		});
  	}
  	function handleLoginSuccess(isFacebookUser) {
- 		
- 		//Check for double call
- 		if(userinfo.loggedin)	{
- 			return;
- 		}
- 		userinfo.facebookuser =  isFacebookUser;
- 		userinfo.loggedin = true;
- 		Backbone.history.navigate("#/home");
+		TemplateManager.get('/home', function(template){
+			var templateHTML = template ({"loggedin": mainApp.userinfo.loggedin});
+			$("#loginform").html(templateHTML);	
+			if (typeof FB != 'undefined') {
+				$("button#facebook-login").show();
+			}					
+	 	 });
  	}
  	function getFBLoginStatus(){
  		
@@ -314,7 +318,7 @@
  		}
  		
  		HeaderView.setHomeIcon(showHomeLink);
- 		HeaderView.setBackIcon(showBackLink);
+ 		//HeaderView.setBackIcon(showBackLink);
  	}	
  	/********************************************************/
  	/*                 ONE TIME INIT FUNCTION              */

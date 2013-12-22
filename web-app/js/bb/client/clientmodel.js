@@ -34,7 +34,10 @@ ClientModel = new function() {
 	            } else {
 	            	return errors;
 	            }
-	        },       
+	        },
+		    clear: function() {
+			      this.destroy();
+		    },	        
 			initialize: function(){
 				// If we specify error callback in set or save, this event will not be fired.
 	            this.bind("error", function(model, error){
