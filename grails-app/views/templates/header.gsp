@@ -1,20 +1,20 @@
 <div class="container">
 	<div class="navbar-header">
-           <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-           </button>
-			<div id="back" class="brand-button">
-				<a href="#" class="pull-left" title="Back"><i class="fa fa-arrow-circle-left"></i></a>
-			</div>           
-           <a href="#" class="navbar-brand">
-           	<!--  >r:img dir="images" class="img-responsive" file="fonantrix-logo.png" alt="Logo" id="f-logo"/-->
-           </a>
+		<button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+		<div class="navbar-brand">
+			<r:img dir="images" class="img-responsive" file="fonantrix-logo.png" title="Fonantrix" alt="Logo" id="f-logo"/>
+		</div>
     </div>
 	<div class="collapse navbar-collapse">
            <ul class="nav navbar-nav navbar-right">
+			<li id="back">
+				<a href="#" class="pull-left" title="Back"><i class="fa fa-arrow-circle-left"></i></a>
+			</li>           
 			<li id="admin-panel">
 				<a href="javascript:void(0);" title="Click to see logs." class="">
 					<i class="fa fa-legal"></i>
