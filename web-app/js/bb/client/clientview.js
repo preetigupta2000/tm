@@ -52,9 +52,8 @@ ClientView = new function() {
 		},
 	    editClient: function(clientId){
 	    	model = ClientCollection.get().get(clientId);
-	    	model.set(this.newAttributes());
 	    	model.save(
-	    		null,
+    			this.newAttributes(),
 	    		{
 	    			success: function(model, response) {
 	    				$.fancybox.close();
