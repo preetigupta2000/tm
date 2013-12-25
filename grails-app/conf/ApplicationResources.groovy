@@ -10,6 +10,8 @@ modules = {
 		resource url:'js/libs/bootstrap-collapse.js'
 		resource url:'js/libs/bootstrap-dropdown.js'
 		resource url:'js/libs/bootstrap-modal.js'
+		resource url:'js/libs/bootstrap-alert.js'
+		resource url:'js/libs/bootstrap-tab.js'
 		resource url:'js/libs/jquery.validate.js'
 		resource url:'js/libs/highcharts.js'
 		resource url:'js/libs/exporting.js'

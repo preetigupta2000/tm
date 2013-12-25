@@ -53,9 +53,9 @@ HeaderView = new function() {
 		},
 		
 		// Updating method name from "render" to "custiomRender" for logging.
-		customRender : function() {
+		render : function() {
 			
-			var compiled_template_header = Mustache.render(this.template_header);
+			var compiled_template_header = this.template_header();
 			$(clsMainHeader).html(compiled_template_header);
 			
 			
@@ -103,11 +103,7 @@ HeaderView = new function() {
 					$(".navbar-inner .loggedin").css("display", "none");
 				}				
 			}
-			if(mainApp.userinfo.admin){
-				$("#admin-panel").css("display", "block");
-			} else{
-				$("#admin-panel").css("display", "none");
-			}
+			$("#admin-panel").css("display", "block");
 				
 		},
 		

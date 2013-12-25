@@ -73,7 +73,15 @@ class ClientController {
 				try {
 					client.save(failOnError: true)
 					//redirect(action: "show")
-					render client as JSON
+					//render client as JSON
+					def data = [
+						id: client.id,
+						name : client.name,
+						description : client.description,
+						noOfProjects: client.projects.size()
+					]
+					def json = new JsonBuilder(data)
+					render json.toString()
 					return
 				} catch(HibernateException e){
 					render client.errors

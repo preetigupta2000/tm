@@ -104,13 +104,29 @@
  		HeaderView.initialize();
 	}
 	
+ 	function updateUser(){
+ 		UserModel.get().fetch({
+			success: function(model, response){
+				if(response.error){
+					userinfo.loggedin = false;
+				} else {
+					userinfo.loggedin = true;
+					userinfo.name = model.get("username");
+					userinfo.email =  model.get("email");
+					userinfo.admin =  model.get("isAdmin");
+					userinfo.facebookuser = model.get("isFacebookUser");
+				}
+			},
+			async:false
+		});
+ 	}	
  	
  	function backbone_start_navigation()	{
  		Backbone.history.start();
  		if (location.href.indexOf("?isFacebookLoginSuccess=") != -1) { //Facebook login success in iOS Home Screen Apps
  			facebookLoginCheckTimer=setInterval(function(){getFBLoginStatus()}, 500);
  		}	
- 	}	
+ 	}
  	/*
  	 * Global Viewas
  	 * 
@@ -318,7 +334,7 @@
  		}
  		
  		HeaderView.setHomeIcon(showHomeLink);
- 		//HeaderView.setBackIcon(showBackLink);
+ 		HeaderView.setBackIcon(showBackLink);
  	}	
  	/********************************************************/
  	/*                 ONE TIME INIT FUNCTION              */
@@ -333,6 +349,8 @@
  				
  				logger.info("global error handlers initialization");
  				ajax_init_global_handlers();
+ 				//updating user state whenever page is refreshed. 
+ 				updateUser();
  				
  				logger.info("backbone routers initialization");
  				backbone_init_routers();

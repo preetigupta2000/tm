@@ -52,9 +52,9 @@ ClientView = new function() {
 		},
 	    editClient: function(clientId){
 	    	model = ClientCollection.get().get(clientId);
-
+	    	model.set(this.newAttributes());
 	    	model.save(
-	    		this.newAttributes(),
+	    		null,
 	    		{
 	    			success: function(model, response) {
 	    				$.fancybox.close();
@@ -64,7 +64,7 @@ ClientView = new function() {
 	    				console.log(error.responseText);
 	    				$.fancybox.close();
 	    			},
-	    		}
+	    		}	    		
 	    	);
 	    },
 
