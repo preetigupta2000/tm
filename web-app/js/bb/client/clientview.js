@@ -6,7 +6,8 @@ ClientView = new function() {
 	/* -------------------------------------------------*/
 
 	this.initialize = function(){
-		listbbclientView = new View();
+		if (listbbclientView == null)
+			listbbclientView = new View();
 	};
 	
 	var Router = Backbone.Router.extend({

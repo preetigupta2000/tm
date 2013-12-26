@@ -96,6 +96,7 @@ class UrlMappings {
 	   "/api/client/$id?"(resource:"client")
 	   "/api/client"(resource:"client")
 	   "/api/user/$id?"(resource:"user")
+	   "/api/project"(resource:"project")
 
 		// code for Co-ordinator 
 	   "/reviewProjectStatus"(resource:"Cordinator",action:"show")

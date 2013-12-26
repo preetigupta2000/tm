@@ -100,6 +100,7 @@
 	function backbone_init_routers()	{
  		HomeView.routerInitialize();
 		ClientView.routerInitialize();
+		ProjectView.routerInitialize();
  		//One time loading of common Header View
  		HeaderView.initialize();
 	}

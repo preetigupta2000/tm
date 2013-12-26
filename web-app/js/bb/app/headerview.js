@@ -20,6 +20,9 @@ HeaderView = new function() {
 		headerbbView.setHomeIcon(show);
 	};
 	
+	this.setBackIcon = function(show) {
+		headerbbView.setBackIcon(show); 
+	};
 	
 	var View = Backbone.View.extend({
 		

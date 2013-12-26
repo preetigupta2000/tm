@@ -63,6 +63,11 @@ modules = {
 		resource url:'js/bb/client/clientmodel.js'
 		resource url:'js/bb/client/clientcollection.js'
 		resource url:'js/bb/client/clientview.js'
+		
+		//Backbone client View & Models & Collections
+		resource url:'js/bb/project/projectmodel.js'
+		resource url:'js/bb/project/projectcollection.js'
+		resource url:'js/bb/project/projectview.js'
 	}
 
 	

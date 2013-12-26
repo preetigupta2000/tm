@@ -1,44 +1,87 @@
 ProjectView = new function() {
 
 	/* ----- Global View Variables ----------------------*/
-	var listbbclientView = null;
+	var listbbprojectView = null;
 	var tmNameSpace = com.fonantrix.tm.util;
 	/* -------------------------------------------------*/
 
 	this.initialize = function(){
-		if (listbbclientView == null)
-			listbbclientView = new View();
+		if (listbbprojectView == null)
+			listbbprojectView = new View();
 	};
 	
 	var Router = Backbone.Router.extend({
 		routes: {
 			"project/list": "projectlist",
-			"projects/addClient": "addProject",
-			"projects/edit/:clientId": "editProject",
+			"projects/addProject": "addProject",
+			"projects/edit/:projectId": "editProject",
 			"projects/delete/:id": "deleteProject"
 	    },	    
 
 	    projectlist : function() {
-			if (listbbclientView == null) {  //First OR After Browser Refresh
+			if (listbbprojectView == null) {  //First OR After Browser Refresh
 				
-				listbbclientView = new View();
+				listbbprojectView = new View();
 				
 			} else {  	 //If the View has been created (bbView) never re-create
 				
-				listbbclientView.render();
+				listbbprojectView.render();
 			}
 	    },
 	    
 	    addProject: function(){
-	    	//ClientAddView.initialize();
+	    	collection = ProjectCollection.get()
+	    	collection.create(
+	    		this.newAttributes(),
+	    		{
+	    			success: function(response) {
+	    				$.fancybox.close();
+	    				Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
+	    			},
+	    			error: function(error){
+	    				console.log(error.responseText);
+	    				$.fancybox.close();
+	    			},
+	    		}
+	    	);
 	    },
-
+	    newAttributes: function() {
+		      return {
+		    	  name : $("#projectform #name").val(),
+		    	  description	: 	$("#projectform #description").val()
+		    };
+		},
 	    editProject: function(projectId){
-	    	//ClientEditView.initialize(projectId);
+	    	model = ProjectCollection.get().get(projectId);
+	    	model.save(
+    			this.newAttributes(),
+	    		{
+	    			success: function(model, response) {
+	    				$.fancybox.close();
+	    				Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
+	    			},
+	    			error: function(error){
+	    				console.log(error.responseText);
+	    				$.fancybox.close();
+	    			},
+	    		}	    		
+	    	);
 	    },
 
 	    deleteProject: function(projectId){
-	    	//ClientDeleteView.initialize(projectId);
+	    	collection = ProjectCollection.get();
+
+	    	collection.get(projectId).destroy({
+	    			success: function(response) {
+	    				$.fancybox.close();
+	    				Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
+	    			},
+	    			error: function(error){
+	    				console.log(error.responseText);
+	    				$.fancybox.close();
+	    			},
+	    		}
+	    	);
 	    }
 	});
 
@@ -82,13 +125,38 @@ ProjectView = new function() {
 		},
 		
 		loadCollection: function()	{
-			this.collection = ClientCollection.get();	
+			this.collection = ProjectCollection.get();	
 		},
 		
 		createOnEnter: function()	{
+			$(document).on('click', '[title="Close"]', function(event){
+			    event.stopPropagation();
+			    $.fancybox.close();
+			});
+			$(document).on('click', '.modal-footer >a#add', function(event){
 			Backbone.history.navigate("#/projects/addProject", {trigger:true});
+			});	
 		},
-		
+		editExistingProject: function(event) {
+			$(document).on('click', '[title="Close"]', function(event){
+			    event.stopPropagation();
+			    $.fancybox.close();
+			});
+			$('.modal-footer >a#edit').die().live('click', function(event){
+				var projectId = event.currentTarget.attributes['project-id'].value;
+				Backbone.history.navigate("#/projects/edit/"+ projectId, {trigger:true});
+			});				
+		},
+		deleteExistingProject: function(event) {
+			$(document).on('click', '[title="Close"]', function(event){
+			    event.stopPropagation();
+			    $.fancybox.close();
+			});
+			$('.modal-footer >a#delete').die().live('click', function(event){
+				var projectId = event.currentTarget.attributes['project-id'].value;
+				Backbone.history.navigate("#/projects/delete/"+ projectId, {trigger:true});
+			});				
+		}, 
 		render : function() {
 
 			var compiled_template_body = Mustache.render(this.template_body);
@@ -97,9 +165,9 @@ ProjectView = new function() {
 			/* ----- Appending Rows  ----------- */
 			that = this;
 	    	this.collection.fetch({success: function() {
-				that.collection.each( function(client) {				
+				that.collection.each( function(project) {				
 					/* ----- Appending Rows  ----------- */
-			    	var compiled_template_body_row = Mustache.render(that.template_body_row, client.toJSON());	    	
+			    	var compiled_template_body_row = Mustache.render(that.template_body_row, project.toJSON());	    	
 			    	$(that.myPanelRowId).append(compiled_template_body_row);
 			    });
 	    	}});	    	

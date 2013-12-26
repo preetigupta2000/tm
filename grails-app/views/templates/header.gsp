@@ -20,7 +20,7 @@
 					<i class="fa fa-legal"></i>
 				</a>
 			</li>
-			<li><a href="${request.contextPath}/home"><i class="fa fa-home"></i></a></li>
+			<li><a href="javascript:void(0);" id="home"><i class="fa fa-home"></i></a></li>
 			<li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-cog"></i> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -32,7 +32,7 @@
                 </ul>
 			</li>
 			<li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-			<sec:ifLoggedIn><li><a href="${request.contextPath}/logout/index">Logout</a></li></sec:ifLoggedIn>
+			<sec:ifLoggedIn><li><a href="javascript:void(0);" id="logout">Logout</a></li></sec:ifLoggedIn>
            </ul>
 	</div><!--/.nav-collapse -->
 </div>

@@ -52,7 +52,7 @@ HomeView = new function() {
 			"click #logout-button"			:	"userlogout",
 			"click #users-button"			:	"browseUser",
 			"click #status-button"			:	"browseStatus",
-			"click #client-button"			:	"browseClients",
+			"click #clients-button"			:	"browseClients",
 			"click #projects-button"		:	"browseProjects",
 			"click #task-button"			:	"browseTasks",
 			"click #projectstatus-button"	:	"browseProjectStatus",
@@ -127,6 +127,9 @@ HomeView = new function() {
 		browseClients: function() {
 			Backbone.history.navigate("#/client/list");
 		},
+		browseProjects: function() {
+			Backbone.history.navigate("#/project/list");
+		},		
 		listUsers: function() {
 			Backbone.history.navigate("#/user");
 		}		

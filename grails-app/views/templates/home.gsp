@@ -36,7 +36,8 @@
 					<button id="status-button" class="btn btn-default">Review Status</button>	     				
 					<button id="task-button" class="btn btn-default">Manage Tasks</button> 
 					<button id="projects-button" class="btn btn-default">Manage Projects</button> 
-					<button id="client-button" class="btn btn-default">Manage Clients</button> 
+					<button id="clients-button" class="btn btn-default">Manage Clients</button>
+					<button id="users-button" class="btn btn-default">Manage Users</button>  
 				</div>
 				{{/isADMIN}}
 				{{#isUSER}}
