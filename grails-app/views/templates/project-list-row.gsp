@@ -17,13 +17,13 @@
 		<td data-title="Option">
 			<div class="icons">
 				<div class="circle">							
-					<a class="overlay-modal"data-response-type="json" href="${contextPath}/api/client/{{clientid}}/project/{{id}}" id="editProject" data-auto-size="false" data-template-url="edit-client" data-height="330px" data-max-width="550px">
+					<a class="overlay-modal"data-response-type="json" href="${contextPath}/api/client/{{clientid}}/project/{{id}}" id="editProject" data-auto-size="false" data-template-url="edit-project" data-height="330px" data-max-width="550px">
 						<i class="fa fa-pencil"></i>
 						<p>Edit</p>
 					</a>
 				</div>
 				<div class="circle">
-					<a class="overlay-modal" data-response-type="json" href="${contextPath}/api/client/{{clientid}}/project/{{id}}" id="deleteProject" data-auto-size="false" data-template-url="delete-client" data-height="330px" data-max-width="550px">					
+					<a class="overlay-modal" data-response-type="json" href="${contextPath}/api/client/{{clientid}}/project/{{id}}" id="deleteProject" data-auto-size="false" data-template-url="delete-project" data-height="330px" data-max-width="550px">					
 						<i class="fa fa-times"></i>
 						<p>Delete</p>
 					</a>

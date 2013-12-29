@@ -1,26 +1,26 @@
 <!-- Modal Client -->
-	<form id="projectform" class="form-horizontal" method="post" name="projectform" action="#">
+	<form id="clientform" class="form-horizontal" method="post" name="clientform" action="#">
 		<div class="modal-header">
-			<h3 id="myModalLabel">Edit Project Information ({{id}})</h3>
+			<h3 id="myModalLabel">Edit Client Information ({{id}})</h3>
 		</div>
 		<div class="modal-body">
 			<div class="form-group">
 	          <!-- Text input-->     
-	          <label class="control-label" for="input01">Project Name</label>
+	          <label class="control-label" for="input01">Client Name</label>
 	          <div class="controls">
-	          	<input id="name" placeholder="Project name" name="name" class="input" value="{{name}}" required/>
+	          	<input id="name" placeholder="Client name" name="name" class="input" value="{{name}}" required/>
 				<span class="alert alert-danger hide" id="error-name">
-					<strong>Warning!</strong> Project name is not correct.
+					<strong>Warning!</strong> Client name is not correct.
 				</span>	          	
 	          </div>
 	        </div>
 	    	<div class="form-group">
 	          <!-- Text input-->
-	          <label class="control-label" for="input01">Project Description</label>
+	          <label class="control-label" for="input01">Client Description</label>
 	          <div class="controls">
-	            <textarea id="description" name="description" placeholder="Please enter the Project Description" rows="2">{{description}}</textarea>
+	            <textarea id="description" name="description" placeholder="Please enter the Client Description" rows="2">{{description}}</textarea>
 				<span class="alert alert-danger hide" id="error-description">
-					<strong>Warning!</strong> Project description is not correct.
+					<strong>Warning!</strong> Client description is not correct.
 				</span>	            
 	           </div>
 	        </div>

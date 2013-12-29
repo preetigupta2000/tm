@@ -147,15 +147,20 @@ class ProjectController {
 			def clientId = params.clientid
 			def mode = params.mode
 			if(project) {
+				project.properties['name'] = params['name'] 
+				project.properties['description'] = params['description']
 				try {
-					project.properties = params['name']
-					project.properties = params['description']
 					project.save(failOnError: true)
-					if (mode==null) {
-						redirect action: 'show', id: clientId
-					} else {
-						redirect action: 'show',id: clientId
-					}
+					def data = [
+							id: project.id,
+							name : project.name,
+							description : project.description,
+							noOfTasks: project.tasks.size(),
+							clientid: project.client.id,
+							clientname: project.client.name
+					]
+					def json = new JsonBuilder(data)
+					render json.toString()
 					return
 				} catch(HibernateException e){
 					render project.errors

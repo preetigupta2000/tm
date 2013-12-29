@@ -61,8 +61,8 @@ ProjectView = new function() {
 		    	  description	: 	$("#projectform #description").val()
 		    };
 		},
-	    editProject: function(projectId){
-	    	model = ProjectCollection.get().get(projectId);
+	    editProject: function(clientId, projectId){
+	    	model = ProjectCollection.get(clientId).get(projectId);
 	    	model.save(
     			this.newAttributes(),
 	    		{
@@ -78,8 +78,8 @@ ProjectView = new function() {
 	    	);
 	    },
 
-	    deleteProject: function(projectId){
-	    	collection = ProjectCollection.get();
+	    deleteProject: function(clientId, projectId){
+	    	collection = ProjectCollection.get(clientId);
 
 	    	collection.get(projectId).destroy({
 	    			success: function(response) {
@@ -160,7 +160,7 @@ ProjectView = new function() {
 			$('.modal-footer >a#edit').die().live('click', function(event){
 				var projectId = event.currentTarget.attributes['project-id'].value;
 				var clientId = event.currentTarget.attributes['client-id'].value;
-				Backbone.history.navigate("#/client/" + "project/"+ projectId, {trigger:true});
+				Backbone.history.navigate("#/client/" + clientId + "/project/"+ projectId, {trigger:true});
 			});				
 		},
 		deleteExistingProject: function(event) {

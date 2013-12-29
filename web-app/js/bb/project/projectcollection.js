@@ -1,37 +1,22 @@
 //Backbone Collection
 ProjectCollection = new function() {
 	
-	var collectionMap = new Object;
+	var collection = null;
 	
 	var Collection = Backbone.Collection.extend({
-		model: ProjectModel.get(),
-		initialize: function(models, options){
+		model: ClientModel.get(),
+		initialize: function(){
 			this.url= com.fonantrix.tm.REQUEST_CONTEXT + "/api/project";
 		},
-		comparator: function(project) {
-			return project.get('id');
-		}        
+		comparator: function(client) {
+			return client.get('id');
+		}
 	});
 
- 	  this.get = function(clientId, projectid){ // Each backbone collection needs to define "get()" function
- 		  
- 		  var urlGET = com.fonantrix.tm.REQUEST_CONTEXT + "/api/";
- 		  
- 		  if (typeof clientId != "undefined") {
- 			  urlGET =  urlGET + "/client/" + clientId ;
- 		  } 	
- 		  if (typeof projectid != "undefined") {
- 			  urlGET =  urlGET + "/project/" +  projectid ;
- 		  } 
- 		  
- 		 if (typeof clientId == "undefined" && typeof projectid == "undefined") {
- 		 	urlGET = urlGET + "project/";
- 		 }
- 		 
-          if (collectionMap[clientId] == null) {
-        	  collectionMap[clientId] = new Collection();
-        	  collectionMap[clientId].url = urlGET;
-          }
-		  return collectionMap[clientId];
-	  };
+	this.get = function(){
+		if (this.collection == null) {
+			this.collection = new Collection();
+		}
+		return this.collection;
+	};
 };

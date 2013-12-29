@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
         </button>
 		<div class="navbar-brand">
-			<r:img dir="images" class="img-responsive" file="fonantrix-logo.png" title="Fonantrix" alt="Logo" id="f-logo"/>
+			<!-- r:img dir="images" class="img-responsive" file="fonantrix-logo.png" title="Fonantrix" alt="Logo" id="f-logo"/-->
 		</div>
     </div>
 	<div class="collapse navbar-collapse">
