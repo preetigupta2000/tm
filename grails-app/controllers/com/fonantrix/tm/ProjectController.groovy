@@ -1,6 +1,9 @@
 package com.fonantrix.tm
 import com.fonantrix.tm.authenticate.User
 
+import groovy.json.JsonBuilder
+import grails.converters.JSON
+
 import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.hibernate.HibernateException
@@ -21,55 +24,77 @@ class ProjectController {
 
 		def clientid = params.id
 		def projectid = params.pid
-		if(clientid && projectid) {
-			if (params.pid != null ) {
-				Client client = Client.get(clientid)
-				Project project = Project.findByClientAndId(client , projectid)
-				if(project) {
-					render view: '/editProject', model: [project: project, clientid:clientid]
-					return
-				}
-				else {
-					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
-					render(status: 404, text: errorMsg)
-					return
-				}
-			} else {
-				Project project = Project.get(projectid)
-				Client[] clients = Client.list()
-				if (project) {
-					render view: '/projects', model: [project: project, clientList:clients]
-					return
-				}
-				else {
-					def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
-					render(status: 404, text: errorMsg)
-					return
-				}
+		if(clientid !=null && projectid !=null) {
+			Client client = Client.get(clientid)
+			Project project = Project.findByClientAndId(client, projectid)
+			if(project) {
+				//render view: '/editProject', model: [project: project, clientid:clientid]
+				def data = [
+					clientid: clientid,
+					clientname: client.name,
+					id: projectid,
+					name : project.name,
+					description : project.description,
+					noOfTasks: project.tasks.size()
+				]
+				def json = new JsonBuilder(data)
+				render json.toString()
+				return
 			}
-		} else {
-
-			if(clientid) {
-				Client client = Client.get(clientid)
-				def allProject
-
-				if (client) {
-					allProject = Project.findAllByClient(client)
-				}
-				render view: '/projects', model: [projects: allProject, clientid:clientid]
-			} else {
-
-				Client[] clients = Client.list()
-				List projectlist=new ArrayList();
-				if (clients) {
-					clients.eachWithIndex { item, index ->
-						List project= Project.findAllByClient(item)
-						project.eachWithIndex {eachproject,indexes ->
-							projectlist.add(eachproject);
-						}
+			else {
+				def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
+				render(status: 404, text: errorMsg)
+				return
+			}
+		} else if (clientid !=null && projectid ==null) {
+			Client client = Client.get(clientid)
+			Project allClientProjects = Project.findByClient(client)
+			if (project) {
+				//render view: '/projects', model: [project: project, clientList:clients]
+				def data = [
+					projects: allClientProjects.collect {[
+						clientid: clientid,
+						clientname: client.name,
+						id: it.id,
+						name : it.name,
+						description : it.description,
+						noOfTasks: it.tasks.size()
+					]}
+				]
+				def json = new JsonBuilder(data.projects)
+				render json.toString()
+				return
+			}
+			else {
+				def errorMsg = "<h2>No project found with the client id :<b>${params.id}</b> and project id :<b>${params.clientId}</b></h2>"
+				render(status: 404, text: errorMsg)
+				return
+			}
+		} else if (clientid==null && projectid ==null) {
+			Project[] allProjects = Project.list()
+			//List projectlist = new ArrayList();
+			if (allProjects) {
+				/*clients.eachWithIndex { item, index ->
+					List project= Project.findAllByClient(item)
+					project.eachWithIndex {eachproject,indexes ->
+						projectlist.add(eachproject);
 					}
-					render view: '/projects', model: [projects: projectlist, clientList:clients]
 				}
+				render view: '/projects', model: [projects: projectlist, clientList:clients]*/
+				def data = [
+					projects: allProjects.collect {[
+						id: it.id,
+						name : it.name,
+						description : it.description,
+						noOfTasks: it.tasks.size(),
+						clientid: it.client.id,
+						clientname: it.client.name
+					]}
+				]
+				def json = new JsonBuilder(data.projects)
+				render json.toString()
+				return
+				
 			}
 		}//else end
 	}

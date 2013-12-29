@@ -9,29 +9,29 @@
 					</div>
 				</a>
 				<span class="line-right"></span>
-				<g:if test="${clientid != null}">
+				{{#if clientid}}
 					<a href="#/client/list">Manage Client</a><span class="line-right"></span>
-				</g:if>								
+				{{/if}}							
  					Manage Projects
 			</span>
 			<span class="pull-right">
 				<a href="#" onclick="window.history.back();">Return</a>
-				<a id="addNewProject" role="button" class="btn btn-default btn-sm navigationbutton overlay-modal"  data-is-template="true" data-auto-size="false" data-template-url="add-project" data-height="330px" data-max-width="550px">
+				<a id="addNewProject" role="button" class="btn btn-default btn-sm navigationbutton overlay-modal" data-init-fn="com.fonantrix.application.tm.getClientJson();" data-type="json" data-is-template="true" data-auto-size="false" data-template-url="add-project" data-height="330px" data-max-width="550px">
 					<i class="fa fa-plus"></i>  Add New Project
 				</a>
 			</span>
 		</div>			
 	</div>
 </div>
-<g:if test="${clientid != null}">
+{{#if clientid}}
 	<div class="row">
 		<div class="col-md-12">
 			<div class="well">
-				Client Id : ${clientid}
+				Client Id : {{clientid}}
 			</div>
 		</div>
 	</div>
-</g:if>
+{{/if}}
 <div class="row">
 	<div class="col-md-12">
 		<!-- changes made by sunil -->	

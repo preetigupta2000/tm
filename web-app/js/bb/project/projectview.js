@@ -2,30 +2,40 @@ ProjectView = new function() {
 
 	/* ----- Global View Variables ----------------------*/
 	var listbbprojectView = null;
+	
 	var tmNameSpace = com.fonantrix.tm.util;
 	/* -------------------------------------------------*/
 
 	this.initialize = function(){
-		if (listbbprojectView == null)
-			listbbprojectView = new View();
 	};
 	
 	var Router = Backbone.Router.extend({
 		routes: {
-			"project/list": "projectlist",
-			"projects/addProject": "addProject",
-			"projects/edit/:projectId": "editProject",
-			"projects/delete/:id": "deleteProject"
+			'project/list':'projectBrowse',
+			'client/:clientId/project/list':'projectlist',
+			'client/:clientId/project/addProject': 'addProject',
+			'client/:clientId/project/:projectId': 'editProject',
+			'client/:clientId/project/delete/:id': 'deleteProject'
 	    },	    
-
-	    projectlist : function() {
+	    projectBrowse : function() {
+			if (listbbprojectView == null) {  //First OR After Browser Refresh
+				listbbprojectView = new View();
+			} else {  	 //If the View has been created (bbView) never re-create
+				listbbprojectView.loadCollection();
+			}
+	    },
+	    projectlist : function(clientId,projectId) {
 			if (listbbprojectView == null) {  //First OR After Browser Refresh
 				
-				listbbprojectView = new View();
+				listbbprojectView = new View({clientId:clientId,projectId:projectId});
 				
 			} else {  	 //If the View has been created (bbView) never re-create
-				
-				listbbprojectView.render();
+				listbbprojectView.loadCollection(clientId,projectId);
+				listbbprojectView.collection.fetch({
+					success: function(){
+						listbbprojectView.render();
+					}
+				});
 			}
 	    },
 	    
@@ -94,7 +104,9 @@ ProjectView = new function() {
 		/*------------------------------------------------------*/
 		
 		events:{
-			"click #addNewProject": "createOnEnter"
+			"click #addNewProject": "createOnEnter",
+			"click #editProject": "editExistingProject",
+			"click #deleteProject": "deleteExistingProject"				
 		},
 		
 		initialize: function() {
@@ -105,10 +117,13 @@ ProjectView = new function() {
 			this.template_body_row="";
 			/* ------------------------------------------------------------------------*/
 			
-			this.loadCollection();
+			if (arguments.length > 0)
+				this.loadCollection(arguments[0].clientId,arguments[0].projectId);
+			else
+				this.loadCollection();
 			
 			//Fill Templates
-			var that = this;					
+			var that = this;
 			tmNameSpace.TemplateManager.get('project-list',
 					function(template){
 						that.template_body = template;
@@ -124,8 +139,8 @@ ProjectView = new function() {
 			);
 		},
 		
-		loadCollection: function()	{
-			this.collection = ProjectCollection.get();	
+		loadCollection: function(clientId,projectId)	{
+			this.collection = ProjectCollection.get(clientId,projectId);	
 		},
 		
 		createOnEnter: function()	{
@@ -144,7 +159,8 @@ ProjectView = new function() {
 			});
 			$('.modal-footer >a#edit').die().live('click', function(event){
 				var projectId = event.currentTarget.attributes['project-id'].value;
-				Backbone.history.navigate("#/projects/edit/"+ projectId, {trigger:true});
+				var clientId = event.currentTarget.attributes['client-id'].value;
+				Backbone.history.navigate("#/client/" + "project/"+ projectId, {trigger:true});
 			});				
 		},
 		deleteExistingProject: function(event) {
@@ -158,17 +174,15 @@ ProjectView = new function() {
 			});				
 		}, 
 		render : function() {
-
-			var compiled_template_body = Mustache.render(this.template_body);
-			$(this.myPanelId).html(compiled_template_body);
+			$(this.myPanelId).html(this.template_body({}));
 			
 			/* ----- Appending Rows  ----------- */
 			that = this;
 	    	this.collection.fetch({success: function() {
+					
 				that.collection.each( function(project) {				
 					/* ----- Appending Rows  ----------- */
-			    	var compiled_template_body_row = Mustache.render(that.template_body_row, project.toJSON());	    	
-			    	$(that.myPanelRowId).append(compiled_template_body_row);
+					$(that.myPanelRowId).append(that.template_body_row(project.toJSON()));
 			    });
 	    	}});	    	
 			

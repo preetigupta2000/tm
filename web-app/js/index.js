@@ -336,7 +336,21 @@
  		
  		HeaderView.setHomeIcon(showHomeLink);
  		HeaderView.setBackIcon(showBackLink);
- 	}	
+ 	}
+ 	
+	function getClientJson()	{
+		$.ajax({
+	        url: 'tm/api/client/', 
+	        dataType: 'json',
+	        data: '',
+	        success: function(data, status, xhr) {
+	             alert(data);
+	        },
+	        error: function(xhr, status, error) {
+	             alert(status);
+	        }
+		});
+	} 	
  	/********************************************************/
  	/*                 ONE TIME INIT FUNCTION              */
  	/********************************************************/
@@ -422,7 +436,8 @@
  		"handleLoginSuccess" : handleLoginSuccess,
  		"logger" : logger,
  		"JSLogsSettingsConfig" : JSLogsSettingsConfig,
- 		"version" : version
+ 		"version" : version,
+ 		"getClientJson" : getClientJson
  	}
  
 })();
