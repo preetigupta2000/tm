@@ -39,8 +39,8 @@ ProjectView = new function() {
 			}
 	    },
 	    
-	    addProject: function(){
-	    	collection = ProjectCollection.get()
+	    addProject: function(clientId){
+	    	collection = ProjectCollection.get(clientId)
 	    	collection.create(
 	    		this.newAttributes(),
 	    		{
@@ -149,7 +149,9 @@ ProjectView = new function() {
 			    $.fancybox.close();
 			});
 			$(document).on('click', '.modal-footer >a#add', function(event){
-			Backbone.history.navigate("#/projects/addProject", {trigger:true});
+				var formElement = this.parentNode.parentNode;
+				var clientId = formElement['client-id'].value;
+				Backbone.history.navigate("#client/" + clientId +"/project/addProject", {trigger:true});
 			});	
 		},
 		editExistingProject: function(event) {

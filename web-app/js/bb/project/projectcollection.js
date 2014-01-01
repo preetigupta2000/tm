@@ -8,8 +8,8 @@ ProjectCollection = new function() {
 		initialize: function(){
 			this.url= com.fonantrix.tm.REQUEST_CONTEXT + "/api/project";
 		},
-		comparator: function(client) {
-			return client.get('id');
+		comparator: function(project) {
+			return project.get('id');
 		}
 	});
 

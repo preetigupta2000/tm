@@ -101,7 +101,6 @@ class ProjectController {
 
 
 	def save = {
-
 		if (params.clientid) {
 			def client = Client.get(params.clientid)
 			if (client) {

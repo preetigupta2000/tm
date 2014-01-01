@@ -1,5 +1,4 @@
 <g:set var="contextPath" value="${request.contextPath}"/>
-{{#.}}
 	<tr>
 		<td>{{id}}</td>
 		<td data-title="Name">
@@ -37,4 +36,3 @@
 			</div>
 		</td>
 	</tr>
-{{/.}}

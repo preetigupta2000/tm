@@ -1,5 +1,5 @@
 <!-- Modal Client -->
-	<form id="clientform" class="form-horizontal" method="post" name="clientform" action="#">
+	<form id="projectform" class="form-horizontal" method="post" name="clientform" action="#">
 		<div class="modal-header">
 			<h3 id="myModalLabel">Add New Project Information</h3>
 		</div>
@@ -28,12 +28,12 @@
 	          <!-- Text input-->
 	          <label class="control-label" for="input01">Select Client</label>
 	          <div class="controls">
-				<select class="form-control">
-				 {{#clients}}
-					<option value="{{clientid}}" {{#sel}}selected{{/sel}}> 
-                       '{{clientname}}'
+				<select class="form-control input-sm" id="client-id">
+				 {{#each this}}
+					<option value="{{id}}"> 
+                       "{{name}}"
                    </option>
-                 {{/clients}}
+                 {{/each}}
            		</select>
 	           </div>
 	        </div>
