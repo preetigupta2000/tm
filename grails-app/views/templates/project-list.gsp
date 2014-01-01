@@ -16,7 +16,7 @@
 			</span>
 			<span class="pull-right">
 				<a href="#" onclick="window.history.back();">Return</a>
-				<a id="addNewProject" role="button" class="btn btn-default btn-sm navigationbutton overlay-modal" data-init-fn="com.fonantrix.application.tm.getClientJson();" data-type="json" data-is-template="true" data-auto-size="false" data-template-url="add-project" data-height="330px" data-max-width="550px">
+				<a id="addNewProject" role="button" class="btn btn-default btn-sm navigationbutton overlay-modal" data-response-type="json" href="${contextPath}/api/client" data-auto-size="false" data-template-url="add-project" data-height="400px" data-max-width="550px">
 					<i class="fa fa-plus"></i>  Add New Project
 				</a>
 			</span>
