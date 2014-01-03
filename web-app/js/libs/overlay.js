@@ -179,9 +179,9 @@ com.fonantrix.tm.util.overlay = (function () {
 							var templateURL = overlayModalAnchor.attr('data-template-url');
 							TemplateManager.get(templateURL, function (overlayTemplate) {
 								html = overlayTemplate(response);
+								setFancyBox(overlayModalAnchor, html);
 							});
 						}
-						setFancyBox(overlayModalAnchor, html);
 						if (typeof overlayModalAnchor.attr('data-type') !== 'undefined' && overlayModalAnchor.attr('data-type') !== 'iframe'){
 							jQuery('#overlay-loader').remove();
 						}
