@@ -1,7 +1,7 @@
 <!-- Modal Client -->
 	<form id="projectform" class="form-horizontal" method="post" name="projectform" action="#">
 		<div class="modal-header">
-			<h3 id="myModalLabel">Edit Project Information ({{id}})</h3>
+			<h3 id="myModalLabel">Edit Project Information ({{id}}) - Client Id: {{clientname}}</h3>
 		</div>
 		<div class="modal-body">
 			<div class="form-group">

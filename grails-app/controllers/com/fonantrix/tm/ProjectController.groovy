@@ -101,8 +101,8 @@ class ProjectController {
 
 
 	def save = {
-		if (params.clientid) {
-			def client = Client.get(params.clientid)
+		if (params.id) {
+			def client = Client.get(params.id)
 			if (client) {
 
 				def project = new Project(name: params.name, description: params.description)
@@ -110,7 +110,7 @@ class ProjectController {
 				println("project " +project)
 				client.save(flush:true, failOnError: true)
 
-				redirect action: 'show', id: params.clientid
+				redirect action: 'show'
 			}
 		}
 
@@ -131,6 +131,27 @@ class ProjectController {
 		}
 	}
 
+	def delete = {
+		if(params.id) {
+			def project = Project.get(params.id)
+			if(project) {
+				try {
+					project.delete()
+					render "true"
+				} catch(HibernateException e){
+					render (text:"could not delete project",status:500)
+					return
+				}
+			} else {
+				render "Project not found."
+				return
+			}
+		}
+		else {
+			render "Please specify project id to be deletd."
+		}
+	}
+	
 	def deleteProject = {
 		def project = Project.get(params.id)
 		def clientId = params.clientid

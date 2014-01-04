@@ -21,7 +21,7 @@ ProjectView = new function() {
 			if (listbbprojectView == null) {  //First OR After Browser Refresh
 				listbbprojectView = new View();
 			} else {  	 //If the View has been created (bbView) never re-create
-				listbbprojectView.loadCollection();
+				listbbprojectView.render();
 			}
 	    },
 	    projectlist : function(clientId,projectId) {
@@ -62,8 +62,8 @@ ProjectView = new function() {
 		    };
 		},
 	    editProject: function(clientId, projectId){
-	    	model = ProjectCollection.get(clientId).get(projectId);
-	    	model.save(
+	    	collection = ProjectCollection.get();
+	    	collection.get(projectId).save(
     			this.newAttributes(),
 	    		{
 	    			success: function(model, response) {
@@ -79,7 +79,7 @@ ProjectView = new function() {
 	    },
 
 	    deleteProject: function(clientId, projectId){
-	    	collection = ProjectCollection.get(clientId);
+	    	collection = ProjectCollection.get();
 
 	    	collection.get(projectId).destroy({
 	    			success: function(response) {
@@ -172,7 +172,8 @@ ProjectView = new function() {
 			});
 			$('.modal-footer >a#delete').die().live('click', function(event){
 				var projectId = event.currentTarget.attributes['project-id'].value;
-				Backbone.history.navigate("#/projects/delete/"+ projectId, {trigger:true});
+				var clientId = event.currentTarget.attributes['client-id'].value;
+				Backbone.history.navigate("#/client/" + clientId + "/project/delete/"+ projectId, {trigger:true});
 			});				
 		}, 
 		render : function() {
