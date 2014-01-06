@@ -29,11 +29,15 @@
 	          <label class="control-label" for="input01">Select Client</label>
 	          <div class="controls">
 				<select class="form-control input-sm" id="client-id">
+				{{#ifObject this}}
+					<option value="{{id}}" selected disabled> {{name}}
+				{{else}}
 				 {{#each this}}
 					<option value="{{id}}"> 
                        "{{name}}"
                    </option>
                  {{/each}}
+                {{/ifObject}}
            		</select>
 	           </div>
 	        </div>
