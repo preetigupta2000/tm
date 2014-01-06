@@ -25,7 +25,7 @@
 						</a>
 					</div>
 					<div class="circle">
-						<a href="#" id="viewDetails">
+						<a href="#/client/{{id}}/project/list" id="viewDetails">
 							<i class="fa fa-eye"></i>
 							<p>View</p>
 						</a>

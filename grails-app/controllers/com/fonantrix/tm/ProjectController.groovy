@@ -49,7 +49,7 @@ class ProjectController {
 		} else if (clientid !=null && projectid ==null) {
 			Client client = Client.get(clientid)
 			Project allClientProjects = Project.findByClient(client)
-			if (project) {
+			if (allClientProjects) {
 				//render view: '/projects', model: [project: project, clientList:clients]
 				def data = [
 					projects: allClientProjects.collect {[

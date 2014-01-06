@@ -33,7 +33,7 @@ ProjectView = new function() {
 				listbbprojectView.loadCollection(clientId,projectId);
 				listbbprojectView.collection.fetch({
 					success: function(){
-						listbbprojectView.render();
+						listbbprojectView.render(clientId);
 					}
 				});
 			}
@@ -117,9 +117,10 @@ ProjectView = new function() {
 			this.template_body_row="";
 			/* ------------------------------------------------------------------------*/
 			
-			if (arguments.length > 0)
+			if (arguments.length > 0) {
+				this.clientId= arguments[0].clientId;
 				this.loadCollection(arguments[0].clientId,arguments[0].projectId);
-			else
+			} else
 				this.loadCollection();
 			
 			//Fill Templates
@@ -132,7 +133,7 @@ ProjectView = new function() {
 								function(template){
 									that.template_body_row = template;
 									//Always call render from initialize - as Backbone does not automatically call it.									
-									that.render();
+									that.render(that.clientId);
 								}
 						);
 					}
@@ -176,8 +177,8 @@ ProjectView = new function() {
 				Backbone.history.navigate("#/client/" + clientId + "/project/delete/"+ projectId, {trigger:true});
 			});				
 		}, 
-		render : function() {
-			$(this.myPanelId).html(this.template_body({}));
+		render : function(clientId) {
+			$(this.myPanelId).html(this.template_body({clientid:clientId}));
 			
 			/* ----- Appending Rows  ----------- */
 			that = this;
