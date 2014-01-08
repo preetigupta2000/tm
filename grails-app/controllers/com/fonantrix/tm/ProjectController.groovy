@@ -107,24 +107,6 @@ class ProjectController {
 
 				def project = new Project(name: params.name, description: params.description)
 				client.addToProjects(project)
-				println("project " +project)
-				client.save(flush:true, failOnError: true)
-
-				redirect action: 'show'
-			}
-		}
-
-		else {
-			def client = Client.get(params.client)
-
-
-			println(client)
-
-
-			if(client) {
-
-				def project = new Project(name: params.name, description: params.description)
-				client.addToProjects(project)
 				client.save(flush:true, failOnError: true)
 				redirect action: 'show'
 			}

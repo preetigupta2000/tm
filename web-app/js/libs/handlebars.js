@@ -55,6 +55,14 @@ Handlebars.registerHelper = function(name, fn, inverse) {
     this.helpers[name] = fn;
   }
 };
+//Customize function to support if an element is an object or array or list of items
+Handlebars.registerHelper('ifObject', function(item, options) {
+	  if(typeof item === "object") {
+	    return options.fn(this);
+	  } else {
+	    return options.inverse(this);
+	  }
+});
 
 Handlebars.registerPartial = function(name, str) {
   if (toString.call(name) === objectType) {
