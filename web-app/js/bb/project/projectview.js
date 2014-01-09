@@ -7,6 +7,8 @@ ProjectView = new function() {
 	/* -------------------------------------------------*/
 
 	this.initialize = function(){
+		if (listbbprojectView == null)
+			listbbprojectView = new View();		
 	};
 	
 	var Router = Backbone.Router.extend({
@@ -26,27 +28,29 @@ ProjectView = new function() {
 	    },
 	    projectlist : function(clientId,projectId) {
 			if (listbbprojectView == null) {  //First OR After Browser Refresh
-				
 				listbbprojectView = new View({clientId:clientId,projectId:projectId});
-				
-			} else {  	 //If the View has been created (bbView) never re-create
+			} else { //If the View has been created (listbbprojectView) never re-create
 				listbbprojectView.loadCollection(clientId,projectId);
 				listbbprojectView.collection.fetch({
 					success: function(){
 						listbbprojectView.render(clientId);
 					}
-				});
-			}
+				});					
+			}		
 	    },
 	    
 	    addProject: function(clientId){
-	    	collection = ProjectCollection.get(clientId)
+	    	collection = ProjectCollection.get(clientId);
+	    	that = this;
 	    	collection.create(
 	    		this.newAttributes(),
 	    		{
 	    			success: function(response) {
 	    				$.fancybox.close();
-	    				Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
+	    				if (listbbprojectView.clientId != undefined)
+	    					Backbone.history.navigate("#/client/" + clientId + "/project/list", {trigger:true,replace:true});
+	    				else
+	    					Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
 	    			},
 	    			error: function(error){
 	    				console.log(error.responseText);
@@ -68,7 +72,10 @@ ProjectView = new function() {
 	    		{
 	    			success: function(model, response) {
 	    				$.fancybox.close();
-	    				Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
+	    				if (listbbprojectView.clientId != undefined)
+	    					Backbone.history.navigate("#/client/" + clientId + "/project/list", {trigger:true,replace:true});
+	    				else
+	    					Backbone.history.navigate("#/project/list", {trigger:true,replace:true});	    				
 	    			},
 	    			error: function(error){
 	    				console.log(error.responseText);
@@ -84,7 +91,10 @@ ProjectView = new function() {
 	    	collection.get(projectId).destroy({
 	    			success: function(response) {
 	    				$.fancybox.close();
-	    				Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
+	    				if (listbbprojectView.clientId != undefined)
+	    					Backbone.history.navigate("#/client/" + clientId + "/project/list", {trigger:true,replace:true});
+	    				else
+	    					Backbone.history.navigate("#/project/list", {trigger:true,replace:true});
 	    			},
 	    			error: function(error){
 	    				console.log(error.responseText);

@@ -48,7 +48,7 @@ class ProjectController {
 			}
 		} else if (clientid !=null && projectid ==null) {
 			Client client = Client.get(clientid)
-			Project allClientProjects = Project.findByClient(client)
+			Project[] allClientProjects = Project.findAllByClient(client)
 			if (allClientProjects) {
 				//render view: '/projects', model: [project: project, clientList:clients]
 				def data = [
@@ -107,37 +107,24 @@ class ProjectController {
 
 				def project = new Project(name: params.name, description: params.description)
 				client.addToProjects(project)
-				println("project " +project)
-				client.save(flush:true, failOnError: true)
-
-				redirect action: 'show'
-			}
-		}
-
-		else {
-			def client = Client.get(params.client)
-
-
-			println(client)
-
-
-			if(client) {
-
-				def project = new Project(name: params.name, description: params.description)
-				client.addToProjects(project)
-				client.save(flush:true, failOnError: true)
-				redirect action: 'show'
+				def projectid = client.save(flush:true, failOnError: true)
+				redirect action: "show"
 			}
 		}
 	}
 
 	def delete = {
-		if(params.id) {
-			def project = Project.get(params.id)
+		def projectid
+		if (params.pid != null)
+			projectid = params.pid
+		else 
+			projectid = params.id
+		if(projectid) {
+			def project = Project.get(projectid)
 			if(project) {
 				try {
 					project.delete()
-					render "true"
+					render ""
 				} catch(HibernateException e){
 					render (text:"could not delete project",status:500)
 					return
